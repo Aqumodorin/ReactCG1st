@@ -1,0 +1,663 @@
+1
+00:00:02,150 --> 00:00:07,410
+In a previous lecture we learned about state and most importantly, how we manipulate it with set state,
+
+2
+00:00:07,430 --> 00:00:08,600
+this set state.
+
+3
+00:00:08,600 --> 00:00:13,850
+Now that's a feature only available in class-based components, so components you construct by using the
+
+4
+00:00:13,850 --> 00:00:18,350
+class keyword which extend component which is imported from React.
+
+5
+00:00:18,350 --> 00:00:26,570
+Now prior to React version 16.8, this was the only way of managing state in React applications
+
+6
+00:00:26,840 --> 00:00:27,940
+and to say this right away,
+
+7
+00:00:27,950 --> 00:00:32,780
+it is the way we'll use throughout this course and I'll come back to why in a second.
+
+8
+00:00:33,020 --> 00:00:39,980
+Now since React 16.8, there also is a way for us to manage state in functional components with a
+
+9
+00:00:39,980 --> 00:00:42,290
+feature called React hooks.
+
+10
+00:00:42,290 --> 00:00:47,720
+Now I'll show you this feature here already and actually in this course, there are two complete modules
+
+11
+00:00:47,870 --> 00:00:54,170
+on React hooks, one which teaches them from the ground up and one that also then converts the entire
+
+12
+00:00:54,170 --> 00:00:58,410
+course project to use React hooks and the reasons why we need to convert
+
+13
+00:00:58,410 --> 00:01:04,550
+that is because for this course, I'll stick to the setup, the traditional setup where you use class-based
+
+14
+00:01:04,550 --> 00:01:06,830
+components for managing state, even though
+
+15
+00:01:06,830 --> 00:01:11,090
+now since React 16.8 we could use functional components for everything.
+
+16
+00:01:11,090 --> 00:01:13,000
+Now why do I stick to this setup?
+
+17
+00:01:13,010 --> 00:01:20,540
+Well it has been the only way in the past and if you're joining a company working on a React team, you
+
+18
+00:01:20,540 --> 00:01:26,900
+will work with this syntax because it is the established syntax and all projects will be written like
+
+19
+00:01:26,900 --> 00:01:30,700
+this because it was the only way of creating components in the past.
+
+20
+00:01:30,740 --> 00:01:36,410
+This new way we're using these React hooks is totally optional and it's not even sure if this will be
+
+21
+00:01:36,410 --> 00:01:41,510
+the main way of creating components in the future and therefore in this course, you'll simply learn both
+
+22
+00:01:41,750 --> 00:01:47,390
+and we'll use this established way here which is the default way of creating components in React and
+
+23
+00:01:47,390 --> 00:01:49,370
+we'll use this throughout the course
+
+24
+00:01:49,370 --> 00:01:52,840
+and I will introduce hooks as they make sense,
+
+25
+00:01:52,850 --> 00:01:59,000
+so here and also in later module and then we'll have these entire modules I already mentioned on React
+
+26
+00:01:59,000 --> 00:02:05,690
+hooks where you learn all about them so that once you've finish this course, you really are a React expert
+
+27
+00:02:06,020 --> 00:02:11,120
+in whichever way you want to look at it, you will know all the different ways and their advantages of
+
+28
+00:02:11,120 --> 00:02:16,280
+using React, making it possible for you to join any React job you want.
+
+29
+00:02:16,280 --> 00:02:20,660
+So with that, let me show you what this React hooks feature looks like and React
+
+30
+00:02:20,660 --> 00:02:22,610
+hooks is really just the name of it,
+
+31
+00:02:22,640 --> 00:02:29,720
+it's basically a collection of functions exposed to you by React which you can use in functional components
+
+32
+00:02:30,290 --> 00:02:34,250
+and therefore, we'll have to convert this component here into a functional one.
+
+33
+00:02:34,250 --> 00:02:40,010
+For that I'll create a constant named app and this will be a function that gets props and then has a
+
+34
+00:02:40,010 --> 00:02:41,030
+function body,
+
+35
+00:02:41,030 --> 00:02:49,200
+so just as we have it here in person.js, there we also created our component like that. So in here, we
+
+36
+00:02:49,200 --> 00:02:56,700
+now no longer have state or switchNameHandler, so I'll cut that and temporarily add it here at the bottom
+
+37
+00:02:56,730 --> 00:03:03,240
+so that we can later reuse that logic. We should export default app with a lowercase A because I renamed
+
+38
+00:03:03,240 --> 00:03:07,710
+my constant to to have a lowercase A, if you named it with an uppercase of course you don't need to
+
+39
+00:03:07,710 --> 00:03:14,640
+change this and then in your function body, you have no render method, you just return JSX. Basically
+
+40
+00:03:14,640 --> 00:03:17,170
+as you learned it for functional components,
+
+41
+00:03:17,190 --> 00:03:25,350
+this is a normal functional component but now you can use this React hooks feature or one of the React
+
+42
+00:03:25,350 --> 00:03:31,170
+hooks because React 16.8 and therefore you should check your package.json file whether
+
+43
+00:03:31,170 --> 00:03:37,530
+your project does use React 16.8, if not update the version and rerun npm install so you
+
+44
+00:03:37,530 --> 00:03:44,430
+do. So your React 16.8 or higher project now is able to use hooks and you do use them by
+
+45
+00:03:44,430 --> 00:03:49,140
+importing them from React, so instead of component which we don't need here anymore because we're not
+
+46
+00:03:49,140 --> 00:03:55,320
+extending it anymore, you can import use, all these hooks start with the use keyword and you see there
+
+47
+00:03:55,320 --> 00:04:01,920
+are a couple of hooks, state. useState is the most important React hook and I'll introduce other
+
+48
+00:04:01,920 --> 00:04:07,170
+hooks throughout this course but useState is the hook that allows us to manage state in a functional
+
+49
+00:04:07,170 --> 00:04:08,220
+component.
+
+50
+00:04:08,220 --> 00:04:09,480
+Now how do we use it?
+
+51
+00:04:09,750 --> 00:04:16,920
+Well you call it like a function, like this and then to useState, you pass your initial state.
+
+52
+00:04:16,920 --> 00:04:22,560
+So for that, we can copy that object we previously set up on our state property,
+
+53
+00:04:22,560 --> 00:04:26,390
+so here I'll pass that into useState, like that.
+
+54
+00:04:26,490 --> 00:04:31,380
+Now this uses this hook but what does it actually do?
+
+55
+00:04:31,560 --> 00:04:39,600
+useState returns an array with exactly two elements and always two elements, that's important.
+
+56
+00:04:39,600 --> 00:04:43,740
+So we can store this in let's say a state array constant.
+
+57
+00:04:44,670 --> 00:04:49,920
+Now the first element we get back will always be our current state,
+
+58
+00:04:49,920 --> 00:04:52,850
+so initially that object and whenever we change it,
+
+59
+00:04:52,860 --> 00:05:00,540
+well the updated state. The second element in state array will always be a function that allows us to
+
+60
+00:05:00,630 --> 00:05:07,350
+update this state, such that React is aware of it and will re-render this component which is of course
+
+61
+00:05:07,350 --> 00:05:14,750
+the idea and which is what also happens with this set state in class-based components. So we can also
+
+62
+00:05:14,750 --> 00:05:20,750
+use a more modern Javascript feature called array destructuring which works by adding square brackets
+
+63
+00:05:20,750 --> 00:05:27,020
+on the left side of the equal sign here and this allows you to pull elements out of the array you get
+
+64
+00:05:27,020 --> 00:05:29,100
+back from the right side of the equal sign,
+
+65
+00:05:29,120 --> 00:05:31,050
+so of this function call.
+
+66
+00:05:31,160 --> 00:05:36,380
+So in here you can give these elements any name you want and therefore I'll name the first one here
+
+67
+00:05:36,740 --> 00:05:39,330
+persons state for example, again
+
+68
+00:05:39,340 --> 00:05:40,980
+that name is totally up to you
+
+69
+00:05:41,060 --> 00:05:49,800
+and the second element will be a function that allows you to set that state, so I'll name it setPersons, you
+
+70
+00:05:49,800 --> 00:05:52,560
+can also name it set person state, whatever you want,
+
+71
+00:05:52,560 --> 00:05:56,820
+so maybe let's set persons state to be really clear what this does.
+
+72
+00:05:56,820 --> 00:06:01,410
+So now we have these two things, persons state gives you access to this object,
+
+73
+00:06:01,410 --> 00:06:07,620
+so therefore in all the places where we previously used this state, we now replace this state in all
+
+74
+00:06:07,620 --> 00:06:12,630
+these places with persons state because this state doesn't exist anymore,
+
+75
+00:06:12,690 --> 00:06:18,060
+it only exists in class-based React components and we have no such class-based React component here
+
+76
+00:06:18,060 --> 00:06:18,670
+anymore,
+
+77
+00:06:18,690 --> 00:06:20,760
+it's a functional component.
+
+78
+00:06:20,760 --> 00:06:27,780
+So this acceses the persons data, set persons state allows us to set a new state and for this, we
+
+79
+00:06:27,780 --> 00:06:32,550
+can re-add that switchNameHandler to our component
+
+80
+00:06:32,550 --> 00:06:40,710
+but how do we add a method, as this was before, to a functional component? Well turns out you can have
+
+81
+00:06:40,770 --> 00:06:45,940
+functions inside functions, not just in React but in Javascript in general
+
+82
+00:06:46,200 --> 00:06:51,840
+and therefore here, we can add a new function stored in a constant maybe which is my old switchNameHandler,
+
+83
+00:06:51,900 --> 00:06:53,670
+I just copied that code.
+
+84
+00:06:53,760 --> 00:06:59,280
+So now I have that switchNameHandler constant which holds this function code here and this is perfectly
+
+85
+00:06:59,280 --> 00:07:06,540
+fine Javascript code, you can have a function definition inside of a function. Looks strange and you typically
+
+86
+00:07:06,540 --> 00:07:12,750
+don't use it too often but for React hooks, you use that and it is fine because now you have a functional
+
+87
+00:07:12,750 --> 00:07:19,380
+component that can manage state and that can have other functions that do something for example upon
+
+88
+00:07:19,380 --> 00:07:20,350
+a click
+
+89
+00:07:20,520 --> 00:07:22,890
+and that's exactly what I do here. On click
+
+90
+00:07:22,890 --> 00:07:25,710
+we previously called this switchNameHandler,
+
+91
+00:07:25,710 --> 00:07:31,230
+well the this keyword is now wrong because we are not inside of a class anymore,
+
+92
+00:07:31,230 --> 00:07:38,630
+instead it's just switchNameHandler, referring to this constant here. Still without parentheses because
+
+93
+00:07:38,630 --> 00:07:44,150
+I don't want to execute it immediately but only when this click occurs and then this function will execute
+
+94
+00:07:44,510 --> 00:07:49,550
+and now we won't call set state anymore because this function also doesn't exist anymore,
+
+95
+00:07:49,550 --> 00:07:57,190
+instead of this set state, it's now just set persons state and we pass our new state object into there.
+
+96
+00:07:57,430 --> 00:08:03,580
+And with that if you save it, with your development server still up and running, this is the app and
+
+97
+00:08:03,580 --> 00:08:04,630
+this looks still good
+
+98
+00:08:04,630 --> 00:08:11,230
+which already means that useState generally works, otherwise would not be able to extract data from
+
+99
+00:08:11,230 --> 00:08:13,720
+our persons state down there.
+
+100
+00:08:13,720 --> 00:08:18,740
+So if I now press switch name, watch Max here, it's Maximilian.
+
+101
+00:08:18,910 --> 00:08:25,480
+So extracting the state and updating the state and re-rendering the component upon a state change all
+
+102
+00:08:25,480 --> 00:08:26,910
+works.
+
+103
+00:08:26,950 --> 00:08:32,320
+There is one important difference to the state in a class-based component though, it generally looks
+
+104
+00:08:32,320 --> 00:08:42,100
+like it works the same but it doesn't. Let me console log persons state here so that we can see what's
+
+105
+00:08:42,100 --> 00:08:42,690
+inside.
+
+106
+00:08:42,700 --> 00:08:44,950
+If I save this, this app reloads,
+
+107
+00:08:44,950 --> 00:08:48,880
+so here we have Max and on Maximilian and this is what's in our state, right?
+
+108
+00:08:48,880 --> 00:08:54,520
+It's an object with other state because we're setting this as well to demonstrate that this doesn't
+
+109
+00:08:54,520 --> 00:09:03,160
+get overwritten and persons and if I clicks switch name, we get the new state and oh, other state is missing
+
+110
+00:09:03,760 --> 00:09:06,920
+and that is super important. When you're using React hooks,
+
+111
+00:09:07,060 --> 00:09:14,140
+your function here which you get as the second element in that array does not merge whatever you pass
+
+112
+00:09:14,140 --> 00:09:16,360
+to it with the old state,
+
+113
+00:09:16,480 --> 00:09:19,540
+instead it replaces the old state with it
+
+114
+00:09:19,690 --> 00:09:25,960
+and this is super important because this means that whenever you're updating the state like this, you
+
+115
+00:09:25,960 --> 00:09:31,090
+have to manually make sure you include all old state data.
+
+116
+00:09:31,090 --> 00:09:37,630
+Here for example by manually adding the other state property and then you have to access the persons
+
+117
+00:09:37,720 --> 00:09:44,490
+state here and access other state and this will just make sure that we copy in the old,
+
+118
+00:09:44,500 --> 00:09:49,270
+in this case untouched other state, of course you could change it here as well
+
+119
+00:09:49,270 --> 00:09:55,030
+and when you are doing that, now if I click switch name, other state is still there.
+
+120
+00:09:55,030 --> 00:10:01,270
+Now this is one way of doing it but the more elegant way is actually to not manually merge your states
+
+121
+00:10:01,750 --> 00:10:10,920
+but instead use useState multiple times, whereas in class-based components, you only have one state property
+
+122
+00:10:11,110 --> 00:10:15,000
+and this set state automatically merges changes with the old state
+
+123
+00:10:15,010 --> 00:10:20,760
+to not discard any state, here you can have multiple useState calls.
+
+124
+00:10:21,460 --> 00:10:22,320
+So we can call
+
+125
+00:10:22,320 --> 00:10:31,120
+useState again and there if we wanted to manage our other state, we could pass in our other state, some
+
+126
+00:10:31,310 --> 00:10:36,080
+other value object here or if all we want to manage is a string,
+
+127
+00:10:36,190 --> 00:10:39,310
+we could also just pass in that string as a default value,
+
+128
+00:10:39,310 --> 00:10:41,050
+it doesn't have to be an object.
+
+129
+00:10:41,110 --> 00:10:43,590
+It could be an object as it is here,
+
+130
+00:10:43,600 --> 00:10:50,200
+it could also just be a string, a number, an array, a boolean, whatever your app needs and you can have
+
+131
+00:10:50,320 --> 00:10:53,260
+as many useState calls as you want.
+
+132
+00:10:54,210 --> 00:11:02,550
+And therefore now if I log my person state and then here, I also extract that into two variables with the
+
+133
+00:11:02,560 --> 00:11:09,190
+help of array destructuring, that could be my other state and set other state.
+
+134
+00:11:09,190 --> 00:11:15,460
+So now if I log persons state and other state and I'm never using set other state because I don't want
+
+135
+00:11:15,460 --> 00:11:16,750
+to set it anywhere,
+
+136
+00:11:16,750 --> 00:11:24,610
+now if I log both here with two useState calls, back in the app you see initially we got our person
+
+137
+00:11:24,610 --> 00:11:29,700
+state which still has its own other state so let's remove that.
+
+138
+00:11:29,750 --> 00:11:31,250
+So again we load,
+
+139
+00:11:31,250 --> 00:11:37,100
+so now we have the persons state which is just this object and then we have our some other state here,
+
+140
+00:11:37,130 --> 00:11:38,500
+some other value
+
+141
+00:11:38,500 --> 00:11:45,410
+and if I switch name, we updated persons and we still have some other value because that state is not
+
+142
+00:11:45,410 --> 00:11:51,990
+touched by our call to set persons state which only interacts with that first useState result.
+
+143
+00:11:52,100 --> 00:11:56,450
+So multiple useState with different state slices
+
+144
+00:11:56,480 --> 00:12:02,000
+so to say, that is how you manage state in a functional component with React hooks.
+
+145
+00:12:02,000 --> 00:12:07,400
+You don't have one big state object, though you could and you could manually merge it if you prefer that
+
+146
+00:12:07,700 --> 00:12:12,200
+but instead, you have multiple separated state slices.
+
+147
+00:12:12,200 --> 00:12:18,800
+This is the useState hook and this is a glimpse at React hooks in general and this is the most important
+
+148
+00:12:18,800 --> 00:12:19,880
+React hook.
+
+149
+00:12:19,880 --> 00:12:26,720
+To summarize it, React hooks is all about these use something functions with useState being the most
+
+150
+00:12:26,720 --> 00:12:33,440
+important, that allow you to add functionality to functional components, like here useState allows us
+
+151
+00:12:33,440 --> 00:12:36,630
+to add state management to functional components.
+
+152
+00:12:37,040 --> 00:12:39,980
+So if you are using React hooks only
+
+153
+00:12:40,310 --> 00:12:43,740
+and again, I will teach you all these important hooks throughout this course,
+
+154
+00:12:43,820 --> 00:12:48,680
+you don't need to use class-based components. Still as I mentioned, in this course
+
+155
+00:12:48,680 --> 00:12:52,660
+I will use class-based components because that's the established way,
+
+156
+00:12:52,660 --> 00:12:55,800
+this is the way you will need it in any job you're starting
+
+157
+00:12:55,880 --> 00:13:00,570
+and therefore if you want to become a React developer, you absolutely have to know that name.
+
+158
+00:13:00,600 --> 00:13:05,950
+Still, you'll also learn this React hook syntax along the way and to mention it again,
+
+159
+00:13:05,960 --> 00:13:11,660
+there are two complete modules toward the end of this course where I in one module walk through all
+
+160
+00:13:11,660 --> 00:13:17,000
+the important React hooks so that you have them all in one place and in the other module,
+
+161
+00:13:17,000 --> 00:13:22,580
+I'll take that React project, this complete course project we'll eventually build in this course and convert
+
+162
+00:13:22,610 --> 00:13:28,320
+this to use React hooks only, so you are well-prepared for whichever project you are diving into.
+
+163
+00:13:28,370 --> 00:13:35,310
+So this was a nice excursion here, attached you find a rollback to the class-based approach and you also
+
+164
+00:13:35,310 --> 00:13:39,140
+find this code here, so that you have this for reference
+
+165
+00:13:39,200 --> 00:13:45,080
+but take that rollback, that class-based approach to continue because that is the approach with which
+
+166
+00:13:45,080 --> 00:13:48,850
+we'll continue throughout this course and which we'll use throughout this course.

@@ -1,0 +1,231 @@
+1
+00:00:02,190 --> 00:00:06,620
+In the last lecture, we executed switchNameHandler upon a click,
+
+2
+00:00:06,630 --> 00:00:13,410
+now we want to manipulate the state up on the click. So I'll comment out this console log statement and we
+
+3
+00:00:13,410 --> 00:00:15,370
+could simply do this
+
+4
+00:00:15,390 --> 00:00:19,510
+state, reaching out to this state property here
+
+5
+00:00:19,680 --> 00:00:22,850
+and as I mentioned, this will only work when using this syntax
+
+6
+00:00:22,860 --> 00:00:29,210
+otherwise this here will not refer to the class and will therefore not be able to reach that state property
+
+7
+00:00:29,430 --> 00:00:31,290
+but here it will work.
+
+8
+00:00:31,320 --> 00:00:38,840
+So this state persons, then maybe access person 1 and set the name to Maximilian,
+
+9
+00:00:38,880 --> 00:00:40,370
+my full name.
+
+10
+00:00:41,200 --> 00:00:45,480
+Let's save this and let's see what happens if we execute this code.
+
+11
+00:00:45,480 --> 00:00:49,650
+We already get a warning here but let's ignore it for now and let's click switch name,
+
+12
+00:00:49,650 --> 00:00:53,440
+nothing changes, we still see Max here.
+
+13
+00:00:53,460 --> 00:00:56,470
+Well as I said, we do get a warning about this,
+
+14
+00:00:56,580 --> 00:01:04,500
+we shouldn't mutate which means change the state directly like this, React will not recognize that and
+
+15
+00:01:04,510 --> 00:01:06,990
+it will not pick up this change,
+
+16
+00:01:07,080 --> 00:01:09,090
+so don't do this.
+
+17
+00:01:09,660 --> 00:01:17,820
+Instead use a special method React gives you, you also access this with this and then it's set state.
+
+18
+00:01:17,820 --> 00:01:24,480
+We haven't defined this method but remember that we extend component and this is made available by the
+
+19
+00:01:24,480 --> 00:01:31,050
+React library and the component object happens to have a set state method.
+
+20
+00:01:31,050 --> 00:01:38,640
+This is a method which allows us to update this special state property here and it will then ensure
+
+21
+00:01:38,730 --> 00:01:47,840
+that React gets to know about this update and updates the DOM. set state takes an object as an argument
+
+22
+00:01:48,270 --> 00:01:53,370
+and it will merge whatever we define here with our existing state.
+
+23
+00:01:54,240 --> 00:02:03,680
+So if I here set persons to an updated array, it will merge this with existing data,
+
+24
+00:02:03,740 --> 00:02:13,190
+so if we had some other state here which is some other value, then this would not get touched
+
+25
+00:02:13,190 --> 00:02:16,870
+even if we only update persons. Not clear what I mean,
+
+26
+00:02:16,940 --> 00:02:17,980
+let me show you.
+
+27
+00:02:18,170 --> 00:02:26,540
+I'm copying persons and I'm basically adding this as a property in the object I'm about to use as my update
+
+28
+00:02:26,540 --> 00:02:27,500
+here.
+
+29
+00:02:27,500 --> 00:02:36,770
+So I'm saying this set state and set state takes this new object where I update my persons, where I
+
+30
+00:02:36,830 --> 00:02:44,300
+only change the first person or maybe also let's change Stephanie, let's change her age to 27.
+
+31
+00:02:45,350 --> 00:02:54,080
+Now what it will do, what React will do for us is it will look at our state and see which part of it we're
+
+32
+00:02:54,170 --> 00:02:56,810
+overwriting, we're changing, persons,
+
+33
+00:02:56,810 --> 00:03:05,990
+it will not discard other state but it will simply merge the old state with the new one. We'll overwrite
+
+34
+00:03:05,990 --> 00:03:06,700
+persons
+
+35
+00:03:06,950 --> 00:03:13,190
+since we clearly define a new version of persons here but we'll leave other state untouched because we're
+
+36
+00:03:13,190 --> 00:03:16,970
+not saying anything about it here and it will not discard it
+
+37
+00:03:16,970 --> 00:03:22,040
+which of course is a good thing, you don't want to have to update everything about your state whenever
+
+38
+00:03:22,040 --> 00:03:22,750
+you want to change
+
+39
+00:03:22,750 --> 00:03:25,160
+only a tiny piece about it.
+
+40
+00:03:25,280 --> 00:03:32,120
+So with that, let's now see what happens if we save this file. If we save it now and reload the app and
+
+41
+00:03:32,180 --> 00:03:33,560
+I click switch name,
+
+42
+00:03:33,560 --> 00:03:43,480
+watch Max and watch 26 years old down there. You see that, it's Maximilian and 27 years. Now the
+
+43
+00:03:43,480 --> 00:03:51,220
+DOM was updated because React recognized that the state of our application changes and this really is
+
+44
+00:03:51,220 --> 00:03:52,350
+a special thing,
+
+45
+00:03:52,450 --> 00:03:57,490
+there aren't many things which lead React to update the DOM.
+
+46
+00:03:57,590 --> 00:04:05,350
+There actually only are two, changing state and what else? You could already see it in action,
+
+47
+00:04:06,340 --> 00:04:07,400
+props.
+
+48
+00:04:07,660 --> 00:04:08,740
+We change state,
+
+49
+00:04:08,740 --> 00:04:09,850
+that's nice
+
+50
+00:04:09,850 --> 00:04:16,150
+but keep in mind what we actually output for each person is defined in this person component
+
+51
+00:04:16,450 --> 00:04:22,450
+and there we don't useState and as I said, we could use it with React hooks and I'll introduce you to
+
+52
+00:04:22,480 --> 00:04:25,580
+React hooks right after this lecture here
+
+53
+00:04:25,750 --> 00:04:31,420
+but for now we're not using state in here but in our class-based component instead. Here
+
+54
+00:04:31,450 --> 00:04:39,640
+we use props and that's the other thing React watches out for. If state changes or props changes,
+
+55
+00:04:39,700 --> 00:04:46,300
+it basically analyzes the code it already rendered to the DOM and the code it would now render if it
+
+56
+00:04:46,300 --> 00:04:52,450
+were to re-render everything and then it updates the existing DOM in all the places where it needs to
+
+57
+00:04:52,450 --> 00:04:55,110
+update it to reflect your new state
+
+58
+00:04:55,120 --> 00:05:00,580
+and props. New state in app.js, new props in person.js.

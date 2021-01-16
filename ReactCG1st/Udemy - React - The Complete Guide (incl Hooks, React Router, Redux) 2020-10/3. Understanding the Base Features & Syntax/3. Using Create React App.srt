@@ -1,0 +1,315 @@
+1
+00:00:02,330 --> 00:00:08,270
+In the last lecture I highlighted why we want to set up a project which gives us some additional features
+
+2
+00:00:08,270 --> 00:00:14,720
+which make our life as a developer easier now as I also mentioned there is a tool which creates such
+
+3
+00:00:14,720 --> 00:00:15,990
+a project for us.
+
+4
+00:00:16,010 --> 00:00:22,100
+It's called Create react app and you can simply google for it to find a link to its official github
+
+5
+00:00:22,100 --> 00:00:23,450
+repository.
+
+6
+00:00:23,450 --> 00:00:31,620
+As I said it's maintained by basically Facebook or a community around Facebook so it's officially recommended
+
+7
+00:00:31,700 --> 00:00:36,750
+tool for creating react projects on that github page.
+
+8
+00:00:37,010 --> 00:00:43,190
+You will find installation instructions and a detailed explanation about what it does and how it works.
+
+9
+00:00:43,250 --> 00:00:49,090
+Feel free to read it but of course you're also going to learn all about that throughout this course.
+
+10
+00:00:49,100 --> 00:00:51,590
+So let's start with the installation.
+
+11
+00:00:51,590 --> 00:00:59,840
+We install it globally with NPM and NPM as simply nodes package manager a tool you automatically get
+
+12
+00:00:59,840 --> 00:01:05,610
+when installing node J.S. which makes it easy to manage third party packages.
+
+13
+00:01:05,660 --> 00:01:12,890
+Other javascript packages in the end and create reactive is just such a package to use NPM.
+
+14
+00:01:12,950 --> 00:01:19,590
+You need to install node J.S. which you can download and install from node J.S. dot org.
+
+15
+00:01:19,670 --> 00:01:23,510
+Now there you should pick the latest version 8 dot 5.
+
+16
+00:01:23,520 --> 00:01:24,870
+In my case here.
+
+17
+00:01:24,950 --> 00:01:30,080
+But if you're facing any issues with that all to try out where's the six study eleven or what average
+
+18
+00:01:30,100 --> 00:01:35,400
+long term support version is in your case when you're viewing this page now.
+
+19
+00:01:35,400 --> 00:01:39,800
+No worries we're not going to write any note J.S. code here.
+
+20
+00:01:39,810 --> 00:01:40,880
+You don't need to know.
+
+21
+00:01:40,890 --> 00:01:48,930
+Note J.S. we only need it to use its package manager and also for this development server which will
+
+22
+00:01:48,930 --> 00:01:51,360
+be spun up for us automatically.
+
+23
+00:01:51,630 --> 00:01:57,360
+So simply click these buttons download and no chance and it will open up installer through which you
+
+24
+00:01:57,360 --> 00:01:58,430
+can walk.
+
+25
+00:01:58,500 --> 00:02:04,670
+Once you did finished installation you should be able to run the NPM command here on your machine.
+
+26
+00:02:04,680 --> 00:02:07,590
+So let's do this together in the next step.
+
+27
+00:02:07,650 --> 00:02:13,710
+Now to use d create react app tool use simply open up a terminal or a command prompt on your machine
+
+28
+00:02:14,190 --> 00:02:18,420
+and then there you run npm install and that's what you need node James for.
+
+29
+00:02:18,420 --> 00:02:28,710
+It gives you that NPM tool npm install create dash react dash app and then important add dash G after
+
+30
+00:02:28,710 --> 00:02:35,350
+this to install it globally on your machine so that you can use this command from anywhere on your machine.
+
+31
+00:02:35,370 --> 00:02:41,380
+Now on windows you can simply hit enter on Mac and Linux you might need to add sudo in front of this.
+
+32
+00:02:41,460 --> 00:02:46,950
+If you hit enter and get a permission error to get the right permissions after you did hit Enter you're
+
+33
+00:02:47,040 --> 00:02:51,340
+probably prompt to enter your password and you might want to enter correctly the first time.
+
+34
+00:02:51,350 --> 00:02:56,580
+Unlike I did but after all that create react app should be installed.
+
+35
+00:02:56,580 --> 00:03:03,150
+Now you can use that command to create a new project and you do so by running create react app and then
+
+36
+00:03:03,150 --> 00:03:07,300
+the name of your project and off the folder into which it will be installed.
+
+37
+00:03:07,450 --> 00:03:13,500
+Now important before you run this command navigate into the powerful your system where you want to create
+
+38
+00:03:13,500 --> 00:03:14,480
+that new folder.
+
+39
+00:03:14,490 --> 00:03:20,280
+So here I'm on the desktop but with the help of S.D. you can of course navigate into a different path
+
+40
+00:03:20,310 --> 00:03:25,980
+to store your project there then run create react app and then the name of your project which could
+
+41
+00:03:25,980 --> 00:03:33,430
+be my app or react dash complete guide for example because that is what this course is about.
+
+42
+00:03:33,430 --> 00:03:39,510
+Now one important note to get the exact same folder structure as I have it since this changes over time
+
+43
+00:03:39,510 --> 00:03:43,050
+a bit and you follow along perfectly.
+
+44
+00:03:43,050 --> 00:03:48,690
+You have to add something to this command so don't hit enter yet instead add a whitespace a blank and
+
+45
+00:03:48,690 --> 00:03:51,590
+then add dash dash scripts.
+
+46
+00:03:51,600 --> 00:03:56,100
+Werman So this is all one and the same command even though it's split in two lines here on my machine
+
+47
+00:03:56,130 --> 00:04:03,000
+but it's one command so dash dash scripts dash where John and then a whitespace then one dot one dot
+
+48
+00:04:03,000 --> 00:04:04,090
+five.
+
+49
+00:04:04,140 --> 00:04:06,540
+Now this does not impact the question of react.
+
+50
+00:04:06,540 --> 00:04:10,290
+You're using you are using the latest version of react no worries.
+
+51
+00:04:10,290 --> 00:04:13,280
+This simply impacts the structure of the project.
+
+52
+00:04:13,290 --> 00:04:16,010
+We will change that structure for the course any.
+
+53
+00:04:16,110 --> 00:04:18,750
+But to start with the same well starting point.
+
+54
+00:04:18,750 --> 00:04:23,580
+Use this command simply hit enter their offer and a new project will be created for you.
+
+55
+00:04:23,580 --> 00:04:26,740
+So this will now create a new folder and set everything up for you.
+
+56
+00:04:26,740 --> 00:04:29,450
+There you can ignore all the warnings you might be getting here.
+
+57
+00:04:29,460 --> 00:04:31,370
+Everything will be fine no worries.
+
+58
+00:04:31,500 --> 00:04:33,730
+So let's wait for this command to finish.
+
+59
+00:04:33,720 --> 00:04:39,460
+Now and once this is finished you'll see a bunch of commands you can run.
+
+60
+00:04:39,460 --> 00:04:41,850
+Now here you see ya and start ya and build.
+
+61
+00:04:41,860 --> 00:04:47,240
+That is because I have installed yarn which is an alternative to NPM on my machine queue.
+
+62
+00:04:47,560 --> 00:04:52,970
+You will all will who run these commands with NPM run start NPM run build and so on.
+
+63
+00:04:53,020 --> 00:04:56,120
+So first of all though you have to navigate into the newly created folder.
+
+64
+00:04:56,140 --> 00:05:02,050
+So with S.D. react that complete dash guide if you named the project like I did here and then in there
+
+65
+00:05:02,050 --> 00:05:08,950
+you can run NPM start to start your project and what this means is it starts a development server which
+
+66
+00:05:08,980 --> 00:05:15,280
+opens a new tab in the browser or at least should open that tab in case it does and you can manually
+
+67
+00:05:15,280 --> 00:05:20,290
+open a browser tab and visit local host Colon Free thousand there.
+
+68
+00:05:20,290 --> 00:05:28,420
+And this is a first project first demo app that well is created for you which we can now edit this process
+
+69
+00:05:28,420 --> 00:05:28,630
+here.
+
+70
+00:05:28,630 --> 00:05:32,260
+The NPM start process should be kept on running don't quit it.
+
+71
+00:05:32,290 --> 00:05:38,950
+You can always quit it by hitting control and see but if you quit it it will stop watching your files.
+
+72
+00:05:39,040 --> 00:05:43,660
+And as long as it keeps running on the other end it is watching your files and what does this mean.
+
+73
+00:05:43,660 --> 00:05:49,150
+It means that whenever you change something in code this page will automate you reload and reflect the
+
+74
+00:05:49,150 --> 00:05:51,040
+latest changes which is awesome.
+
+75
+00:05:51,040 --> 00:05:55,570
+So as soon as you're done developing you can quit this as long as you are developing keep this process
+
+76
+00:05:55,570 --> 00:05:56,580
+running.
+
+77
+00:05:56,620 --> 00:06:02,920
+Now with that process running again and that application running here on local host three thousand let's
+
+78
+00:06:02,920 --> 00:06:07,340
+have a look at the folder that was created and all the files we find in there.
+
+79
+00:06:07,420 --> 00:06:08,290
+In the next lecture.

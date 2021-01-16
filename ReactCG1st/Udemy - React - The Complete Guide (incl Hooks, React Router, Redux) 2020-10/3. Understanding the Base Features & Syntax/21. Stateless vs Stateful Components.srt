@@ -1,0 +1,147 @@
+1
+00:00:02,180 --> 00:00:07,490
+In the last lectures, we learned a lot about state and props and you learned that every component receives
+
+2
+00:00:07,490 --> 00:00:13,040
+props and that since React 16.8, you can also manage state in every component.
+
+3
+00:00:13,040 --> 00:00:17,400
+Prior to that version, you could only manage state in class-based components.
+
+4
+00:00:17,480 --> 00:00:18,230
+Now either way,
+
+5
+00:00:18,260 --> 00:00:24,170
+no matter if you're creating a component with the class keyword or as a functional component, if you
+
+6
+00:00:24,260 --> 00:00:31,970
+are managing state in it, either with the state property and this set state or with the React useState
+
+7
+00:00:32,030 --> 00:00:32,540
+hook,
+
+8
+00:00:32,660 --> 00:00:38,600
+no matter which of the approaches you're using, you can differentiate your components in stateful and
+
+9
+00:00:38,600 --> 00:00:44,630
+stateless components. A stateful component is a component that manages state, no matter if it's using
+
+10
+00:00:44,630 --> 00:00:50,950
+the useState hook or a class-based approach with the state property. A component like the person.js file, so
+
+11
+00:00:50,980 --> 00:00:57,080
+this person component is a stateless component because it has no internal state management and it
+
+12
+00:00:57,080 --> 00:01:04,010
+is a good practice to create as many of these stateless components, also called dumb because they have
+
+13
+00:01:04,010 --> 00:01:11,480
+no internal logic or presentational components because they present something, they output content, they
+
+14
+00:01:11,480 --> 00:01:14,950
+only get external data and output it in a structured way,
+
+15
+00:01:15,230 --> 00:01:20,870
+it is a good practice to use as many of these stateless, dumb, presentational components as possible in
+
+16
+00:01:20,870 --> 00:01:22,230
+your application.
+
+17
+00:01:22,250 --> 00:01:24,490
+The stateful components,
+
+18
+00:01:24,560 --> 00:01:32,690
+so either class-based with state or functional with useState are also called smart components or container
+
+19
+00:01:32,780 --> 00:01:37,850
+components because they contain the state of your application, of these components,
+
+20
+00:01:37,880 --> 00:01:39,840
+you only want to have a couple.
+
+21
+00:01:39,860 --> 00:01:42,140
+Well of course that depends on the size of your app,
+
+22
+00:01:42,170 --> 00:01:47,860
+if you have an app with thousands of components, you'll also have multiple containers, so stateful components.
+
+23
+00:01:48,080 --> 00:01:55,310
+But the idea is that you restrict yourself to a setup where you have way more functional presentational
+
+24
+00:01:55,310 --> 00:01:58,100
+components than stateful components.
+
+25
+00:01:58,100 --> 00:01:58,950
+Now why?
+
+26
+00:01:59,030 --> 00:02:02,630
+Because this makes your app easier to maintain and manage.
+
+27
+00:02:02,630 --> 00:02:09,500
+You have a clear flow of data and it's very clear where your main logic sits and where your data changes
+
+28
+00:02:09,590 --> 00:02:12,240
+and then is distributed to the rest of your app.
+
+29
+00:02:12,290 --> 00:02:18,860
+So if anyone, including yourself, ever needs to change something about the app, it's clear where to make
+
+30
+00:02:18,860 --> 00:02:19,910
+that change.
+
+31
+00:02:20,120 --> 00:02:27,170
+If every component in your app manages its own state, you quickly end up with spaghetti code where everyone
+
+32
+00:02:27,170 --> 00:02:34,430
+is doing everything and that can make your app very hard to reuse, to maintain and so on. So have as many
+
+33
+00:02:34,520 --> 00:02:40,580
+pure functional presentational components as possible and only use state
+
+34
+00:02:40,580 --> 00:02:47,510
+no matter how in a few selected components and keep these terms in mind because you will hear me say
+
+35
+00:02:47,810 --> 00:02:54,620
+container or stateful or smart component for the stateful components in this course and you'll
+
+36
+00:02:54,620 --> 00:03:03,110
+also hear me say presentational, stateless or dumb component which means such components, of which you
+
+37
+00:03:03,110 --> 00:03:05,630
+should have more than stateful components.

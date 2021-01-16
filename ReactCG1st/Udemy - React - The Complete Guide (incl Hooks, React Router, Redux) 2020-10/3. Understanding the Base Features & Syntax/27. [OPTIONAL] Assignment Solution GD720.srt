@@ -1,0 +1,1099 @@
+1
+00:00:02,090 --> 00:00:05,720
+So let's go through all these steps which are outlined in the rapture.
+
+2
+00:00:05,720 --> 00:00:08,770
+Last fall I will actually leave this list here.
+
+3
+00:00:08,780 --> 00:00:14,810
+As you can see a normal order list so that we can always call ems at our tasks and the first task is
+
+4
+00:00:14,810 --> 00:00:19,630
+to create two new components user input and user output.
+
+5
+00:00:19,670 --> 00:00:27,530
+So in the source folder which is where we write our re-act code alternate to a new folder user input
+
+6
+00:00:27,980 --> 00:00:34,780
+and next to it user output and it shows these names because these should be the component names.
+
+7
+00:00:34,910 --> 00:00:40,520
+And as you learned it is a good practice to name the folders and files according to what you want to
+
+8
+00:00:40,520 --> 00:00:42,650
+name your component.
+
+9
+00:00:42,680 --> 00:00:49,010
+So inside the user input folder all I'm going to create a user input js file inside user output it's
+
+10
+00:00:49,030 --> 00:00:51,970
+to user output dodgiest file.
+
+11
+00:00:52,340 --> 00:00:56,600
+So if that already solved task number one we create a T components.
+
+12
+00:00:56,720 --> 00:00:59,320
+And of course these components aren't that useful.
+
+13
+00:00:59,330 --> 00:01:04,480
+And actually we only created files these aren't really components.
+
+14
+00:01:04,520 --> 00:01:10,180
+Now we should add something there to return some GSX code in the components.
+
+15
+00:01:10,180 --> 00:01:13,900
+And for today we need to create real components to begin with.
+
+16
+00:01:13,940 --> 00:01:19,040
+I'm going to start with the user input and you'll learn that you basically have two different ways of
+
+17
+00:01:19,040 --> 00:01:27,230
+creating a component extending the component object provided by react or simply creating a function.
+
+18
+00:01:27,650 --> 00:01:34,970
+You also learned that you should try to use a function as often as possible to have basically representational
+
+19
+00:01:35,030 --> 00:01:42,470
+only component which just returns some GSX in the end and you mostly need to extend the component if
+
+20
+00:01:42,470 --> 00:01:44,700
+you want to manipulate state.
+
+21
+00:01:44,720 --> 00:01:51,710
+I want to manipulate state in never user input nor the user output component so I'll create functions
+
+22
+00:01:51,710 --> 00:01:52,840
+in both of them.
+
+23
+00:01:53,180 --> 00:02:00,590
+I'll create a user it function camel case notation to follow the convention and this will simply be
+
+24
+00:02:00,590 --> 00:02:03,350
+stored in this constant user input.
+
+25
+00:02:03,410 --> 00:02:06,370
+It's a ESX arrow function as you learned.
+
+26
+00:02:06,590 --> 00:02:10,990
+And you also learned one other important thing which can easily be forgotten.
+
+27
+00:02:11,030 --> 00:02:18,980
+You need to import re-act from react in any component you create does as required because the J is X
+
+28
+00:02:18,980 --> 00:02:27,010
+code you return isn't the end Colewort it to react create element speaking or returning something here.
+
+29
+00:02:27,080 --> 00:02:28,690
+I want to return something.
+
+30
+00:02:28,910 --> 00:02:33,880
+And if we have a look at our assignment we should return an input element in there.
+
+31
+00:02:34,070 --> 00:02:35,390
+So let's just do that.
+
+32
+00:02:35,420 --> 00:02:42,050
+No need to wrap it in a def we can just return an input maybe of type text just like that.
+
+33
+00:02:42,260 --> 00:02:49,160
+And of course to be able to use this component I need to export it and I will simply define default
+
+34
+00:02:49,160 --> 00:02:57,410
+export of this file to beat it in user input constant which simply is my function which returns my GSX.
+
+35
+00:02:57,710 --> 00:02:58,980
+That's the user input.
+
+36
+00:02:59,060 --> 00:03:00,490
+Let's save this file.
+
+37
+00:03:00,620 --> 00:03:02,480
+Let's now work on the user output.
+
+38
+00:03:02,900 --> 00:03:05,480
+And there we should return two paragraphs.
+
+39
+00:03:05,510 --> 00:03:08,280
+For now with any text of your choice.
+
+40
+00:03:08,330 --> 00:03:14,570
+So again I will create a constant which I'll name user output which will hold a reference or which will
+
+41
+00:03:14,570 --> 00:03:23,820
+store this function I should say as before we need to import re-act from react to prevent errors.
+
+42
+00:03:24,110 --> 00:03:28,050
+And then I want to return something and here I will return a wrapping.
+
+43
+00:03:28,060 --> 00:03:35,180
+Def because I want to have multiple elements sit next to each other and Wild's react 16 actually will
+
+44
+00:03:35,180 --> 00:03:37,150
+support returning a raise.
+
+45
+00:03:37,220 --> 00:03:43,670
+It is still a good practice actually required to wrap multiple elements sitting next to each other without
+
+46
+00:03:43,670 --> 00:03:46,240
+them being in an array like this.
+
+47
+00:03:46,250 --> 00:03:52,820
+So here we'll have a def wrapping my component and now in there I want to have two paragraphs so let
+
+48
+00:03:52,820 --> 00:03:55,370
+me quickly create bouffe and duplicated.
+
+49
+00:03:55,400 --> 00:04:05,000
+And here I will output some random text and some more random text with that let's safe this fall too.
+
+50
+00:04:05,200 --> 00:04:07,770
+And now we need to use these components.
+
+51
+00:04:07,840 --> 00:04:11,650
+We right now completed the second task.
+
+52
+00:04:11,680 --> 00:04:15,580
+Now we should output multiple user output components in our app component.
+
+53
+00:04:15,790 --> 00:04:19,500
+And actually why don't we also output the user input component already.
+
+54
+00:04:19,810 --> 00:04:27,430
+So in Apter genius I went to import my new components so import user input and as I mentioned earlier
+
+55
+00:04:27,490 --> 00:04:33,310
+this name is up to you but you should use your component name there and start with a capital character
+
+56
+00:04:33,310 --> 00:04:35,130
+to not confuse react.
+
+57
+00:04:35,230 --> 00:04:43,630
+So import that from dot slash user input and there the user input js file where you can omit default
+
+58
+00:04:43,630 --> 00:04:46,210
+extension since it is a javascript file.
+
+59
+00:04:46,390 --> 00:04:48,450
+The same for the user output.
+
+60
+00:04:48,460 --> 00:04:56,610
+Import user output from Dart's slash user output and their user output file without the extension.
+
+61
+00:04:56,620 --> 00:05:03,940
+Now I'll leave the instructions in there but below my ordered list I actually will now add my user input
+
+62
+00:05:04,070 --> 00:05:11,860
+a self-closing tech and also my user output and number is self-closing tag and all duplicators twice
+
+63
+00:05:11,860 --> 00:05:13,960
+to have three user outputs.
+
+64
+00:05:14,350 --> 00:05:23,040
+Let's save DHHS file and let's see I now get an error or export default not found in user output.
+
+65
+00:05:23,470 --> 00:05:31,840
+This actually makes sense because I forgot to add my export you are of course having the function to
+
+66
+00:05:31,840 --> 00:05:37,100
+use the output file like this isn't worth anything to be able to access it from a number of fault.
+
+67
+00:05:37,210 --> 00:05:38,790
+I need to export it.
+
+68
+00:05:38,860 --> 00:05:43,160
+In this case doing it with the default export of this file.
+
+69
+00:05:43,180 --> 00:05:45,800
+Now with that being saved it does work.
+
+70
+00:05:45,820 --> 00:05:50,800
+We see the input and then we see three times our user output component.
+
+71
+00:05:50,800 --> 00:05:54,980
+So is this task number free solved.
+
+72
+00:05:55,180 --> 00:06:00,340
+Now we want to add something else and leave the world of static content.
+
+73
+00:06:00,340 --> 00:06:05,790
+We want to pass a user name to the user output component while props.
+
+74
+00:06:06,220 --> 00:06:08,220
+Well you'll learn how to do that.
+
+75
+00:06:08,320 --> 00:06:13,350
+We can simply add a user name property may maybe written like that written like that.
+
+76
+00:06:13,350 --> 00:06:15,270
+What ever you like to name is totally up to you.
+
+77
+00:06:15,280 --> 00:06:17,500
+Could also be a user name.
+
+78
+00:06:17,500 --> 00:06:19,220
+It's your choice after all.
+
+79
+00:06:19,240 --> 00:06:28,810
+So use user name here here I will simply pass max and you could pass different user names for different
+
+80
+00:06:28,870 --> 00:06:29,500
+components.
+
+81
+00:06:29,500 --> 00:06:36,190
+Now I will actually pass the same but as you learned over the last lectures you can of course pass different
+
+82
+00:06:36,190 --> 00:06:39,030
+data and that is a common pattern to do.
+
+83
+00:06:39,100 --> 00:06:45,760
+Typically your components should rendered the same jazz X but with dynamic counted here I'll take the
+
+84
+00:06:45,760 --> 00:06:46,700
+same user name.
+
+85
+00:06:46,720 --> 00:06:49,810
+We're going to overwrite this with the state soon anyways.
+
+86
+00:06:50,110 --> 00:06:53,800
+And of course passing it like this is only one step.
+
+87
+00:06:53,830 --> 00:07:01,100
+We want to output it to safety mapped out js file and let's move on to the user output file.
+
+88
+00:07:01,300 --> 00:07:07,780
+There we know that we can get access to the prop's passed in by react by accepting an argument in that
+
+89
+00:07:07,780 --> 00:07:10,070
+function and then output it.
+
+90
+00:07:10,390 --> 00:07:13,550
+And now let's add something to the paragraphs here.
+
+91
+00:07:14,450 --> 00:07:19,490
+Now we don't get any instructions where to add water or what to do with that.
+
+92
+00:07:19,520 --> 00:07:23,030
+Simply that we should display the user name in the user output.
+
+93
+00:07:23,330 --> 00:07:31,280
+So why don't we simply say user name colon and then you'll learn how to pass or to output dynamic content.
+
+94
+00:07:31,280 --> 00:07:40,780
+Single curly braces between a single curly braces opening and closing you access props user name and
+
+95
+00:07:40,780 --> 00:07:47,410
+make sure that the name you use here and the casing you use here matches its name and casing of your
+
+96
+00:07:47,410 --> 00:07:48,600
+attribute here.
+
+97
+00:07:48,940 --> 00:07:56,920
+And one important information in normal h t m l d attributes are case insensitive.
+
+98
+00:07:57,080 --> 00:08:00,040
+Sell this as a normal HTML attribute.
+
+99
+00:08:00,220 --> 00:08:05,100
+Wouldn't work but keep in mind we're not using normal age HTML here.
+
+100
+00:08:05,110 --> 00:08:09,570
+This is just syntactic sugar so we can use case sensitive names.
+
+101
+00:08:10,000 --> 00:08:12,460
+So user output were outputting this here.
+
+102
+00:08:12,490 --> 00:08:14,320
+Now let's save this.
+
+103
+00:08:14,320 --> 00:08:16,210
+And we should see user name Max.
+
+104
+00:08:16,220 --> 00:08:22,310
+Max and Max free times or however often you used your user output component.
+
+105
+00:08:22,330 --> 00:08:25,240
+So this is Task Force solved.
+
+106
+00:08:25,240 --> 00:08:33,930
+The next task is to actually manage to username why a state and pass it why a state to our component.
+
+107
+00:08:34,210 --> 00:08:35,680
+Now nothing easier than that.
+
+108
+00:08:35,710 --> 00:08:38,480
+You learned how to add and you state.
+
+109
+00:08:38,680 --> 00:08:46,320
+You also learned that you can't access state a function components or components written as a function.
+
+110
+00:08:46,510 --> 00:08:52,240
+Now of course you could convert that into a component which extends component object provided by react
+
+111
+00:08:52,840 --> 00:08:59,150
+but you also learn that it's a good thing to have many components in this function for him and manage
+
+112
+00:08:59,150 --> 00:09:04,390
+to state in a few central places in your app so-called containers.
+
+113
+00:09:04,780 --> 00:09:12,040
+Now we have such a container already aperture as is a normal week component but since it extends the
+
+114
+00:09:12,070 --> 00:09:16,500
+component object provided by re-act that it effectively is such a container.
+
+115
+00:09:16,540 --> 00:09:18,820
+But mind container's just how you name it.
+
+116
+00:09:18,820 --> 00:09:23,190
+It's not a special object you have to create or inherit from.
+
+117
+00:09:23,200 --> 00:09:29,500
+So we have a component which extends component and that is the app dot Jr's file or the component in
+
+118
+00:09:29,500 --> 00:09:30,680
+that file.
+
+119
+00:09:30,760 --> 00:09:37,050
+Therefore we can add state here and you learned that state is just a property of your class justice
+
+120
+00:09:37,050 --> 00:09:38,490
+rendered as a method.
+
+121
+00:09:38,530 --> 00:09:47,920
+We can also add our state property here and state just be a javascript object in our case here.
+
+122
+00:09:47,950 --> 00:09:53,710
+I will set up a user named property and I'll write it all lowercase just to have a distinction to the
+
+123
+00:09:53,710 --> 00:09:57,160
+prop you could use it in the camel case notation.
+
+124
+00:09:57,160 --> 00:09:58,630
+Nothing wrong with that.
+
+125
+00:09:59,110 --> 00:10:00,140
+And I'll name it.
+
+126
+00:10:00,180 --> 00:10:03,590
+Super Max here sounds like a good user name for me.
+
+127
+00:10:03,700 --> 00:10:08,030
+Now with that I want to pass that user name and the state to my props.
+
+128
+00:10:08,140 --> 00:10:13,250
+So down there where I use my user output I'll now pass something dynamic.
+
+129
+00:10:13,540 --> 00:10:16,750
+This state username.
+
+130
+00:10:16,900 --> 00:10:20,490
+All lowercase since this is how I define user name there.
+
+131
+00:10:20,800 --> 00:10:25,590
+And a lecturer will place all three prompts with it though it wouldn't need to do that.
+
+132
+00:10:25,600 --> 00:10:28,450
+I could also leave one to be hardcoded.
+
+133
+00:10:28,660 --> 00:10:29,930
+Well maybe you would do that.
+
+134
+00:10:30,190 --> 00:10:31,550
+It's totally up to you.
+
+135
+00:10:32,050 --> 00:10:37,900
+So that if we save us and we go back to the application we see super max Super Max Max.
+
+136
+00:10:37,900 --> 00:10:40,040
+So we're successfully using the state.
+
+137
+00:10:40,180 --> 00:10:42,820
+We're not really using it to updated though.
+
+138
+00:10:42,850 --> 00:10:45,100
+We're not able to change it yet.
+
+139
+00:10:45,100 --> 00:10:52,600
+We'll start with this in Task 6 though we add a method to manipulate the steady state and event handler
+
+140
+00:10:52,600 --> 00:10:54,240
+method to be precise.
+
+141
+00:10:54,250 --> 00:10:59,890
+Now it still is a regular method the event handler addition is only important to keep in mind for naming
+
+142
+00:10:59,890 --> 00:11:02,910
+the method according to the convention.
+
+143
+00:11:02,920 --> 00:11:10,510
+So here this should be triggered whenever we type something into the input in the user input component.
+
+144
+00:11:10,900 --> 00:11:13,550
+So what would be a fitting name for that method.
+
+145
+00:11:13,870 --> 00:11:23,170
+Maybe simply input changed handler or something like user name change handler whatever you like now
+
+146
+00:11:23,200 --> 00:11:31,060
+will define this as a property which holds a function ESX arrow function effectively turning this into
+
+147
+00:11:31,060 --> 00:11:31,990
+a method.
+
+148
+00:11:32,000 --> 00:11:38,920
+Now if you closely watched you might also have recognized that to render all as a method but uses a
+
+149
+00:11:38,920 --> 00:11:47,350
+different syntax you can use both syntaxes either does property which holds a function syntax here or
+
+150
+00:11:47,350 --> 00:11:51,940
+does syntax which looks more like methods are written in other languages.
+
+151
+00:11:52,040 --> 00:11:53,940
+There is one important difference though.
+
+152
+00:11:54,040 --> 00:12:02,900
+If you plan on using this keyword inside the method as we do plan to do here you should use this syntax
+
+153
+00:12:02,920 --> 00:12:09,490
+where you have a property and assign a function because this will basically encapsulate that this keyword
+
+154
+00:12:09,670 --> 00:12:16,060
+to still refer to the class which you want to do to get access to the state and so on with a method
+
+155
+00:12:16,060 --> 00:12:17,870
+defined like this.
+
+156
+00:12:17,890 --> 00:12:23,290
+Generally this side of it will still refer to the class as you can clearly see down here.
+
+157
+00:12:23,680 --> 00:12:31,020
+But if you execute it as an event listener as planted you for a user name changed handler.
+
+158
+00:12:31,060 --> 00:12:37,960
+This would no longer refer to the class simply due to the way how javascript works when executing code
+
+159
+00:12:37,990 --> 00:12:38,640
+at runtime.
+
+160
+00:12:39,260 --> 00:12:45,010
+So therefore we should use this syntax for our event handlers for our methods.
+
+161
+00:12:45,140 --> 00:12:49,560
+It doesn't really matter and you might use this syntax or this syntax.
+
+162
+00:12:49,610 --> 00:12:51,480
+Both will work there.
+
+163
+00:12:51,530 --> 00:12:54,180
+So enough of the talking about the syntax.
+
+164
+00:12:54,410 --> 00:12:56,450
+Let's see what we should do with it.
+
+165
+00:12:56,450 --> 00:13:03,530
+We should add a method to manipulate a state and basically change the state based on the input we get.
+
+166
+00:13:03,530 --> 00:13:08,950
+Now we know that we will receive an event here because we plan on using this as an event listener method.
+
+167
+00:13:09,320 --> 00:13:14,940
+So here I can call this set stage to manipulate the state and that's important.
+
+168
+00:13:15,080 --> 00:13:19,320
+Keep in mind to call sets state and don't directly manipulate to state.
+
+169
+00:13:19,340 --> 00:13:26,960
+This will not work and is strictly wrong said state provided by the component object by re-act will
+
+170
+00:13:26,960 --> 00:13:34,430
+merge whatever you pass your with your existing state safely override that or adjust it and inform re-act
+
+171
+00:13:34,520 --> 00:13:39,280
+that the state was changed and that it should check if it needs to update the dawn.
+
+172
+00:13:39,710 --> 00:13:42,170
+So here we want to set username.
+
+173
+00:13:42,200 --> 00:13:47,970
+Actually the only property we have in our state to event target value.
+
+174
+00:13:48,380 --> 00:13:56,620
+As you know event target will refer to the element d event occurred on and value is a valid property
+
+175
+00:13:56,630 --> 00:13:57,530
+we may access.
+
+176
+00:13:57,560 --> 00:14:04,490
+Since we know that event target will be an input element which has a value property containing the value
+
+177
+00:14:04,580 --> 00:14:05,910
+the user entered.
+
+178
+00:14:06,260 --> 00:14:10,490
+This alone will update the state and will inform re-act that the state changed.
+
+179
+00:14:10,610 --> 00:14:12,380
+It will then check if it needs to change.
+
+180
+00:14:12,410 --> 00:14:18,280
+This part here does code and actually it doesn't because we never output anything from the state here
+
+181
+00:14:18,650 --> 00:14:24,560
+but we do pass it as props to the user output component and it will check all of its child elements
+
+182
+00:14:24,560 --> 00:14:26,960
+too for user input as well.
+
+183
+00:14:27,050 --> 00:14:29,870
+Right now at least determined that it doesn't need to update it.
+
+184
+00:14:30,020 --> 00:14:35,740
+But for user outputted knows did we get props and if props change which they do because we change the
+
+185
+00:14:35,750 --> 00:14:37,900
+state which we send while props.
+
+186
+00:14:38,090 --> 00:14:40,270
+It will rerun this part here.
+
+187
+00:14:40,270 --> 00:14:45,830
+This is how it will work behind the scenes though I will have a whole module where I dive deeper into
+
+188
+00:14:45,830 --> 00:14:47,990
+what happens except the behind the scenes.
+
+189
+00:14:47,990 --> 00:14:50,300
+In case you are interested in that.
+
+190
+00:14:50,450 --> 00:14:55,100
+So for now we get a method which we can call which would update the state.
+
+191
+00:14:55,100 --> 00:14:59,810
+Of course we need to call it though we added the method to manipulate the state.
+
+192
+00:14:59,810 --> 00:15:06,620
+Now we should past event handler method reference to the user input component and blind to the input
+
+193
+00:15:06,620 --> 00:15:10,530
+and change event there so on user input.
+
+194
+00:15:10,610 --> 00:15:15,770
+Maybe we should pass a property name changed and the name is totally up to you.
+
+195
+00:15:15,780 --> 00:15:17,300
+This is no reserved word.
+
+196
+00:15:17,300 --> 00:15:24,190
+It's just a prop defined by you and there I will pass is user name changed handler.
+
+197
+00:15:24,230 --> 00:15:27,100
+Without parentheses don't add parentheses.
+
+198
+00:15:27,140 --> 00:15:31,950
+You don't want to be executed here you just want to pass a reference to this method.
+
+199
+00:15:33,010 --> 00:15:40,950
+In the user input method we now also receive props years so let's accept them as an argument and on
+
+200
+00:15:40,950 --> 00:15:49,060
+the input we now listen to the onchange event which is provided by react and there I want to pass the
+
+201
+00:15:49,230 --> 00:15:54,730
+props changed property that the property would just set up here.
+
+202
+00:15:54,840 --> 00:15:56,990
+And this refers to that event handler.
+
+203
+00:15:57,000 --> 00:16:01,850
+So by passing a reference to that property we actually pass a reference to the event handler.
+
+204
+00:16:01,950 --> 00:16:08,730
+So this event were dismantled excuse me will get executed whenever the onchange event occurs.
+
+205
+00:16:08,730 --> 00:16:13,860
+Also don't add parentheses here you don't want to execute this right at the time this gets rendered
+
+206
+00:16:13,860 --> 00:16:14,620
+to the dawn.
+
+207
+00:16:14,730 --> 00:16:21,680
+But at the point of time this event occurs it will automatically past event object to our event handler.
+
+208
+00:16:21,680 --> 00:16:22,770
+As you.
+
+209
+00:16:23,430 --> 00:16:29,680
+Now with that that's saved the user input component and make sure all the other files are safe too.
+
+210
+00:16:30,060 --> 00:16:33,720
+And now let's see if this actually works.
+
+211
+00:16:33,720 --> 00:16:40,860
+We already completed this task where we ensured dead the input entry but the user overrides the old
+
+212
+00:16:40,860 --> 00:16:41,830
+username.
+
+213
+00:16:41,850 --> 00:16:50,620
+We do this here with set state make sure that NPM start is running in the project and there after simply
+
+214
+00:16:50,680 --> 00:16:57,160
+entering something here like test and you'll see that all the components were I did pass state as a
+
+215
+00:16:57,160 --> 00:17:01,500
+user name or state username as the user name it will override it.
+
+216
+00:17:01,690 --> 00:17:02,080
+It won't.
+
+217
+00:17:02,100 --> 00:17:08,000
+Oh right down here because Max there is simply hard coded.
+
+218
+00:17:08,290 --> 00:17:14,440
+Now let's all those that have two way binding so that when we load the application we also actually
+
+219
+00:17:14,440 --> 00:17:20,990
+see our current username supermax India and put field instead of an empty input.
+
+220
+00:17:21,040 --> 00:17:29,620
+Now for that in the user input here I simply have to bind the value property to something I need to
+
+221
+00:17:29,620 --> 00:17:36,010
+pass on as props for Daddles simply restructured over multiple lines just to make it easier to read
+
+222
+00:17:36,460 --> 00:17:38,180
+and then pass props.
+
+223
+00:17:38,320 --> 00:17:40,680
+And there may be simply value.
+
+224
+00:17:40,840 --> 00:17:48,100
+You could choose any other name though so maybe also current name to have a clear distinction to disvalue
+
+225
+00:17:48,160 --> 00:17:53,380
+which is a research name because it's in a default age female element.
+
+226
+00:17:53,380 --> 00:17:57,940
+Now let's use that current name Propp which I defined here in actually yes.
+
+227
+00:17:58,150 --> 00:17:59,390
+And let's pass it here.
+
+228
+00:17:59,410 --> 00:18:04,590
+Current name that's all split this over multiple lines to make it easier to learn to read.
+
+229
+00:18:04,960 --> 00:18:10,740
+And there the current name of course is to current user name stored in the state just like we pass it
+
+230
+00:18:10,750 --> 00:18:13,660
+to user output on the different property there.
+
+231
+00:18:13,680 --> 00:18:16,320
+So let's save this.
+
+232
+00:18:16,650 --> 00:18:21,490
+And as it reloads we see super max and we can start changing it.
+
+233
+00:18:21,820 --> 00:18:27,670
+If you open the developer tools you'll see that this time we don't get a warning in the console because
+
+234
+00:18:27,700 --> 00:18:35,200
+unlike tudy lectures prior to the assignment here we only use this to be binding in cases where we do
+
+235
+00:18:35,200 --> 00:18:43,190
+actually provide a change handler and the value with that we are almost done.
+
+236
+00:18:43,250 --> 00:18:45,670
+The missing piece is the styling.
+
+237
+00:18:45,740 --> 00:18:50,670
+And here you are totally free to use whichever styling you want.
+
+238
+00:18:50,690 --> 00:18:57,710
+Now I will use two different approaches for the user input where I don't have a wrapping element.
+
+239
+00:18:57,800 --> 00:19:04,670
+I will set up some inline styles to make sure that the styling only gets applied to this input and not
+
+240
+00:19:04,670 --> 00:19:07,520
+to any input I might have in my application.
+
+241
+00:19:07,520 --> 00:19:15,830
+Even though I don't have one here so here's style is a javascript object and I will simply give my input
+
+242
+00:19:15,860 --> 00:19:20,980
+a border which is let's say two pixels wide solid and red.
+
+243
+00:19:21,770 --> 00:19:29,110
+And I assign it by using the default style property which is known on this H M L or I should say.
+
+244
+00:19:29,290 --> 00:19:37,470
+J.S. X element and I assign my style variable up appear as a value and the name is totally up to you.
+
+245
+00:19:37,580 --> 00:19:40,290
+You could also name this input style.
+
+246
+00:19:40,440 --> 00:19:46,460
+To not confuse it with the property or attribute you are assigning it to.
+
+247
+00:19:46,910 --> 00:19:52,360
+So that is inline styles being used in user input as you learned the advantages.
+
+248
+00:19:52,370 --> 00:19:55,300
+This is now really scoped to dis input only.
+
+249
+00:19:55,460 --> 00:20:00,680
+If I were to use the input anywhere else in my application this style would not get applied because
+
+250
+00:20:00,680 --> 00:20:06,970
+in the end we apply it as an inline style for the user output of follow a different approach.
+
+251
+00:20:06,980 --> 00:20:12,900
+I'll add a C S S for user output and I'll add a user output as class.
+
+252
+00:20:13,020 --> 00:20:18,430
+Their eyes simply want to have a width of let's say 60 percent.
+
+253
+00:20:18,590 --> 00:20:23,540
+I want to have the padding of 16 pixels and a margin of 16 pixels.
+
+254
+00:20:23,660 --> 00:20:34,230
+I want to have a border of two pixels solid and black and a background color of this gray and I want
+
+255
+00:20:34,230 --> 00:20:39,410
+to set text aligned to center maybe and you can choose any style you want.
+
+256
+00:20:39,410 --> 00:20:43,660
+Now just by doing that we're not going to see any styling at all.
+
+257
+00:20:43,710 --> 00:20:49,470
+We have to go to the component we want a style and first of all import our style sheet.
+
+258
+00:20:49,470 --> 00:20:51,530
+We're not importing anything from there.
+
+259
+00:20:51,540 --> 00:21:00,750
+We just import the overall sheet by passing it as relative path with file extension and web spec the
+
+260
+00:21:00,760 --> 00:21:06,660
+build tool getting use behind the scenes will automatically take care of it and include it correctly
+
+261
+00:21:06,660 --> 00:21:07,990
+in our page.
+
+262
+00:21:08,140 --> 00:21:14,370
+This alone still will install thing because all we do in there is we define this user output CSSA class.
+
+263
+00:21:14,370 --> 00:21:19,410
+So we should use this class then we can do this year on this wrapping death.
+
+264
+00:21:19,500 --> 00:21:25,850
+They're also the class name not to something dynamic but to a hard coded string user output.
+
+265
+00:21:26,040 --> 00:21:33,720
+The class I defined in here now important does all that shows why wrapping your component in one root
+
+266
+00:21:33,750 --> 00:21:37,450
+element makes a lot of sense and it's not just an annoying requirement.
+
+267
+00:21:37,620 --> 00:21:40,970
+It makes it easy to assign a style to your component.
+
+268
+00:21:41,570 --> 00:21:44,080
+No make sure all the files you edited are saved.
+
+269
+00:21:44,160 --> 00:21:46,390
+You have no dots on any of these files.
+
+270
+00:21:46,620 --> 00:21:53,400
+And now let's go back and here indeed we see our style components with the style sheet and the input
+
+271
+00:21:53,640 --> 00:21:59,120
+with the inline style with the red border and of course it still works as before.
+
+272
+00:21:59,130 --> 00:22:05,760
+Now with our custom styling which you might be able to improve from lay out the science perspective
+
+273
+00:22:06,180 --> 00:22:12,150
+but from a learning perspective I'd say you learned a lot about the bass syntax of react.
+
+274
+00:22:12,150 --> 00:22:18,930
+Now let's continue and dive deeper into what you can do especially how we can render a content dynamically
+
+275
+00:22:19,140 --> 00:22:25,910
+or conditionally I should say depending on some conditions or how we can output lists of data.
