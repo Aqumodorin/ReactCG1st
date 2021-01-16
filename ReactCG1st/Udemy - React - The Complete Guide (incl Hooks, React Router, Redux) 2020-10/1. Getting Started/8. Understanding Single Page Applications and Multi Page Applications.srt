@@ -1,0 +1,219 @@
+0
+1
+00:00:02,210 --> 00:00:09,050
+When we talk about React, or also about Angular and Vue as a side note, we also have to keep in mind
+1
+
+2
+00:00:09,140 --> 00:00:14,620
+that we can essentially build two kinds of web applications with all these libraries and frameworks.
+2
+
+3
+00:00:14,750 --> 00:00:18,980
+We can build a single page application or a multi-page application.
+3
+
+4
+00:00:18,980 --> 00:00:22,400
+Now, what's the difference? In a single page application,
+4
+
+5
+00:00:22,400 --> 00:00:29,540
+we only get back one single HTML file from the server and we get back this file the first time the user visits
+5
+
+6
+00:00:29,600 --> 00:00:31,570
+the page; so the first time the user visits
+6
+
+7
+00:00:31,580 --> 00:00:40,430
+example.com. Thereafter, everything is managed with JavaScript; with React. The entire page consists
+7
+
+8
+00:00:40,520 --> 00:00:45,770
+of components which are rendered and handled by JavaScript.
+8
+
+9
+00:00:46,070 --> 00:00:53,150
+On the other hand, in a multi-page application, we get back multiple HTML pages where each page has the
+9
+
+10
+00:00:53,150 --> 00:00:54,680
+content for a given route;
+10
+
+11
+00:00:54,740 --> 00:01:02,090
+a given URL we visited. For example.com and example.com/users, we get back two different
+11
+
+12
+00:01:02,090 --> 00:01:02,630
+pages.
+12
+
+13
+00:01:02,630 --> 00:01:04,370
+That's important.
+13
+
+14
+00:01:04,370 --> 00:01:10,550
+On multi-page applications, we might also use React, but only to create little widgets,
+14
+
+15
+00:01:10,580 --> 00:01:17,570
+so to say; individually-contained components we dump into that page but the 'entire page' is not managed
+15
+
+16
+00:01:17,570 --> 00:01:18,880
+by React.
+16
+
+17
+00:01:18,890 --> 00:01:24,410
+We also see this on some pages, but the more popular approach these days is to use the single-page-application
+17
+
+18
+00:01:24,410 --> 00:01:30,830
+approach, because if you manage the entire page with JavaScript, you never have to go back to the server
+18
+
+19
+00:01:30,860 --> 00:01:32,030
+and reload the page.
+19
+
+20
+00:01:32,180 --> 00:01:37,850
+This is an amazing user experience because everything happens instantly. Even if the user needs
+20
+
+21
+00:01:37,850 --> 00:01:44,300
+to wait, you're showing a spinner or you're still presenting a reactive web app; you're not just showing
+21
+
+22
+00:01:44,570 --> 00:01:47,620
+a loading page where the user can't do anything.
+22
+
+23
+00:01:48,020 --> 00:01:54,680
+So in single page applications, our page is built up with components and every component is a React
+23
+
+24
+00:01:54,680 --> 00:02:03,740
+component. The entire page is also managed by a root React component which is exclusively under React's control.
+24
+
+25
+00:02:04,040 --> 00:02:06,480
+In a multi-page application, on the other hand,
+25
+
+26
+00:02:06,740 --> 00:02:13,550
+we also could split up our app into theoretical components, but actually a lot of the page is just going
+26
+
+27
+00:02:13,550 --> 00:02:19,740
+to be normal HTML and CSS code and some widgets we dump in, like an image gallery or something like
+27
+
+28
+00:02:19,740 --> 00:02:22,290
+that is managed by React.
+28
+
+29
+00:02:22,430 --> 00:02:30,210
+So, the entire page is not under React's control. The individual widgets don't know of each other's existence.
+29
+
+30
+00:02:30,250 --> 00:02:36,080
+Therefore, in the single-page-application case, which is the case we'll cover in this course, we typically only
+30
+
+31
+00:02:36,080 --> 00:02:43,070
+have one ReactDOM.render call. You saw this method in the previous lectures where we created our first
+31
+
+32
+00:02:43,070 --> 00:02:44,120
+app.
+32
+
+33
+00:02:44,120 --> 00:02:49,970
+Now, we only need one ReactDOM.render call because we only have one root app component which is mounted to the DOM and which
+33
+
+34
+00:02:49,970 --> 00:02:56,090
+hosts all other React components. In a multi-page application, we would typically call ReactDOM.render
+34
+
+35
+00:02:56,090 --> 00:03:00,490
+more often to render our different components in different places of the app.
+35
+
+36
+00:03:00,530 --> 00:03:06,230
+You saw that ReactDOM.render allows you to pick a place in your HTML code where you want to render your
+36
+
+37
+00:03:06,230 --> 00:03:13,220
+app. Therefore, you have these widgets which don't know of each other's existence.
+37
+
+38
+00:03:13,220 --> 00:03:15,880
+Now, you can build such an application too
+38
+
+39
+00:03:15,980 --> 00:03:18,950
+and the React code you write won't differ.
+39
+
+40
+00:03:18,980 --> 00:03:21,120
+This course actually covers both,
+40
+
+41
+00:03:21,260 --> 00:03:27,260
+but I will focus on the single-page-application case, since this also allows us to use some libraries
+41
+
+42
+00:03:27,260 --> 00:03:28,750
+like React router.
+42
+
+43
+00:03:28,820 --> 00:03:34,500
+It is the most popular way of creating web apps these days and also the approach
+43
+
+44
+00:03:34,550 --> 00:03:36,230
+I can only recommend to you.

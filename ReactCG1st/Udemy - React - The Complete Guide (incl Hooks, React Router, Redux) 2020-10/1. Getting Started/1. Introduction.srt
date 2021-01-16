@@ -1,0 +1,87 @@
+1
+00:00:02,380 --> 00:00:04,780
+Welcome to discourse about react.
+
+2
+00:00:04,780 --> 00:00:06,760
+It's great to have you on board.
+
+3
+00:00:06,760 --> 00:00:09,840
+My name is Maximilian Schwartz Miller and I'm a freelance web developer.
+
+4
+00:00:09,910 --> 00:00:16,450
+Andrew react developer I worked with react a lot and I can tell you it's an amazing library for creating
+
+5
+00:00:16,450 --> 00:00:21,630
+highly reactive and super fast javascript driven Web applications.
+
+6
+00:00:21,760 --> 00:00:27,850
+The javascript driven part is especially important because since react is a javascript library it's
+
+7
+00:00:27,850 --> 00:00:34,480
+of course about writing your web apps in JavaScript and that in turn is amazing because since javascript
+
+8
+00:00:34,480 --> 00:00:40,850
+runs in the browser it allows you to create super fast Web apps that feel like mobile apps.
+
+9
+00:00:40,990 --> 00:00:49,030
+Users don't have to wait for petrol loads now react is probably the most popular javascript library.
+
+10
+00:00:49,030 --> 00:00:54,820
+You can learn these days and for a good reason you will learn all of its core features for all this
+
+11
+00:00:54,820 --> 00:00:55,390
+course.
+
+12
+00:00:55,420 --> 00:01:01,570
+And way more than that you will learn what react is about how it works and why you might want to use
+
+13
+00:01:01,570 --> 00:01:01,880
+it.
+
+14
+00:01:01,930 --> 00:01:07,210
+You will learn how to build components which react how to use read Acts for better state management
+
+15
+00:01:07,390 --> 00:01:14,310
+how to use to react router and you'll not just learn as in simple projects or theory no.
+
+16
+00:01:14,380 --> 00:01:18,160
+We will build an entire react application throughout this course.
+
+17
+00:01:18,190 --> 00:01:24,310
+The burger Boulder which is an amazing application utilizing all the concepts you learn in this course
+
+18
+00:01:24,640 --> 00:01:30,850
+so that you have a really solid understanding of all the concepts taught throughout this course by the
+
+19
+00:01:30,850 --> 00:01:31,800
+end of the course.
+
+20
+00:01:31,990 --> 00:01:38,230
+You'll therefore have way more than just a solid understanding of react and you'll be able to dive deeper
+
+21
+00:01:38,230 --> 00:01:44,590
+into more challenging projects and apply for react developer chops or become a react developer as a
+
+22
+00:01:44,590 --> 00:01:47,170
+freelancer whatever your goal is.
