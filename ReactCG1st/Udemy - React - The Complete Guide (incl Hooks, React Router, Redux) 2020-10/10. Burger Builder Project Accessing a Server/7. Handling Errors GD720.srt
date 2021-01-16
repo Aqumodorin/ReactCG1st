@@ -1,0 +1,579 @@
+1
+00:00:02,180 --> 00:00:07,610
+In the last lecture, we made sure that we show a spinner, a loader to the user whilst the request is on
+
+2
+00:00:07,610 --> 00:00:08,540
+its way.
+
+3
+00:00:08,540 --> 00:00:14,510
+That's of course a good thing to do, it improves our user experience because the user clearly sees that
+
+4
+00:00:14,510 --> 00:00:15,840
+something is happening.
+
+5
+00:00:15,860 --> 00:00:18,260
+It's also an improvement to the user experience
+
+6
+00:00:18,260 --> 00:00:22,310
+if we show error messages in case something fails
+
+7
+00:00:22,550 --> 00:00:27,920
+and here again, there are different places to where you could show such an error message,
+
+8
+00:00:27,920 --> 00:00:36,060
+I simply want to set up some global error handler which shows a modal with the error message but doesn't
+
+9
+00:00:36,080 --> 00:00:44,120
+use the modal here because I don't want to be stuck to this container, to the burger builder container.
+
+10
+00:00:44,180 --> 00:00:50,510
+I want to have a flexible way of showing an error, no matter which component, in which container it occurs,
+
+11
+00:00:51,050 --> 00:00:59,150
+so therefore my modal is going to get added to a higher level in the application and I want to have
+
+12
+00:00:59,480 --> 00:01:04,800
+a higher level of the application, so some higher component
+
+13
+00:01:04,800 --> 00:01:12,350
+than this burger builder container where I catch errors and where I then make sure that my error modal
+
+14
+00:01:12,470 --> 00:01:13,640
+is displayed.
+
+15
+00:01:13,640 --> 00:01:17,410
+Now where can we set this up,
+
+16
+00:01:17,420 --> 00:01:19,990
+how can we control this?
+
+17
+00:01:20,000 --> 00:01:27,470
+I simply want to create a higher order component with which I can wrap the burger builder or which I'll
+
+18
+00:01:27,470 --> 00:01:34,280
+actually use in that second way I showed you for using higher order components so that we can simply
+
+19
+00:01:34,280 --> 00:01:41,270
+wrap any component which should have this error modal with it and can conveniently add the error handling
+
+20
+00:01:41,270 --> 00:01:43,480
+functionality to it.
+
+21
+00:01:43,490 --> 00:01:49,220
+So for this, I'm going to create my new higher order component in a folder which I'll name
+
+22
+00:01:49,220 --> 00:01:57,920
+withErrorHandler, I am using this syntax withErrorHandler because I want to use this second way of
+
+23
+00:01:57,920 --> 00:02:07,400
+creating a higher order component which will be used here on the export and not used as JSX code.
+
+24
+00:02:07,400 --> 00:02:14,770
+So in there, I'll add a witherrorhandler.js file and this file here
+
+25
+00:02:15,060 --> 00:02:17,310
+now will take the following form,
+
+26
+00:02:17,510 --> 00:02:24,830
+it will be a function, withErrorHandler, and this should be a function which takes the wrapped component
+
+27
+00:02:24,950 --> 00:02:31,640
+as an input and which then returns a function which receives props
+
+28
+00:02:31,640 --> 00:02:37,420
+and of course simply returns some JSX including the wrapped component,
+
+29
+00:02:37,490 --> 00:02:43,430
+so for that we need to import React from React. And now here,
+
+30
+00:02:43,520 --> 00:02:48,500
+I of course want to return the wrapped component and distribute any props
+
+31
+00:02:48,500 --> 00:02:53,300
+this component might receive on it because I don't know these props but I definitely don't want to lose
+
+32
+00:02:53,300 --> 00:02:53,600
+them,
+
+33
+00:02:54,350 --> 00:03:01,490
+I then want to export this withErrorHandler function as the default but now I also want to use my
+
+34
+00:03:01,490 --> 00:03:03,200
+or add my error modal.
+
+35
+00:03:03,680 --> 00:03:13,470
+So for that, I need to import two things, the modal component of course from the components UI modal
+
+36
+00:03:13,530 --> 00:03:20,520
+folder and there, the modal.js file and since I want to place it next to it, I need the aux component
+
+37
+00:03:20,790 --> 00:03:24,810
+from the aux folder in the hoc folder.
+
+38
+00:03:25,020 --> 00:03:33,180
+So now I can wrap it all with aux like this and add the modal next to it,
+
+39
+00:03:33,180 --> 00:03:38,020
+don't use a self-closing tag here because in the modal of course I want to output something. For now
+
+40
+00:03:38,020 --> 00:03:43,150
+I'll just say something didn't work,
+
+41
+00:03:43,250 --> 00:03:44,290
+just like that.
+
+42
+00:03:44,390 --> 00:03:47,660
+Now we can finetune this but this is what I want to show right now,
+
+43
+00:03:47,660 --> 00:03:49,900
+now let's see if this works.
+
+44
+00:03:50,090 --> 00:03:54,730
+If we save this, we now have our higher order component,
+
+45
+00:03:54,740 --> 00:03:57,080
+let's now use this on the burger builder.
+
+46
+00:03:57,170 --> 00:03:57,670
+There
+
+47
+00:03:57,680 --> 00:03:59,900
+I will import it at the top,
+
+48
+00:03:59,960 --> 00:04:05,570
+so withErrorHandler starting with a lowercase character because we're not going to use it in JSX
+
+49
+00:04:06,230 --> 00:04:14,420
+and now I'll navigate to my hoc folder and there to the withErrorHandler folder and witherrorhandler.js
+
+50
+00:04:14,440 --> 00:04:21,920
+file of course and then take that withErrorHandler function we're importing and wrap the burger
+
+51
+00:04:21,950 --> 00:04:24,860
+boulder with it, like this.
+
+52
+00:04:24,860 --> 00:04:31,490
+Now with this if we go back to the withErrorHandler function and set show like this, so to true simply
+
+53
+00:04:31,550 --> 00:04:36,590
+on the modal, if we save this and go back, we should always see something didn't work.
+
+54
+00:04:36,590 --> 00:04:40,140
+Now obviously we only want to show this if we got an error,
+
+55
+00:04:40,160 --> 00:04:47,920
+so we need to set show to something else and that something else needs to come from the wrapped component,
+
+56
+00:04:47,930 --> 00:04:50,000
+we need that information
+
+57
+00:04:50,000 --> 00:04:56,930
+if it did fail. To get that information, we should add a second argument to our higher order function
+
+58
+00:04:56,930 --> 00:04:57,580
+here,
+
+59
+00:04:57,700 --> 00:05:05,760
+the axios instance which was used so that we can set up an error handler, a global error handler on it.
+
+60
+00:05:05,840 --> 00:05:14,330
+Now to use that instance here, I will change this functional component into a class-based one because
+
+61
+00:05:14,330 --> 00:05:19,470
+I want to add the componentDidMount lifecycle hook to set up the axios interceptors.
+
+62
+00:05:19,490 --> 00:05:24,440
+Now theoretically of course, you could keep this as a functional component and use the useEffect hook
+
+63
+00:05:24,440 --> 00:05:25,760
+here to do the same,
+
+64
+00:05:25,760 --> 00:05:26,870
+that would be OK as well
+
+65
+00:05:26,900 --> 00:05:32,380
+and of course we'll see it in action in that module where I convert the entire project to use hooks.
+
+66
+00:05:32,390 --> 00:05:39,170
+So for now, I'll go with the lifecycle method approach and convert this to a class which should now extend
+
+67
+00:05:39,200 --> 00:05:41,600
+the component object from React,
+
+68
+00:05:41,610 --> 00:05:43,040
+so I need to import that,
+
+69
+00:05:43,220 --> 00:05:47,660
+class extends component. As you can see it's an anonymous class,
+
+70
+00:05:47,660 --> 00:05:51,110
+I don't set up a name here because I never use that class,
+
+71
+00:05:51,110 --> 00:05:52,150
+I return it here,
+
+72
+00:05:52,160 --> 00:05:58,220
+it's a class factory essentially, withErrorHandler creates these classes.
+
+73
+00:05:58,280 --> 00:06:04,910
+Now in there, we clearly need a render method where we in the end return what we returned in our functional
+
+74
+00:06:04,910 --> 00:06:05,860
+component here,
+
+75
+00:06:06,140 --> 00:06:07,380
+so simply return
+
+76
+00:06:07,380 --> 00:06:15,140
+that. Of course props is now this prop since we changed it to a class, we can get rid of that part down
+
+77
+00:06:15,140 --> 00:06:16,150
+there now
+
+78
+00:06:16,400 --> 00:06:24,170
+and now with this, we can add componentDidMount here and in componentDidMount,
+
+79
+00:06:24,170 --> 00:06:28,150
+we can now set up our axios listener,
+
+80
+00:06:28,160 --> 00:06:36,890
+so on the axios instance here, we can now set up our global interceptor which also allows us to handle
+
+81
+00:06:36,980 --> 00:06:48,940
+errors. So I'll add interceptors here, then response and then with use, add a function I want to use.
+
+82
+00:06:49,030 --> 00:06:53,200
+So this function here will get the response and then do something with it
+
+83
+00:06:53,210 --> 00:06:56,910
+but I'm not really interested in that first argument, so I'll pass null here.
+
+84
+00:06:56,960 --> 00:06:59,120
+The second argument is the one I'm interested in,
+
+85
+00:06:59,180 --> 00:07:02,990
+that's the error case where I get an error. Here
+
+86
+00:07:02,990 --> 00:07:11,630
+I then want to show my error modal, so for that I'll now add a state where I will simply set error to null
+
+87
+00:07:11,630 --> 00:07:21,380
+initially and in here, I will then set or call this set state and set error to the error I'm
+
+88
+00:07:21,380 --> 00:07:27,950
+getting here back from Firebase and this happens to be an object which also contains an error message,
+
+89
+00:07:28,100 --> 00:07:29,660
+on the message property
+
+90
+00:07:29,690 --> 00:07:34,960
+you can simply console log that error to see how this object looks like.
+
+91
+00:07:35,030 --> 00:07:37,190
+So now I'm setting that error here
+
+92
+00:07:37,190 --> 00:07:47,490
+once we got one, now what I'll also do is I'll add a new interceptor for a request, so there
+
+93
+00:07:47,510 --> 00:07:53,480
+I'll call use and I'm not really interested in the request but there's one thing I want to do in there,
+
+94
+00:07:53,600 --> 00:08:01,460
+I want to call this set state and clear any errors, so that whenever I send a request, I don't have my
+
+95
+00:08:01,580 --> 00:08:05,980
+error set up anymore, so that I definitely clear it here.
+
+96
+00:08:06,020 --> 00:08:14,630
+So now on the modal, I will only show it if this state error is not null essentially
+
+97
+00:08:14,900 --> 00:08:22,700
+and then in there, I can output this state error and then again, there will be a message property on the
+
+98
+00:08:22,700 --> 00:08:29,060
+error object returned by Firebase. Now there's one more thing we have to do,
+
+99
+00:08:29,250 --> 00:08:36,780
+the modal component we created also exposes the clicked property which occurs when we click the backdrop
+
+100
+00:08:36,780 --> 00:08:41,580
+and in this case of course I also want to clear the error because then we click the modal,
+
+101
+00:08:41,820 --> 00:08:43,380
+I don't want to show it anymore,
+
+102
+00:08:43,440 --> 00:08:48,460
+I have to get rid of the error. So I'll also add clicked here and there, 
+
+103
+00:08:48,480 --> 00:08:58,260
+I will call a method I have to create in my withErrorHandler component, I'll name it 
+
+104
+00:08:58,740 --> 00:09:00,300
+errorConfirmedHandler,
+
+105
+00:09:00,300 --> 00:09:08,850
+this simply is a method where I will call this set state and set error to null too and I will assign it
+
+106
+00:09:08,850 --> 00:09:12,630
+here, this errorConfirmedHandler.
+
+107
+00:09:12,630 --> 00:09:17,060
+Now with this setup here, there is one more thing I want to do,
+
+108
+00:09:17,280 --> 00:09:24,570
+this state error message which I'm outputting here will throw an error initially because the modal component
+
+109
+00:09:24,570 --> 00:09:28,260
+is always present even if we don't show it there.
+
+110
+00:09:28,860 --> 00:09:36,230
+So what I'll do is I'll simply add a ternary expression where I'll say this state error?
+
+111
+00:09:36,240 --> 00:09:41,970
+Only if this is null, then I'll output that otherwise I'll output null, so output nothing.
+
+112
+00:09:41,970 --> 00:09:48,640
+Now with that if I save this and go back to the application, we'll get cannot read property interceptors
+
+113
+00:09:48,780 --> 00:09:55,650
+which makes sense because we try to run this on axios but we don't receive axios, we expect to get it
+
+114
+00:09:55,650 --> 00:09:56,670
+as an argument
+
+115
+00:09:56,670 --> 00:10:01,980
+but in the burger builder where I use withErrorHandler, I'm only passing the burger builder component,
+
+116
+00:10:02,220 --> 00:10:03,810
+the wrapped component.
+
+117
+00:10:03,810 --> 00:10:10,840
+So here I simply have to pass axios which we are importing here and which is our axios instance.
+
+118
+00:10:10,920 --> 00:10:14,880
+Now with that, there's one more thing we have to do. In our interceptors
+
+119
+00:10:14,880 --> 00:10:19,740
+we of course have to return something, when sending the request, we have to return the request config
+
+120
+00:10:19,770 --> 00:10:25,320
+so that the request can continue and for the response, I also want to implement a response handler here
+
+121
+00:10:25,570 --> 00:10:30,330
+where I simply return the response, this is the shortest possible syntax for doing that.
+
+122
+00:10:30,330 --> 00:10:36,030
+Now with that if we save all of that and we go back to the application and we add a burger, this should
+
+123
+00:10:36,030 --> 00:10:37,920
+still work, it does,
+
+124
+00:10:37,950 --> 00:10:43,740
+we can still save a burger, now let's mess something up and let's see if it also works. In the burger
+
+125
+00:10:43,740 --> 00:10:46,320
+builder container where we sent the request,
+
+126
+00:10:46,530 --> 00:10:53,220
+if we now change that URL and maybe remove the .json which I said is a valid or an important
+
+127
+00:10:53,220 --> 00:10:59,100
+part of the API endpoint for the Firebase database we're sending the request to here.
+
+128
+00:10:59,490 --> 00:11:01,410
+So if we remove that, it should fail,
+
+129
+00:11:01,410 --> 00:11:07,880
+so now if we try to store a burger, we indeed get a network error message here.
+
+130
+00:11:08,040 --> 00:11:14,130
+Now closing by clicking on the backdrop doesn't work though, so let's quickly check why this is the case.
+
+131
+00:11:14,220 --> 00:11:16,230
+Let me quickly have a look,
+
+132
+00:11:16,230 --> 00:11:18,970
+I'm using the wrong prop. In the modal of course,
+
+133
+00:11:18,970 --> 00:11:21,080
+clicked is for the backdrop,
+
+134
+00:11:21,090 --> 00:11:25,440
+the prop the backdrop exposes, the modal then uses modal closed.
+
+135
+00:11:25,440 --> 00:11:28,350
+This is the method we try to execute here,
+
+136
+00:11:28,350 --> 00:11:30,540
+so this is the property we should implement,
+
+137
+00:11:30,540 --> 00:11:33,200
+so modal closed is the correct prop.
+
+138
+00:11:33,390 --> 00:11:40,530
+Now with that again if we try to send this with the wrong URL, we get the error but we can dismiss it.
+
+139
+00:11:40,530 --> 00:11:44,690
+So now we got global error handling in place and I'm going to fix that
+
+140
+00:11:44,700 --> 00:11:45,970
+orders URL again.
+
+141
+00:11:46,440 --> 00:11:49,200
+So now we're handling both the success case and the error case,
+
+142
+00:11:49,200 --> 00:11:50,210
+we're showing a loader
+
+143
+00:11:50,220 --> 00:11:51,410
+as long as needed
+
+144
+00:11:51,510 --> 00:11:58,230
+and with that, we get a robust application with a reusable higher order component which we can wrap around
+
+145
+00:11:58,320 --> 00:12:01,770
+any component which uses axios to handle its errors.

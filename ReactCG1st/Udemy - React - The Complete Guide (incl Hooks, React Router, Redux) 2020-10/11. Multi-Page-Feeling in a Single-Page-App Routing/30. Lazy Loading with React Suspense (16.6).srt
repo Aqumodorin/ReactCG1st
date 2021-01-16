@@ -1,0 +1,499 @@
+1
+00:00:02,470 --> 00:00:08,200
+Now we had a look at lazy loading in this component and lazy loading like this still works and is perfectly
+
+2
+00:00:08,200 --> 00:00:14,800
+fine if you are using re-act 60 not six and you can check doesn't the package adjacent file and I have
+
+3
+00:00:14,800 --> 00:00:18,940
+a new demo project here by the way which you find attached to this lecture which you should download
+
+4
+00:00:19,180 --> 00:00:22,160
+extract NPM install and then NPM start.
+
+5
+00:00:22,180 --> 00:00:29,560
+So if you are using the latest re-act word in here or re-act 16 or 6 or higher then you have a new way
+
+6
+00:00:29,650 --> 00:00:36,270
+of lazy loading your routes because re-act 60 node 6 adds a new method on the re-act object.
+
+7
+00:00:36,310 --> 00:00:42,070
+The lazy method which you can use to load your data your components asynchronously.
+
+8
+00:00:42,070 --> 00:00:44,250
+Which means only when they are needed.
+
+9
+00:00:44,560 --> 00:00:47,370
+And let's have a look at how this works now.
+
+10
+00:00:47,920 --> 00:00:52,720
+So re-act lazy is a method that was added with re-act 60 not six.
+
+11
+00:00:52,720 --> 00:00:58,480
+That allows us to load components asynchronously which means they are only loading the code behind them
+
+12
+00:00:58,660 --> 00:01:03,000
+is only loaded when they are really required when they are being rendered.
+
+13
+00:01:03,280 --> 00:01:10,090
+And this is for example useful when having routing in your application because only when a user visits
+
+14
+00:01:10,090 --> 00:01:16,030
+a certain route that component will be required and re-act lazy allows you to defer the rendering and
+
+15
+00:01:16,030 --> 00:01:19,260
+the loading of the code of that component until it is required.
+
+16
+00:01:19,480 --> 00:01:24,460
+And that of course means that you don't load redundant code in advance.
+
+17
+00:01:24,460 --> 00:01:26,100
+It's not just useful for routing.
+
+18
+00:01:26,100 --> 00:01:31,840
+By the way whenever you have a use case whereas some component is loaded at a later point of time for
+
+19
+00:01:31,840 --> 00:01:37,030
+example because you have a check and some condition needs to be met to render a certain component in
+
+20
+00:01:37,030 --> 00:01:39,720
+all such cases you could use re-act lazy.
+
+21
+00:01:39,810 --> 00:01:41,680
+But let me show you how it works.
+
+22
+00:01:42,540 --> 00:01:50,040
+So let's go to the last Fall and here I'm using re-act router Dom to set up my browser router I'm using
+
+23
+00:01:50,040 --> 00:01:54,250
+Riak fragment here which is a feature that was added with re-act 16.00 2.
+
+24
+00:01:54,410 --> 00:01:58,200
+It's basically the same as our alks component we traded manually.
+
+25
+00:01:58,440 --> 00:02:05,160
+It's basically a component that you can use to well wrap over all components because you always need
+
+26
+00:02:05,220 --> 00:02:07,050
+that wrapping component and react.
+
+27
+00:02:07,050 --> 00:02:12,430
+It does not render a real Dom element and therefore does not distort your dom.
+
+28
+00:02:12,720 --> 00:02:18,450
+And instead of that fragment I have a little dummy navigation and then I have three routes here and
+
+29
+00:02:18,450 --> 00:02:23,370
+if you have a look at that we are on the welcome page by default and we can switch to the user and the
+
+30
+00:02:23,370 --> 00:02:24,290
+Post's page.
+
+31
+00:02:24,510 --> 00:02:27,030
+OK so that is this application.
+
+32
+00:02:27,030 --> 00:02:29,120
+Nothing fancy thus far.
+
+33
+00:02:29,130 --> 00:02:36,050
+Now we could use re-act lazy to only load the user into posts component when we need them.
+
+34
+00:02:36,060 --> 00:02:40,410
+Right now everything is loaded in advance but we might never visit these routes.
+
+35
+00:02:40,410 --> 00:02:45,490
+So loading the code behind them in advance is not ideal.
+
+36
+00:02:45,600 --> 00:02:50,790
+If there were an even bigger app with more code behind these components the issue would of course be
+
+37
+00:02:50,790 --> 00:02:51,790
+worse.
+
+38
+00:02:51,840 --> 00:02:59,370
+So we want to load these two components only when we need them and we can do that with this new method.
+
+39
+00:02:59,370 --> 00:03:00,650
+How is this method used.
+
+40
+00:03:00,720 --> 00:03:06,330
+Well let's start with the Post's component instead of importing it like this which will always force
+
+41
+00:03:06,330 --> 00:03:08,430
+today that will be loaded in advance.
+
+42
+00:03:08,550 --> 00:03:14,940
+We need to use dynamic import just as we did with that async component we created earlier and this module
+
+43
+00:03:15,210 --> 00:03:17,560
+we need to use dynamic import.
+
+44
+00:03:17,760 --> 00:03:20,670
+So we create a constant for that which we named posts.
+
+45
+00:03:20,730 --> 00:03:22,230
+You could name it whatever you want.
+
+46
+00:03:22,230 --> 00:03:26,540
+I just name it posts so that I can continue to not use that name down there.
+
+47
+00:03:26,880 --> 00:03:34,020
+And the value of that constant year will be a call to react dot lazy.
+
+48
+00:03:34,260 --> 00:03:37,810
+This new method that was added with re-act 606.
+
+49
+00:03:37,830 --> 00:03:41,000
+Now let's move these imports to the top.
+
+50
+00:03:41,000 --> 00:03:42,760
+Do not get any Lanting warnings.
+
+51
+00:03:43,100 --> 00:03:46,450
+And now instead of re-act lazy we'd pass a function.
+
+52
+00:03:46,470 --> 00:03:54,120
+Here I'll use an arrow function which returns an import statement and this is a dynamic import.
+
+53
+00:03:54,270 --> 00:03:59,790
+Which means it's basically executed when this code runs and react will executed when we try to render
+
+54
+00:03:59,790 --> 00:04:01,030
+this component.
+
+55
+00:04:01,140 --> 00:04:08,510
+And here we are again still point to a file which contains our post component and important for that.
+
+56
+00:04:08,520 --> 00:04:13,620
+We should use default exports named exports are not supported.
+
+57
+00:04:13,620 --> 00:04:19,380
+So now I'm importing my post component but only when this function runs which means only when re-act
+
+58
+00:04:19,380 --> 00:04:24,420
+thinks that we need to use it and react to things that we need to use it when it detects that it needs
+
+59
+00:04:24,420 --> 00:04:25,860
+to rendered it.
+
+60
+00:04:25,860 --> 00:04:34,100
+Now with that changed let's go down to that route here and there we now need to make a little change.
+
+61
+00:04:35,220 --> 00:04:39,490
+Instead of using that component let's use the render method here.
+
+62
+00:04:39,510 --> 00:04:41,910
+There we would receive all these Raut props.
+
+63
+00:04:41,910 --> 00:04:46,380
+But in the end here I want to return something I want to return a computer component that should be
+
+64
+00:04:46,380 --> 00:04:56,330
+rendered and there I now need to import a new component from re-act suspence component with an import.
+
+65
+00:04:56,350 --> 00:04:58,270
+That is what I want to render here.
+
+66
+00:04:58,380 --> 00:05:00,900
+Suspence like this.
+
+67
+00:05:01,000 --> 00:05:04,000
+And in-between all render posts.
+
+68
+00:05:04,510 --> 00:05:10,270
+So my constant as a component here and now let's add one more thing to that suspence component.
+
+69
+00:05:10,330 --> 00:05:17,350
+And that's the fallback proc which should be J as X code and they all add div where I say loading and
+
+70
+00:05:17,350 --> 00:05:18,640
+this will actually be displayed.
+
+71
+00:05:18,640 --> 00:05:25,630
+In cases where re-act basically postpones the rendering of this wrap component and shows as well fallback
+
+72
+00:05:25,660 --> 00:05:26,330
+in the meantime.
+
+73
+00:05:26,350 --> 00:05:31,600
+And of course that doesn't have to be a div with loading that could be a spinner or anything like that.
+
+74
+00:05:31,690 --> 00:05:37,360
+And now with all that let's save it go back to the front page look at the user's page load the Post's
+
+75
+00:05:37,360 --> 00:05:38,680
+page all working.
+
+76
+00:05:38,680 --> 00:05:39,900
+So what's special.
+
+77
+00:05:40,210 --> 00:05:45,080
+Well we can see what's special when we reload the page and then go to the Network tab.
+
+78
+00:05:45,250 --> 00:05:53,590
+Now after reloading clear it and now click on the post page and you will see that there it loaded a
+
+79
+00:05:53,590 --> 00:06:00,700
+new file and that is the file holding the code for this component and that is async rendering at async
+
+80
+00:06:00,700 --> 00:06:07,150
+loading in action because this component and its code is only fetched and rendered when we really need
+
+81
+00:06:07,150 --> 00:06:12,970
+it and therefore we avoid loading everything in advance which can of course drastically improve the
+
+82
+00:06:12,970 --> 00:06:16,860
+performance of your application depending on its size.
+
+83
+00:06:16,870 --> 00:06:23,640
+So this is a neat alternative to the other way of lazy loading pages which we had before.
+
+84
+00:06:23,830 --> 00:06:31,160
+A great advantage of this approach is that we of course can not just used is in a routing scenario.
+
+85
+00:06:31,480 --> 00:06:38,710
+We could of course also have a scenario where we don't use that browser router so let me comment all
+
+86
+00:06:38,770 --> 00:06:39,820
+that out.
+
+87
+00:06:40,470 --> 00:06:51,510
+And instead let's say I have a simple button here where I say toggle mode or anything like that we add
+
+88
+00:06:51,510 --> 00:06:54,010
+a new method to this component here.
+
+89
+00:06:55,230 --> 00:06:56,460
+Mode handler
+
+90
+00:07:00,350 --> 00:07:05,040
+and we add a state where we say show and it's false.
+
+91
+00:07:05,210 --> 00:07:13,100
+Initially let's say and then there I call this set state in the function a form of said States that
+
+92
+00:07:13,100 --> 00:07:21,470
+we can access the old state we return the updated state or our update to just state and I'll show you
+
+93
+00:07:21,500 --> 00:07:23,810
+the opposite of what it previously was.
+
+94
+00:07:23,810 --> 00:07:25,980
+So did I toggle that show mode.
+
+95
+00:07:26,010 --> 00:07:28,860
+And of course you can also add name to it differently.
+
+96
+00:07:28,880 --> 00:07:30,860
+Now we have that button.
+
+97
+00:07:30,860 --> 00:07:34,030
+Now I bind on Click here to my.
+
+98
+00:07:34,460 --> 00:07:35,960
+This mode handler.
+
+99
+00:07:36,140 --> 00:07:39,820
+And now I just want to render either the user or to post page.
+
+100
+00:07:39,890 --> 00:07:47,770
+Depending on that mode of course can also name that show posts for example up the détour too.
+
+101
+00:07:47,990 --> 00:07:53,150
+And now let's add a simple check where you check if this state show posts.
+
+102
+00:07:53,150 --> 00:08:00,160
+If that is true then I want to render my posts and data will also grab this code which suspends of course.
+
+103
+00:08:00,230 --> 00:08:03,250
+Let's copy that and move it up there.
+
+104
+00:08:03,300 --> 00:08:07,870
+Common that back in put dead in brackets.
+
+105
+00:08:07,960 --> 00:08:12,820
+So one to render with suspense suspends my posts show posts is true.
+
+106
+00:08:12,850 --> 00:08:17,920
+Otherwise I'll render my user component like this.
+
+107
+00:08:18,780 --> 00:08:24,840
+Now since I have two adjacent components here I'll again use re-act fragment or use you alks component
+
+108
+00:08:24,840 --> 00:08:27,270
+of course and wrap this.
+
+109
+00:08:27,330 --> 00:08:35,760
+And now if this change if I go back and I click on toggle mode we see that chunk was loaded and we see
+
+110
+00:08:35,880 --> 00:08:36,900
+the post page.
+
+111
+00:08:36,930 --> 00:08:40,050
+So here we all take advantage of this.
+
+112
+00:08:40,170 --> 00:08:47,610
+A sync rendering and that is really something useful and a great addition with re-act 6:16 we'll see
+
+113
+00:08:47,610 --> 00:08:51,330
+more on that async rendering thing in future versions.
+
+114
+00:08:51,540 --> 00:08:54,570
+And right now this is what we can use re-act lazy.
+
+115
+00:08:54,570 --> 00:08:58,770
+Please be aware that this will not work if you're trying to serve a side rendered.
+
+116
+00:08:58,800 --> 00:09:02,210
+Then this is not support that this API will not work yet.
+
+117
+00:09:02,440 --> 00:09:08,460
+But if you have a client side rendered application as we have it here and of course then this is a great
+
+118
+00:09:08,490 --> 00:09:14,880
+addition and definitely something you want to check out for cases where you conditionally render some
+
+119
+00:09:14,880 --> 00:09:20,120
+component needed in the if statement or be dead in a routing scenario.
+
+120
+00:09:20,130 --> 00:09:25,770
+Now of course one thing to keep in mind the benefit you will get out of this will be greater if you
+
+121
+00:09:25,770 --> 00:09:29,020
+have larger chunks of data behind your components.
+
+122
+00:09:29,100 --> 00:09:34,530
+If you have very simple components using suspends might actually be overkill and could even slow down
+
+123
+00:09:34,530 --> 00:09:37,410
+your application or be suboptimal.
+
+124
+00:09:37,410 --> 00:09:42,400
+At this point of time so lazy loading the code of course shows its full strength.
+
+125
+00:09:42,480 --> 00:09:44,700
+If we're talking about bigger chunks of code.

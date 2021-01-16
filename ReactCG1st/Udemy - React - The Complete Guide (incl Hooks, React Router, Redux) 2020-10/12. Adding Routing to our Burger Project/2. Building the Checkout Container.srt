@@ -1,0 +1,531 @@
+1
+00:00:02,070 --> 00:00:05,840
+So let's implement this checkout component.
+
+2
+00:00:05,850 --> 00:00:13,170
+I'll actually implement it as a container because it will be a component which manages its own state
+
+3
+00:00:13,320 --> 00:00:16,510
+and also passes pass this down to other components.
+
+4
+00:00:16,590 --> 00:00:22,650
+So I'll add a new folder in containers and I'll name it checkout and in there, I'll add a checkout.js
+
+5
+00:00:22,720 --> 00:00:26,710
+file which should hold my checkout component.
+
+6
+00:00:26,790 --> 00:00:29,460
+It'll be a class-based component since state will be involved
+
+7
+00:00:29,460 --> 00:00:32,710
+and yes of course a functional component with useState
+
+8
+00:00:32,720 --> 00:00:33,670
+hook would work too
+
+9
+00:00:33,690 --> 00:00:37,290
+but as for the rest, I'll stick to class-based components for now.
+
+10
+00:00:37,290 --> 00:00:42,780
+So therefore, I extend the component object which I have to import together with React from the React
+
+11
+00:00:42,780 --> 00:00:48,080
+package itself to support JSX and correctly set up that class-based component.
+
+12
+00:00:48,270 --> 00:00:51,320
+So let's add this class,
+
+13
+00:00:51,420 --> 00:00:59,280
+let's then export it as the default of this file and then let's plan how this checkout component should
+
+14
+00:00:59,400 --> 00:01:08,580
+look like and should behave. What I want to have in the checkout component is a tiny summary of the checkout,
+
+15
+00:01:08,580 --> 00:01:15,900
+so basically what the user is about to buy and the price probably and then a button to cancel the checkout
+
+16
+00:01:15,900 --> 00:01:21,260
+process and go back to the burger builder and of course, a button to continue.
+
+17
+00:01:21,260 --> 00:01:28,170
+And I guess for the summary, it would be nice to not again show just a list of the ingredients but maybe
+
+18
+00:01:28,170 --> 00:01:35,540
+show the burger itself, rebuild the burger in this checkout summary. So that's the goal here, show the
+
+19
+00:01:35,540 --> 00:01:44,230
+summary and then when the user clicks on continue, I then want to load the contact form, so step-by-step.
+
+20
+00:01:44,250 --> 00:01:51,480
+The goal therefore is to create a checkout summary form which allows me to display a review of the burger
+
+21
+00:01:51,570 --> 00:02:00,420
+and show the continue or cancel buttons. For that, I'll go into my components folder and add a new folder
+
+22
+00:02:00,420 --> 00:02:08,940
+in there which I'll name checkout or maybe order to replace all order related components there like the
+
+23
+00:02:08,970 --> 00:02:17,010
+checkout component and checkout it should be named checkout summary maybe and in there, I'll create a
+
+24
+00:02:17,010 --> 00:02:18,830
+CheckoutSummary.js
+
+25
+00:02:18,910 --> 00:02:26,130
+file and a CheckoutSummary.css file for the styling.
+
+26
+00:02:26,130 --> 00:02:29,050
+Now let's have a look at the CheckoutSummary.js
+
+27
+00:02:29,060 --> 00:02:35,540
+file, there I'll use the functional form to create the checkout summary component,
+
+28
+00:02:35,580 --> 00:02:39,050
+so basically just the checkout summary function here as you know it.
+
+29
+00:02:39,270 --> 00:02:46,110
+We will probably receive some props to render the burger and then return some JSX, so therefore we
+
+30
+00:02:46,110 --> 00:02:50,090
+definitely need to import React from the React package
+
+31
+00:02:50,610 --> 00:02:55,600
+and of course as always export checkout summary as the default.
+
+32
+00:02:55,740 --> 00:03:05,710
+Now the goal is to display a preview of our burger here and then show the continue or cancel buttons.
+
+33
+00:03:05,790 --> 00:03:12,060
+So what I'll do is in the JSX which I want to return here,
+
+34
+00:03:12,480 --> 00:03:19,020
+I'll first of all wrap this in a div which I'll also use for styling purposes to give this component
+
+35
+00:03:19,020 --> 00:03:20,430
+some style,
+
+36
+00:03:20,430 --> 00:03:28,520
+then I want to have a h1 tag where I say we hope it tastes well, something like that and thereafter,
+
+37
+00:03:28,530 --> 00:03:35,190
+now I want to have a box div basically where I want to preview my burger component.
+
+38
+00:03:35,190 --> 00:03:40,470
+This div is required to set the boundaries of the burger component and of course I'm going to reuse
+
+39
+00:03:40,470 --> 00:03:43,050
+my burger component which I already have,
+
+40
+00:03:43,050 --> 00:03:45,330
+that's the cool thing, we can reuse it.
+
+41
+00:03:45,330 --> 00:03:52,410
+So I'll set some inline styling here on that wrapping div which will hold my burger just to set the
+
+42
+00:03:52,410 --> 00:04:02,190
+width of let's say 300px and then also a height of let's say 300px and let's then also set
+
+43
+00:04:02,250 --> 00:04:05,660
+the margin to auto here.
+
+44
+00:04:05,700 --> 00:04:13,380
+Now inside that div, I want to use my burger component, so I need to import it. I'll import burger from and now navigate
+
+45
+00:04:13,380 --> 00:04:17,210
+up into the burger folder and there it's the burger.js file,
+
+46
+00:04:17,220 --> 00:04:21,330
+this is our burger component which I can now conveniently add like this,
+
+47
+00:04:21,330 --> 00:04:30,720
+the burger, a self-closing tag. I there also need to pass my ingredients and for that, it will of course
+
+48
+00:04:30,720 --> 00:04:35,340
+be important to know how I receive these ingredients.
+
+49
+00:04:35,340 --> 00:04:42,780
+I assume that for now I can simply just set the ingredients property of my burger component which it
+
+50
+00:04:42,870 --> 00:04:45,700
+does expect, if we have a look at the burger component,
+
+51
+00:04:45,780 --> 00:04:52,620
+we have props ingredients in there which we use, so I should also pass this to this
+
+52
+00:04:52,800 --> 00:04:53,930
+component,
+
+53
+00:04:53,940 --> 00:04:56,790
+not order summary, checkout summary, here we are.
+
+54
+00:04:57,510 --> 00:05:04,590
+So we expect ingredients in the burger, so we should pass it and for now I'll just expect that in the checkout
+
+55
+00:05:04,590 --> 00:05:05,640
+summary component
+
+56
+00:05:05,640 --> 00:05:13,520
+I'll also get an ingredients property which I then just pass on. Below that, I then want to show my
+
+57
+00:05:13,520 --> 00:05:17,290
+buttons and for that, I'll import my own buttons I built.
+
+58
+00:05:17,420 --> 00:05:24,200
+So the button component from the UI folder and there from the button folder and then the button.js
+
+59
+00:05:24,200 --> 00:05:27,410
+file of course and these buttons
+
+60
+00:05:27,410 --> 00:05:31,220
+as you probably know support two different styles,
+
+61
+00:05:31,220 --> 00:05:38,120
+we have the success and the danger class here which we can pass and we do pass it with the button type property.
+
+62
+00:05:39,110 --> 00:05:41,560
+So I'll add my buttons below
+
+63
+00:05:41,560 --> 00:05:45,900
+there, I'll add the first button where I'll set the button type to
+
+64
+00:05:46,010 --> 00:05:53,770
+let's say danger with a capital D because that's the CSS class name where I simply want to say CANCEL,
+
+65
+00:05:53,840 --> 00:06:01,430
+maybe all caps for styling purposes only and then I'll duplicate it to also have a Success button with
+
+66
+00:06:01,430 --> 00:06:05,810
+a capital S where I will say continue.
+
+67
+00:06:05,810 --> 00:06:07,430
+So these are the two buttons,
+
+68
+00:06:07,430 --> 00:06:14,090
+you also know that the buttons expose the click property which simply indicates that we clicked on the
+
+69
+00:06:14,090 --> 00:06:14,530
+button.
+
+70
+00:06:14,990 --> 00:06:17,570
+So that is something I'll also need to do,
+
+71
+00:06:17,600 --> 00:06:24,080
+let's split this over multiple lines, implement clicked here and then do something upon a click.
+
+72
+00:06:24,080 --> 00:06:29,390
+Now that is something I will add, for now I just want to finish the styling of this component.
+
+73
+00:06:29,390 --> 00:06:33,960
+So with that, we got our checkout summary.
+
+74
+00:06:34,000 --> 00:06:35,460
+JSX code,
+
+75
+00:06:35,570 --> 00:06:42,060
+now let me also assign a class name here to the wrapping div and this is a class I want to set up in the
+
+76
+00:06:42,110 --> 00:06:48,530
+CheckoutSummary.css file. I'll add that CheckoutSummary.css class here
+
+77
+00:06:48,530 --> 00:06:51,500
+because remember, we're back in our course project,
+
+78
+00:06:51,500 --> 00:06:55,800
+we're using CSS modules here to scope our styles.
+
+79
+00:06:55,880 --> 00:06:59,990
+There I'll set text align to center to center everything.
+
+80
+00:06:59,990 --> 00:07:06,620
+I'll set the width to 80% maybe and the margin of auto to the center this div or this element
+
+81
+00:07:07,340 --> 00:07:13,580
+and I'll add a media query where I check if we have a minimum width of 600px at which point of
+
+82
+00:07:13,580 --> 00:07:18,850
+time I simply want to limit the width so that it's no longer 80%
+
+83
+00:07:18,860 --> 00:07:22,280
+but here I will limit it to 500px.
+
+84
+00:07:22,310 --> 00:07:31,030
+Now with that, I have to import these CSS code or the classes object to be precise from CheckoutSummary.css
+
+85
+00:07:31,160 --> 00:07:33,460
+and then assign it here,
+
+86
+00:07:33,460 --> 00:07:37,570
+so here I'll add classes checkout summary,
+
+87
+00:07:37,670 --> 00:07:40,760
+taking advantage of CSS modules here.
+
+88
+00:07:41,030 --> 00:07:43,910
+Now we get the checkout summary component,
+
+89
+00:07:43,910 --> 00:07:50,270
+I now want to use that in my checkout file, in my checkout container to be precise.
+
+90
+00:07:50,510 --> 00:07:55,030
+So there, I'll quickly import the checkout summary component
+
+91
+00:07:55,040 --> 00:08:03,970
+we just created from the components folder therefore, there I created that order folder which holds the
+
+92
+00:08:03,980 --> 00:08:09,000
+checkout summary folder and there, the CheckoutSummary.js file.
+
+93
+00:08:09,350 --> 00:08:16,690
+Now inside my checkout component where I'll implement a render method, where I then of course return
+
+94
+00:08:16,690 --> 00:08:22,670
+some JSX, there I want to have a div which wraps my entire page because this will be used as a page
+
+95
+00:08:22,670 --> 00:08:24,970
+with the React router of course
+
+96
+00:08:24,980 --> 00:08:29,940
+and in there, I'll now add checkout summary, like this.
+
+97
+00:08:29,990 --> 00:08:37,220
+Keep in mind, checkout summary expects to get ingredients as a prop, so I should pass ingredients here
+
+98
+00:08:37,820 --> 00:08:40,430
+and that of course is an interesting question,
+
+99
+00:08:40,430 --> 00:08:45,430
+where do I get my ingredients from? For now,
+
+100
+00:08:45,660 --> 00:08:51,750
+I'll simply pass a dummy ingredients object but of course this is something I will replace.
+
+101
+00:08:51,960 --> 00:08:59,820
+I will add state to the checkout component and there in the state, I'll add ingredients and ingredients
+
+102
+00:08:59,820 --> 00:09:09,570
+for now will be salad one, meat one, cheese one and bacon one and this again is just some dummy data which
+
+103
+00:09:09,570 --> 00:09:10,810
+I'll replace.
+
+104
+00:09:11,040 --> 00:09:17,310
+So for now, that allows me to pass this state ingredients, we will have to use routing to really pass
+
+105
+00:09:17,310 --> 00:09:19,410
+ingredients later.
+
+106
+00:09:19,410 --> 00:09:23,720
+Now we get the checkout container here,
+
+107
+00:09:23,760 --> 00:09:31,650
+I now want to use it of course and for that, I will hardcode it into my app.js file right below
+
+108
+00:09:31,650 --> 00:09:33,030
+the burger builder.
+
+109
+00:09:33,330 --> 00:09:42,730
+Here I'll import the checkout container from ./containers/checkout/checkout
+
+110
+00:09:42,890 --> 00:09:44,920
+just to see how it looks,
+
+111
+00:09:45,020 --> 00:09:47,820
+we will load it via routing soon.
+
+112
+00:09:48,260 --> 00:09:54,470
+Make sure to save all files and make sure npm start is running and thereafter if you visit your page,
+
+113
+00:09:55,220 --> 00:09:57,400
+we get an error regarding the on click listener
+
+114
+00:09:57,410 --> 00:10:00,030
+but that shouldn't be a problem right now.
+
+115
+00:10:00,050 --> 00:10:05,150
+This is how it looks like, our checkout summary component,
+
+116
+00:10:05,150 --> 00:10:10,250
+now we can see that somehow this div with the burger is not really centered,
+
+117
+00:10:10,250 --> 00:10:12,120
+so this is something we should fix.
+
+118
+00:10:12,290 --> 00:10:17,360
+For that I'll go back into the checkout summary where I use the burger and one thing I should adjust
+
+119
+00:10:17,360 --> 00:10:23,650
+here is that I should use width 100% to take the full width of the checkout summary component.
+
+120
+00:10:23,660 --> 00:10:29,420
+Now with that, that looks much better on both small devices and bigger devices.
+
+121
+00:10:29,470 --> 00:10:37,040
+Now on small devices here, we got a little bit much height, this is something we can fix by disabling
+
+122
+00:10:37,040 --> 00:10:40,290
+this height to not always setting it to 300px,
+
+123
+00:10:40,340 --> 00:10:43,370
+so let's just get rid of the height property here
+
+124
+00:10:43,370 --> 00:10:46,560
+too, for the styling, that was a little bit too much.
+
+125
+00:10:46,580 --> 00:10:52,610
+Now we can definitely use that on mobile devices and on the desktop,
+
+126
+00:10:52,610 --> 00:10:53,400
+this looks good
+
+127
+00:10:53,400 --> 00:11:00,100
+too. Now of course, there still is some space but we need some space for bigger burgers,
+
+128
+00:11:00,110 --> 00:11:01,190
+so this is deliberate
+
+129
+00:11:02,060 --> 00:11:08,450
+but the main thing I now want to work on is that I don't always display this but instead this should
+
+130
+00:11:08,450 --> 00:11:10,640
+be displayed if I click on order now,
+
+131
+00:11:10,640 --> 00:11:17,740
+continue, then I want to load the checkout summary instead of the burger builder,
+
+132
+00:11:17,750 --> 00:11:24,590
+that's the goal and for that of course we need routing. Now feel free to go ahead and implement this on
+
+133
+00:11:24,590 --> 00:11:30,470
+your own and then compare your solution with mine which I'll start building in the next lecture.

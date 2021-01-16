@@ -1,0 +1,555 @@
+1
+00:00:02,250 --> 00:00:05,300
+In the last lecture we made sure that can handle errors
+
+2
+00:00:05,340 --> 00:00:11,640
+and with that we get a robust application which allows us to post our orders to our back-end, that
+
+3
+00:00:11,640 --> 00:00:12,790
+already is a lot.
+
+4
+00:00:12,790 --> 00:00:17,920
+Now there's one more thing I want to do though, I also want to be able to get some data from the
+
+5
+00:00:17,930 --> 00:00:18,730
+back-end
+
+6
+00:00:18,940 --> 00:00:23,070
+and why don't we get our ingredients from there?
+
+7
+00:00:23,070 --> 00:00:30,110
+So the ingredients which we setup like this, why don't we get the ingredients dynamically from the 
+
+8
+00:00:30,110 --> 00:00:30,760
+back-end?
+
+9
+00:00:31,170 --> 00:00:35,380
+For that, let's go to Firebase first and let's close the orders node.
+
+10
+00:00:35,640 --> 00:00:39,930
+Now let's add a new node by clicking on the plus directly next to your root
+
+11
+00:00:39,930 --> 00:00:43,830
+name here and let's name this ingredients,
+
+12
+00:00:43,830 --> 00:00:52,830
+then add this plus here on the right to add a nested element and there ingredients should really just
+
+13
+00:00:52,830 --> 00:00:54,630
+be our key-value pairs.
+
+14
+00:00:54,750 --> 00:00:57,820
+So there, we might have sell it with a value of zero,
+
+15
+00:00:57,900 --> 00:01:07,050
+click this add button then and now add more and let's add meat with a value of zero, let's add bacon with
+
+16
+00:01:07,050 --> 00:01:08,010
+a value of zero,
+
+17
+00:01:08,040 --> 00:01:11,750
+so I'm using the same ingredients as before because I only support these
+
+18
+00:01:11,850 --> 00:01:17,020
+but you could of course now add more to both your front-end code and your back-end
+
+19
+00:01:17,160 --> 00:01:24,510
+and let me also add cheese here and of course you could also set up different starting values.
+
+20
+00:01:24,520 --> 00:01:25,910
+So now we get that ingredients
+
+21
+00:01:25,910 --> 00:01:32,450
+node, here is the URL to it, you need to append .json to really access it though
+
+22
+00:01:32,640 --> 00:01:39,750
+and now the goal is to initialize our ingredients here with the ingredients we just stored on Firebase.
+
+23
+00:01:39,870 --> 00:01:45,540
+So still in the burger builder component, I want to set up the state dynamically and you learned that
+
+24
+00:01:45,540 --> 00:01:49,340
+a good place for fetching data is componentDidMount,
+
+25
+00:01:49,350 --> 00:01:51,450
+so this is the method I want to use.
+
+26
+00:01:51,480 --> 00:01:59,520
+So I'll add it here, componentDidMount like this and there I now want to reach out with axios. So I'm using
+
+27
+00:01:59,550 --> 00:02:05,840
+axios with a get request and reach out to that URL I just copied with .json at the end.
+
+28
+00:02:05,940 --> 00:02:09,080
+So this will now send a request to get our ingredients,
+
+29
+00:02:09,270 --> 00:02:15,810
+I'll then add a then block here to handle the response we get back and that response should of course
+
+30
+00:02:15,810 --> 00:02:18,240
+contain our ingredients object.
+
+31
+00:02:18,240 --> 00:02:25,260
+So now the goal is to set our state, here ingredients to that object,
+
+32
+00:02:25,260 --> 00:02:30,630
+so I'm actually going to set this to null initially here because we're now fetching it from the database
+
+33
+00:02:31,590 --> 00:02:41,520
+and there, I will now call this set state and set ingredients equal to response and there, there will
+
+34
+00:02:41,520 --> 00:02:45,990
+be a data object which actually contains the data we fetched.
+
+35
+00:02:45,990 --> 00:02:53,970
+Now if we save that and we go back to our application here, you see we get an error because now when
+
+36
+00:02:53,970 --> 00:03:00,070
+we try to loop through our ingredients at the start of the app, that of course fails because initially
+
+37
+00:03:00,070 --> 00:03:01,650
+ingredients is now null,
+
+38
+00:03:01,650 --> 00:03:06,070
+we're only fetching it at the start and that's a typical use case in applications,
+
+39
+00:03:06,150 --> 00:03:13,840
+you fetch data when it loads, so parts of the UI which depend on the data will therefore fail.
+
+40
+00:03:13,860 --> 00:03:20,850
+Now this of course can easily be prevented by checking if we have ingredients before rendering anything
+
+41
+00:03:20,850 --> 00:03:25,000
+which depends on ingredients, like the burger here.
+
+42
+00:03:25,080 --> 00:03:27,640
+Now there are a couple of ways where we can handle this,
+
+43
+00:03:27,660 --> 00:03:30,000
+I want to handle it here in my container,
+
+44
+00:03:30,000 --> 00:03:37,170
+I want to show a spinner instead of the burger and instead of the build controls whilst I am waiting
+
+45
+00:03:37,170 --> 00:03:39,270
+for the ingredients to load.
+
+46
+00:03:39,270 --> 00:03:49,220
+So to do that, I'll add another variable here which I'll name burger and this will be the burger and
+
+47
+00:03:49,220 --> 00:03:50,700
+the build control, so I'll
+
+48
+00:03:50,710 --> 00:03:53,880
+cut it from there and assign it to that variable
+
+49
+00:03:54,350 --> 00:04:02,750
+and now of course, this will fail due to us having adjacent elements here in JSX which is not liked
+
+50
+00:04:02,750 --> 00:04:03,380
+by default
+
+51
+00:04:03,380 --> 00:04:04,080
+as you learned
+
+52
+00:04:04,340 --> 00:04:11,180
+but you can either return an array or use our aux helper component here essentially.
+
+53
+00:04:11,180 --> 00:04:13,250
+So I'll wrap it with that,
+
+54
+00:04:13,250 --> 00:04:18,530
+keep in mind that's not rendering anything to the screen, so we're not destroying our layout but burger
+
+55
+00:04:18,530 --> 00:04:21,970
+should of course actually only be that if we have ingredients.
+
+56
+00:04:22,760 --> 00:04:28,730
+So I'll actually overwrite a variable burger which I'll set prior to that, burger, where I will use
+
+57
+00:04:28,820 --> 00:04:37,630
+the spinner and then I only want to overwrite it if this state ingredients is basically not null,
+
+58
+00:04:37,650 --> 00:04:40,220
+so that will only be the case if it was loaded.
+
+59
+00:04:40,380 --> 00:04:46,470
+So I'll move my code where I overwrite the burger variable inside of this if statement,
+
+60
+00:04:46,470 --> 00:04:49,490
+so now by default, the burger is just a spinner
+
+61
+00:04:49,980 --> 00:04:56,540
+and now I can output it here below the modal, I'll output burger with single curly braces.
+
+62
+00:04:56,560 --> 00:05:03,120
+However we'll also face another issue, the order summary will also use the ingredients and therefore fail.
+
+63
+00:05:03,120 --> 00:05:11,730
+So here, we should simply also add something and set order summary to null by default and then add
+
+64
+00:05:11,790 --> 00:05:17,790
+the same check or actually we already have that check of course, where we overwrite that order summary
+
+65
+00:05:17,820 --> 00:05:25,360
+variable with the order summary if ingredients are set, so let's add this after this burger code here maybe.
+
+66
+00:05:25,410 --> 00:05:31,470
+So now we are overwriting the order summary in that same if statement we created a second ago, of course
+
+67
+00:05:31,560 --> 00:05:34,500
+I also want to make sure that we overwrite this
+
+68
+00:05:34,500 --> 00:05:41,940
+again if loading was set, so after this if statement where we check for ingredients, I'll add this old if
+
+69
+00:05:41,940 --> 00:05:47,080
+statement where we check for the loading state to overwrite order summary when needed.
+
+70
+00:05:47,080 --> 00:05:52,080
+So now when we save this and go back to the application, you saw that spinner for the fraction of a second
+
+71
+00:05:52,350 --> 00:05:59,650
+and thereafter you can get going and you can create that burger which you can see is still handled correctly,
+
+72
+00:05:59,670 --> 00:06:01,050
+so this all works.
+
+73
+00:06:01,140 --> 00:06:06,870
+The cool thing now is if we go to Firebase and we update our ingredients, so that for example we always
+
+74
+00:06:07,140 --> 00:06:09,000
+start with meat,
+
+75
+00:06:09,000 --> 00:06:13,910
+we can simply set meat to one here and confirm with enter and then go back to our burger
+
+76
+00:06:13,920 --> 00:06:17,920
+and if we now reload it, you'll see we already start with one meat,
+
+77
+00:06:17,970 --> 00:06:19,580
+so that's pretty cool.
+
+78
+00:06:19,590 --> 00:06:25,680
+So now we're also fetching this from the back-end and now we really improved our application and we
+
+79
+00:06:25,680 --> 00:06:28,760
+have both a post and a get request.
+
+80
+00:06:28,760 --> 00:06:36,690
+Now the cool thing is we're showing the spinner but if we now are removing the JSON end here of our
+
+81
+00:06:36,690 --> 00:06:42,540
+URL where we're getting the ingredients, just as an example, if we're removing that and we go back,
+
+82
+00:06:43,350 --> 00:06:45,560
+we don't get the error mode.
+
+83
+00:06:45,570 --> 00:06:46,620
+Now that's not cool,
+
+84
+00:06:46,620 --> 00:06:51,260
+why are we not getting that? That can be hard to spot.
+
+85
+00:06:51,310 --> 00:06:55,960
+The reason actually can be found in our withErrorHandler function.
+
+86
+00:06:55,960 --> 00:07:03,040
+We're setting up our interceptors in the componentDidMount hook and it worked great for the post
+
+87
+00:07:03,040 --> 00:07:04,160
+request
+
+88
+00:07:04,270 --> 00:07:07,630
+but think about that lifecycle diagram,
+
+89
+00:07:07,630 --> 00:07:14,620
+there you see componentDidMount is actually called after all child components have been rendered, which
+
+90
+00:07:14,620 --> 00:07:19,990
+means after componentDidMount was completed in the child components.
+
+91
+00:07:19,990 --> 00:07:27,880
+Now think about our withErrorHandler, here we're wrapping this wrapped component which is our burger
+
+92
+00:07:27,880 --> 00:07:34,080
+builder container for example because there we are using withErrorHandler on the export,
+
+93
+00:07:34,150 --> 00:07:40,270
+so we're essentially wrapping the burger builder and that of course has one implication, componentDidMount
+
+94
+00:07:40,270 --> 00:07:47,590
+in the withErrorHandler will only be called once componentDidMount was called here
+
+95
+00:07:47,590 --> 00:07:54,680
+and since we reach out to the web in componentDidMount of the wrapped component, we never set up our interceptors.
+
+96
+00:07:54,730 --> 00:07:56,180
+The fix is simple, here
+
+97
+00:07:56,200 --> 00:08:01,780
+I'll use componentWillMount. However in the future, this React lifecycle hook or lifecycle method will
+
+98
+00:08:01,780 --> 00:08:02,980
+not be supported anymore
+
+99
+00:08:03,010 --> 00:08:08,170
+and therefore you can also just use the constructor because the general idea here is that we execute
+
+100
+00:08:08,170 --> 00:08:11,230
+this code when this component here gets created
+
+101
+00:08:11,230 --> 00:08:13,660
+and with that, I mean that component object
+
+102
+00:08:13,660 --> 00:08:17,130
+and of course the constructor also runs when this gets created,
+
+103
+00:08:17,140 --> 00:08:22,220
+so therefore using the constructor instead of componentWillMount will work in exactly the same way.
+
+104
+00:08:22,270 --> 00:08:25,590
+This will be called before the child components are rendered
+
+105
+00:08:25,930 --> 00:08:28,360
+and we're not causing side effects here,
+
+106
+00:08:28,360 --> 00:08:34,660
+we're just registering the interceptors and we want to do that before the child components are rendered.
+
+107
+00:08:34,660 --> 00:08:42,280
+Now with that if we save this and we reload the application, we get that error modal but then we get another
+
+108
+00:08:42,280 --> 00:08:46,690
+error that we fail to set our state.
+
+109
+00:08:46,690 --> 00:08:48,530
+The reason for this is that the
+
+110
+00:08:48,540 --> 00:08:55,270
+then block gets executed in our burger builder even though we have an error.
+
+111
+00:08:55,390 --> 00:09:01,870
+Now the reason for that simply is that we're not having a catch method here in componentDidMount of
+
+112
+00:09:01,870 --> 00:09:03,230
+the burger builder.
+
+113
+00:09:03,520 --> 00:09:10,840
+If we catch an error there and simply don't do anything with it for example, then we will already not
+
+114
+00:09:10,840 --> 00:09:18,820
+get this anymore because now we're not calling the then block anymore. We can still dismiss the network
+
+115
+00:09:18,850 --> 00:09:21,670
+error and our application is now broken,
+
+116
+00:09:21,790 --> 00:09:29,980
+so we probably would want to handle that specific error case here for this specific page by for example
+
+117
+00:09:30,040 --> 00:09:32,280
+also setting the UI here.
+
+118
+00:09:32,320 --> 00:09:37,030
+So there, we could also set some error state,
+
+119
+00:09:37,030 --> 00:09:43,830
+so now in the burger builder which is null initially or false maybe
+
+120
+00:09:44,150 --> 00:09:54,100
+and then inside here if we get an error, if we catch this, then we call set state and set error to true.
+
+121
+00:09:54,110 --> 00:09:59,150
+Now with that we can go down to the render method and we want to output an error message for this case
+
+122
+00:09:59,150 --> 00:10:01,760
+where our application becomes unusable.
+
+123
+00:10:01,760 --> 00:10:03,470
+Here we set burger to spinner,
+
+124
+00:10:03,470 --> 00:10:09,020
+now we actually don't want to show the spinner but our the application is not usable at all
+
+125
+00:10:09,020 --> 00:10:13,660
+error message if we have the error equal to true.
+
+126
+00:10:13,970 --> 00:10:16,550
+So here we could check if this state error,
+
+127
+00:10:17,060 --> 00:10:24,230
+if that is true, then we actually want to show a paragraph where we say ingredients can't be loaded,
+
+128
+00:10:24,260 --> 00:10:26,350
+this is our worst case scenario
+
+129
+00:10:26,450 --> 00:10:30,670
+otherwise we're showing the spinner or we're overwriting it with the ingredients if we got them.
+
+130
+00:10:30,670 --> 00:10:34,910
+So now if we save this, we get the spinner and then we see ingredients can't be loaded,
+
+131
+00:10:34,910 --> 00:10:38,320
+now our application is broken but at least we show it to the user,
+
+132
+00:10:38,420 --> 00:10:44,120
+of course once we fix that link by adding .json at the end again,
+
+133
+00:10:44,120 --> 00:10:50,750
+now of course the ingredients will load as you can see here, we see the spinner for a fraction of a second, the
+
+134
+00:10:50,750 --> 00:10:55,730
+ingredients are there and we can continue using our application just fine.
+
+135
+00:10:55,730 --> 00:10:57,520
+So this is now all working,
+
+136
+00:10:57,560 --> 00:11:03,540
+now we got a really robust application where we are both storing orders and we're fetching content.
+
+137
+00:11:03,560 --> 00:11:10,190
+Now of course, we could also implement code to fetch the orders from our database, from our back-end here,
+
+138
+00:11:10,190 --> 00:11:16,670
+so that is something we want to work on next, routing, being able to switch pages even though technically,
+
+139
+00:11:16,970 --> 00:11:20,210
+we only have one page in that single page application.
