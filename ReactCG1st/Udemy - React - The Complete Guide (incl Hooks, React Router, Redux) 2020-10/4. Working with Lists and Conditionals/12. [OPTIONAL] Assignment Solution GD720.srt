@@ -1,0 +1,911 @@
+1
+00:00:02,100 --> 00:00:04,160
+So let's start solving this assignment.
+
+2
+00:00:04,290 --> 00:00:09,720
+Let's start simple by creating an input field with a change listener and outputting the text below the
+
+3
+00:00:09,720 --> 00:00:10,840
+input field.
+
+4
+00:00:10,920 --> 00:00:17,700
+I'll do it and actually as soon as in the previous example I'll leave the assignment introductions here
+
+5
+00:00:18,450 --> 00:00:24,990
+all add a horizontal line self-closing element as all Jael's X elements have to be in.
+
+6
+00:00:25,150 --> 00:00:27,600
+James X if you don't put anything in between.
+
+7
+00:00:27,930 --> 00:00:33,160
+And there are now at an input element of type text just like that.
+
+8
+00:00:33,320 --> 00:00:34,740
+All those self-closing.
+
+9
+00:00:34,740 --> 00:00:36,670
+Now this alone doesn't do much.
+
+10
+00:00:36,670 --> 00:00:40,830
+We of course needer on change handler and execute some method there.
+
+11
+00:00:40,830 --> 00:00:50,030
+So let's add a method to our app component name that input changed handler and again use my syntax here
+
+12
+00:00:50,030 --> 00:00:53,610
+where I assign an arrow function to this property.
+
+13
+00:00:53,640 --> 00:00:59,580
+There I will get this event object passed into it automatically and then I'll want to store this in
+
+14
+00:00:59,580 --> 00:01:00,210
+state.
+
+15
+00:01:00,240 --> 00:01:05,560
+So I set up state as a property and there I'll simply add a state named user input.
+
+16
+00:01:05,640 --> 00:01:07,100
+The name is totally up to you.
+
+17
+00:01:07,230 --> 00:01:09,120
+It'll be an empty string initially.
+
+18
+00:01:09,240 --> 00:01:12,520
+And here in the input changed handler I want to update it.
+
+19
+00:01:12,520 --> 00:01:21,140
+We have set state all said user input equal to the end target values so to whatever the user entered.
+
+20
+00:01:21,690 --> 00:01:28,370
+And I will now also set up two way binding with that not only registered this as a handler here input
+
+21
+00:01:28,410 --> 00:01:39,120
+changed handler but also sets a value equal to this state user input to always reflect the latest value
+
+22
+00:01:39,420 --> 00:01:43,080
+in the input and I'll split it over multiple lines to make it easier to read.
+
+23
+00:01:43,350 --> 00:01:44,880
+Thus far nothing special.
+
+24
+00:01:44,880 --> 00:01:49,860
+Let's quickly check if it works Let's also hope the conc a lot to see if you've got any errors.
+
+25
+00:01:49,860 --> 00:01:51,510
+And let me ENTRAR something here.
+
+26
+00:01:51,540 --> 00:01:57,780
+This works we're not done yet though we should all the outputs the text below the input.
+
+27
+00:01:57,780 --> 00:02:03,500
+So I'll add a paragraph below my input element here and there.
+
+28
+00:02:03,580 --> 00:02:08,790
+I'll put some dynamic content this state user input clearly.
+
+29
+00:02:09,180 --> 00:02:10,680
+Let me save this too.
+
+30
+00:02:11,010 --> 00:02:12,640
+And now let's try this again.
+
+31
+00:02:12,780 --> 00:02:13,850
+Does looks pretty good.
+
+32
+00:02:13,950 --> 00:02:17,570
+I can see whatever I enter here below the input.
+
+33
+00:02:17,760 --> 00:02:24,210
+Then next step now is to create a new component which receives the text length not the text just the
+
+34
+00:02:24,210 --> 00:02:26,180
+length as a prop.
+
+35
+00:02:26,490 --> 00:02:29,330
+And here is a just a name validation component.
+
+36
+00:02:29,640 --> 00:02:32,840
+So I will do this I'll create a new folder for it.
+
+37
+00:02:32,850 --> 00:02:41,400
+Validation component and add develop Dacian component or javascript fall in there.
+
+38
+00:02:41,420 --> 00:02:49,950
+Now I mentioned in the problem video dead you won't need state in here so there there's no need to use
+
+39
+00:02:49,950 --> 00:02:52,510
+class and extend component.
+
+40
+00:02:52,650 --> 00:03:00,310
+We can instead use a function again name validation here and I will add some hoops.
+
+41
+00:03:00,360 --> 00:03:08,250
+I want to rename the name though validation not validation components Tiss angular style which we're
+
+42
+00:03:08,250 --> 00:03:09,220
+not using here.
+
+43
+00:03:09,360 --> 00:03:12,430
+So just validation is the name of the component without component.
+
+44
+00:03:12,660 --> 00:03:18,240
+Still execute a constant here where I assign that as 6 function.
+
+45
+00:03:18,550 --> 00:03:20,930
+And of course we'll receive some props here.
+
+46
+00:03:20,940 --> 00:03:28,050
+I already know that then I will import re-act from react as we need to do it.
+
+47
+00:03:28,050 --> 00:03:29,270
+Never forget this.
+
+48
+00:03:29,280 --> 00:03:37,260
+You will get errors about ways and I will export this as my default export in this file.
+
+49
+00:03:37,260 --> 00:03:42,690
+Now all that's left in this function is I need to return some JS X solver wise it's not a valid component
+
+50
+00:03:43,260 --> 00:03:49,420
+and therefore now it will return a paragraph where I will say text too short.
+
+51
+00:03:49,440 --> 00:03:52,630
+Of course it is not conditional at all right now.
+
+52
+00:03:52,830 --> 00:03:56,620
+Maybe already wrap this inside a div here.
+
+53
+00:03:56,940 --> 00:03:59,280
+So let's quickly adjust that.
+
+54
+00:03:59,430 --> 00:04:01,740
+So with that we get this component set up.
+
+55
+00:04:01,890 --> 00:04:09,120
+Let's now imported in the Baptist js file by adding a port at the top where I import validation with
+
+56
+00:04:09,120 --> 00:04:19,600
+a capital D validation from the validation folder and their D validation dot js file without the file
+
+57
+00:04:19,600 --> 00:04:21,780
+extension in the import.
+
+58
+00:04:22,310 --> 00:04:27,080
+I can now use it here below my input below the paragraph.
+
+59
+00:04:27,070 --> 00:04:31,810
+Maybe I'll add validation as a self-closing tag.
+
+60
+00:04:31,930 --> 00:04:37,800
+Now I also need to pass the text length as a prompt though.
+
+61
+00:04:37,810 --> 00:04:41,890
+So here I will simply add a prop and I'll name it input length.
+
+62
+00:04:41,890 --> 00:04:43,440
+The name is up to you.
+
+63
+00:04:43,810 --> 00:04:48,190
+I will add it like it is and simply pass this state.
+
+64
+00:04:48,190 --> 00:04:54,460
+User input length because it is a string it is an array therefore I can get the length of the input
+
+65
+00:04:55,420 --> 00:04:57,980
+and the validation dot Jr's fall.
+
+66
+00:04:58,000 --> 00:04:59,370
+I can then use it.
+
+67
+00:04:59,620 --> 00:05:07,120
+Now that will be part of the first task I should output text to short or text long enough.
+
+68
+00:05:07,120 --> 00:05:11,000
+The padding on the text length and you can choose any color if you want.
+
+69
+00:05:11,110 --> 00:05:15,910
+I'll go with 5 as I just here but that is totally optional.
+
+70
+00:05:15,910 --> 00:05:18,350
+So in there I'll add a second paragraph.
+
+71
+00:05:19,330 --> 00:05:21,080
+I already got the text too short.
+
+72
+00:05:21,100 --> 00:05:28,550
+One bad text long enough that's missing and I only want to output one of to two though.
+
+73
+00:05:28,560 --> 00:05:31,370
+Now there are a couple of ways you can do this.
+
+74
+00:05:31,410 --> 00:05:37,830
+The first way is to use a ternary expression as I showed you in the previous or in this module actually
+
+75
+00:05:37,830 --> 00:05:39,810
+in the previous lectures.
+
+76
+00:05:39,810 --> 00:05:48,620
+So here we could say if perhaps input length there will be input length Propp because that's what I
+
+77
+00:05:48,620 --> 00:05:49,740
+am passing here.
+
+78
+00:05:49,740 --> 00:05:54,980
+Input length and this will be the length of guess what my input.
+
+79
+00:05:54,980 --> 00:06:05,420
+So if that is let's say greater than five then I want to output text long enough otherwise.
+
+80
+00:06:06,490 --> 00:06:09,550
+I want to output text too short.
+
+81
+00:06:09,590 --> 00:06:12,530
+This should work with this turned every expression.
+
+82
+00:06:12,550 --> 00:06:15,330
+Make sure you save all the files and go back.
+
+83
+00:06:15,340 --> 00:06:17,070
+We all see text too short.
+
+84
+00:06:17,130 --> 00:06:19,270
+Now let me start typing.
+
+85
+00:06:19,270 --> 00:06:22,320
+We see Maxse million.
+
+86
+00:06:22,360 --> 00:06:27,790
+The next character it should switch text long enough and never remove a character it goes back to text
+
+87
+00:06:27,790 --> 00:06:29,200
+too short.
+
+88
+00:06:29,230 --> 00:06:35,340
+This works perfectly fine but what did I tell you about ternary expressions.
+
+89
+00:06:35,350 --> 00:06:36,730
+Use them with caution.
+
+90
+00:06:36,910 --> 00:06:40,330
+Now actually here it would be perfectly fine to use one.
+
+91
+00:06:40,330 --> 00:06:43,410
+This is a simple to understand GSX block.
+
+92
+00:06:43,660 --> 00:06:45,950
+Still let's use the batter approach.
+
+93
+00:06:46,240 --> 00:06:55,000
+Let's create a new variable which will name validation message where a by default will say text long
+
+94
+00:06:55,000 --> 00:06:55,850
+enough.
+
+95
+00:06:55,900 --> 00:07:02,830
+However I will then check if prop's input length is smaller or equal than 5.
+
+96
+00:07:02,920 --> 00:07:05,730
+So I'm simply lets do the other way around.
+
+97
+00:07:06,160 --> 00:07:10,630
+Then I will said validation message to text to short.
+
+98
+00:07:10,720 --> 00:07:18,640
+And of course I could not only assign a text to that I could assign the whole paragraph GSX both actually
+
+99
+00:07:18,640 --> 00:07:20,450
+works here.
+
+100
+00:07:20,560 --> 00:07:28,660
+I will go with the text to mix it up so down there I will then add my paragraph and inside the paragraph.
+
+101
+00:07:28,660 --> 00:07:35,560
+I will simply output validation message and this is heever text long enough or text too short.
+
+102
+00:07:35,860 --> 00:07:41,370
+And again the paragraph could be part of the variable too.
+
+103
+00:07:41,380 --> 00:07:47,970
+Now let's say if this change we should get the same behavior asked for and we do.
+
+104
+00:07:48,200 --> 00:07:51,910
+However this time here we do.
+
+105
+00:07:51,970 --> 00:07:58,040
+But a more elegant way by storing it in a separate variable hence making it a bit easier to read and
+
+106
+00:07:58,040 --> 00:08:00,020
+understand and maintain.
+
+107
+00:08:00,020 --> 00:08:01,100
+So this is their solution.
+
+108
+00:08:01,100 --> 00:08:05,500
+I recommend optionally Again don't use text here.
+
+109
+00:08:05,580 --> 00:08:08,350
+Create Agellius X element with the paragraph instead.
+
+110
+00:08:08,630 --> 00:08:14,670
+But this is definitely a good solution for tasks number of free.
+
+111
+00:08:14,670 --> 00:08:20,700
+Now let's move on and let's create another component the char component and stylesheet as the inline
+
+112
+00:08:20,700 --> 00:08:24,360
+box with for example the styles I suggest here.
+
+113
+00:08:24,480 --> 00:08:32,300
+So create a new folder in the source folder char and then there are char dotted genius file as before.
+
+114
+00:08:32,400 --> 00:08:39,330
+This doesn't need to have a state so we can simply create a functional component you're creating it
+
+115
+00:08:39,330 --> 00:08:40,340
+as a function.
+
+116
+00:08:40,560 --> 00:08:45,650
+So char is at six arrow function as we did it many times before.
+
+117
+00:08:45,930 --> 00:08:53,940
+We definitely needed to import to react as always because jazz X is just react create element never
+
+118
+00:08:53,940 --> 00:08:59,320
+forget it get this and then export char as the default in this file.
+
+119
+00:09:00,440 --> 00:09:07,610
+Now in there I now need to return some JSE X and I will actually return a div element wrapping everything.
+
+120
+00:09:07,610 --> 00:09:10,100
+Now for styling it we got two options.
+
+121
+00:09:10,130 --> 00:09:12,430
+We can set up a C S S file.
+
+122
+00:09:12,430 --> 00:09:13,570
+Import it.
+
+123
+00:09:13,580 --> 00:09:16,350
+Define a class in there and assign it here.
+
+124
+00:09:16,700 --> 00:09:19,010
+Or define inline Stahl's.
+
+125
+00:09:19,160 --> 00:09:22,560
+I'll go for the inline styles here but it's totally up to you.
+
+126
+00:09:22,700 --> 00:09:25,040
+So let me name this constant style.
+
+127
+00:09:25,040 --> 00:09:27,240
+The name doesn't matter though.
+
+128
+00:09:27,350 --> 00:09:35,430
+And now let me set up what I defined here so I will set the display to inline block.
+
+129
+00:09:35,540 --> 00:09:43,990
+I will set the padding to 16 pixels and I will set the margin to 6 and pixels.
+
+130
+00:09:44,000 --> 00:09:48,980
+I will set a border of 1 pixels solid and black.
+
+131
+00:09:49,040 --> 00:09:50,420
+What else that I have here.
+
+132
+00:09:52,190 --> 00:10:00,280
+Text align to center maybe to center everything nicely so text align to center.
+
+133
+00:10:00,380 --> 00:10:06,230
+This might not even be neater to be honest and it would work like this should be camel case because
+
+134
+00:10:06,230 --> 00:10:07,880
+we're in javascript.
+
+135
+00:10:07,880 --> 00:10:12,360
+Now I can assign this here dynamically with single quotation marks.
+
+136
+00:10:12,410 --> 00:10:15,790
+So now referring to that style constant.
+
+137
+00:10:15,980 --> 00:10:16,730
+Now we get.
+
+138
+00:10:16,740 --> 00:10:23,220
+Does component prepare it and we can also imported Indian file where I want to use it.
+
+139
+00:10:23,250 --> 00:10:30,740
+So import Chaar from slash char and their anti char chase file without the file extension.
+
+140
+00:10:31,040 --> 00:10:32,930
+But of course we're not using it yet.
+
+141
+00:10:33,410 --> 00:10:35,010
+We want to use it here.
+
+142
+00:10:35,060 --> 00:10:37,640
+We're getting warned that we're not using it actually.
+
+143
+00:10:37,850 --> 00:10:41,750
+We want to use it here to render a list for each character in the text.
+
+144
+00:10:41,750 --> 00:10:43,230
+A user entered.
+
+145
+00:10:43,500 --> 00:10:50,120
+So let's do that I will render this list below the validation here.
+
+146
+00:10:50,540 --> 00:10:52,800
+And I could now use this map.
+
+147
+00:10:52,820 --> 00:10:54,750
+Meffert right here.
+
+148
+00:10:54,950 --> 00:11:03,080
+But for the same reason I restructured the validation and pulled the logic outside of the J as X block
+
+149
+00:11:03,130 --> 00:11:04,100
+I returned.
+
+150
+00:11:04,340 --> 00:11:05,630
+I'll do it here.
+
+151
+00:11:05,690 --> 00:11:10,850
+Here I simply want to render a variable which I prepare prior to does return statement.
+
+152
+00:11:11,210 --> 00:11:13,890
+So there I will simply named is variable.
+
+153
+00:11:13,900 --> 00:11:19,450
+Char list for example and char list just can be a constant.
+
+154
+00:11:19,460 --> 00:11:21,170
+I'm never going to change it.
+
+155
+00:11:21,230 --> 00:11:29,930
+Chairlifts should reach out to my state to the user input and now call map to again map every element
+
+156
+00:11:29,930 --> 00:11:32,050
+in desirée into a new element.
+
+157
+00:11:32,360 --> 00:11:37,060
+Now desiré of course is just some text but that basically is an array of strings.
+
+158
+00:11:37,520 --> 00:11:46,210
+So here I will get my single char and you can of course also named as char whatever you want and I want
+
+159
+00:11:46,210 --> 00:11:48,550
+to return a j as x representation.
+
+160
+00:11:48,610 --> 00:11:56,920
+So I will return my char component and I will set a character and this name is also up to you.
+
+161
+00:11:56,960 --> 00:12:01,650
+Prop on it and pass the character I got here.
+
+162
+00:12:01,650 --> 00:12:05,360
+And again this could be named char whatever you like into it.
+
+163
+00:12:05,360 --> 00:12:11,190
+So no need to expect this character component Susie property inside my char component.
+
+164
+00:12:11,420 --> 00:12:20,780
+So there I will receive props and I will now simply output prop's character inside the return statement
+
+165
+00:12:20,780 --> 00:12:26,770
+there and then capture yes I simply create my list by Couldn't working desiré.
+
+166
+00:12:26,780 --> 00:12:30,220
+Keep in mind map doesn't touch the original array.
+
+167
+00:12:30,380 --> 00:12:37,820
+It simply gives you a new array which is stored in char list and you array of char components.
+
+168
+00:12:37,820 --> 00:12:43,910
+Now let's take that Jarre list constant and this is what I want to output between single Cauley braces
+
+169
+00:12:44,210 --> 00:12:48,050
+down there below the validation message.
+
+170
+00:12:48,050 --> 00:12:50,290
+Make sure all files are saved.
+
+171
+00:12:50,290 --> 00:12:52,160
+Now here we're facing the issue dead.
+
+172
+00:12:52,160 --> 00:13:00,950
+We can't use map of words that string are basically or kind of javascript arrays but not really to turn
+
+173
+00:13:00,950 --> 00:13:02,600
+them into javascript arrays.
+
+174
+00:13:02,600 --> 00:13:11,140
+All I have to do is call split on it though on the user input and pass an empty string as an argument.
+
+175
+00:13:11,150 --> 00:13:15,880
+This will basically split this into an array of strings after every character.
+
+176
+00:13:16,100 --> 00:13:18,920
+So now this should work if I enter test here.
+
+177
+00:13:18,980 --> 00:13:22,100
+You can see I get tests down there.
+
+178
+00:13:22,100 --> 00:13:25,030
+Now what you will see is that I get this key error.
+
+179
+00:13:25,340 --> 00:13:26,950
+So to fix this.
+
+180
+00:13:26,960 --> 00:13:33,770
+We should of course assign a key and here the thing with the key is a bit tricky because of that unique
+
+181
+00:13:33,800 --> 00:13:37,070
+ID which we don't really have in our example.
+
+182
+00:13:37,160 --> 00:13:41,030
+So what I will do is here on the chart.
+
+183
+00:13:41,300 --> 00:13:46,060
+I will indeed use the index though this is not optimal.
+
+184
+00:13:46,070 --> 00:13:47,720
+Better than no key though.
+
+185
+00:13:47,810 --> 00:13:49,770
+But not the best solution.
+
+186
+00:13:49,880 --> 00:13:51,440
+But here I get no other chance.
+
+187
+00:13:51,560 --> 00:13:58,820
+So let's use that second argument of the function inside the map Meffert the index with that if we now
+
+188
+00:13:58,820 --> 00:14:00,200
+reload the page.
+
+189
+00:14:00,200 --> 00:14:02,780
+This works without errors.
+
+190
+00:14:02,780 --> 00:14:04,070
+Now we're almost done.
+
+191
+00:14:04,070 --> 00:14:09,500
+Now we want to make sure that if I click one of these boxes we remove that character.
+
+192
+00:14:09,560 --> 00:14:16,610
+Now for that I'll add a new method in my app complainant's or name it.
+
+193
+00:14:17,030 --> 00:14:27,440
+Delete char handler and then I basically expect to get the index of the character I want to delete and
+
+194
+00:14:27,530 --> 00:14:33,110
+I want to execute this obviously whenever I click on one of these character boxes.
+
+195
+00:14:33,310 --> 00:14:40,040
+So let's flip this over multiple lines and then pass a property which I'll name collect where I then
+
+196
+00:14:40,040 --> 00:14:48,470
+want to execute does delete char handler past the index though and therefore execute this as an anonymous
+
+197
+00:14:48,620 --> 00:14:53,510
+E6 function using this alternate syntax of passing a reference.
+
+198
+00:14:53,510 --> 00:14:59,720
+Keep in mind this anonymous function is basically passed to clicked it's not executed immediately.
+
+199
+00:14:59,720 --> 00:15:02,250
+This would be the case if I had more parentheses at the end.
+
+200
+00:15:02,420 --> 00:15:08,780
+But here we simply pass a reference and then dysfunction will get executed when click property is fired
+
+201
+00:15:08,990 --> 00:15:11,920
+and then we call delete char handler.
+
+202
+00:15:12,230 --> 00:15:20,570
+So let's pass to collect property to char and there on the diff or at the on click handler and simply
+
+203
+00:15:20,690 --> 00:15:28,100
+pass a reference to prop's collect so that this will be executed and hence this function here will get
+
+204
+00:15:28,100 --> 00:15:28,910
+executed.
+
+205
+00:15:28,910 --> 00:15:32,840
+If I click a box and then we will get this index.
+
+206
+00:15:32,990 --> 00:15:37,460
+Now inside delete char handler I get this index.
+
+207
+00:15:37,460 --> 00:15:43,010
+I now want to update the user input which as you learned is only kind of a javascript string.
+
+208
+00:15:43,280 --> 00:15:45,850
+So what I would simply do here is.
+
+209
+00:15:46,070 --> 00:15:51,940
+I will first of all get my text by reaching out to this state.
+
+210
+00:15:51,950 --> 00:15:56,960
+User input and coaling split on an empty string just as we did before.
+
+211
+00:15:57,020 --> 00:15:58,400
+Before mapping.
+
+212
+00:15:58,670 --> 00:16:06,380
+Now I got an array of characters and there I now want to remove one with splice at the index position
+
+213
+00:16:06,500 --> 00:16:08,210
+and then only one character.
+
+214
+00:16:08,210 --> 00:16:10,550
+So this removes it from the array.
+
+215
+00:16:11,000 --> 00:16:16,490
+And now I want to create my update as text where I simply used the text.
+
+216
+00:16:16,490 --> 00:16:18,020
+This is an array of characters.
+
+217
+00:16:18,020 --> 00:16:25,780
+Keep that in mind which I now join again with an empty characters so with basically nothing but it can
+
+218
+00:16:25,790 --> 00:16:26,180
+words.
+
+219
+00:16:26,180 --> 00:16:33,860
+My array of characters into text into a string again and then I can call this set state and there I
+
+220
+00:16:33,860 --> 00:16:38,710
+can set user input equal to updated text.
+
+221
+00:16:38,720 --> 00:16:40,620
+This should actually do the trick.
+
+222
+00:16:40,710 --> 00:16:46,970
+Descaler should take my text updated and DUDAS for whichever char I clicked on.
+
+223
+00:16:46,970 --> 00:16:51,230
+Let me save this and let me enter a test text here.
+
+224
+00:16:51,410 --> 00:16:52,140
+Let me at.
+
+225
+00:16:52,630 --> 00:16:59,070
+Click this year it's removed and it's also removed from the input and to text the output here and then
+
+226
+00:16:59,070 --> 00:17:08,170
+if I remove a lot of content from there actually are validation also comes to too short again so everything
+
+227
+00:17:08,170 --> 00:17:08,740
+is dynamic.
+
+228
+00:17:08,740 --> 00:17:14,760
+Everything works here as it should with conditional rendering and with outputting lists.

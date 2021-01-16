@@ -1,0 +1,375 @@
+1
+00:00:02,180 --> 00:00:09,320
+So we had a look at radium which is one package that helps us with styling React Components.
+
+2
+00:00:09,330 --> 00:00:17,270
+Another very popular package and third party library you can use for dad is styled components to styled
+
+3
+00:00:17,270 --> 00:00:18,840
+components library.
+
+4
+00:00:18,860 --> 00:00:23,150
+Now what are styled components or what does this library about.
+
+5
+00:00:23,150 --> 00:00:24,800
+This library is all about.
+
+6
+00:00:24,830 --> 00:00:25,490
+Guess what.
+
+7
+00:00:25,520 --> 00:00:31,730
+Styling components and making that very simple on style dash components dot com.
+
+8
+00:00:31,730 --> 00:00:34,880
+You can learn all about it here if you click on documentation.
+
+9
+00:00:35,000 --> 00:00:40,640
+But of course I want to introduce you to this library and show you the core basics of it.
+
+10
+00:00:40,790 --> 00:00:45,980
+In this course now to get started with that library with first of all have to install it.
+
+11
+00:00:46,430 --> 00:00:49,410
+And for that we can run this command here.
+
+12
+00:00:49,490 --> 00:00:50,990
+So simply copy this
+
+13
+00:00:53,930 --> 00:01:00,470
+and then quit your development server and simply run npm install dash dash save style dash components
+
+14
+00:01:00,860 --> 00:01:06,590
+in your react project and this will now install this package as a dependency.
+
+15
+00:01:06,650 --> 00:01:14,120
+In the meantime I will already get rid of my radium import here and all of the radium wrapper down there.
+
+16
+00:01:14,180 --> 00:01:20,030
+They are for all temporarily keep this around so that they can copy and paste to stall later but will
+
+17
+00:01:20,330 --> 00:01:24,080
+not set it up like this soon in AB jars.
+
+18
+00:01:24,080 --> 00:01:32,120
+I'll also get rid of radium of this import here and in their deal for all also get rid of the radium
+
+19
+00:01:32,240 --> 00:01:34,490
+wrapper we have at the bottom.
+
+20
+00:01:34,700 --> 00:01:41,330
+So let's make sure we get rid of all our radium traces here so that we're not using radium anywhere
+
+21
+00:01:41,570 --> 00:01:48,710
+because we're now going to switch and we're going to basically use C as as styling or CSX in JavaScript
+
+22
+00:01:48,710 --> 00:01:52,310
+styling with the help of this package.
+
+23
+00:01:52,310 --> 00:01:56,290
+So with it installed how does this package work.
+
+24
+00:01:56,330 --> 00:01:59,990
+How can we use styled components.
+
+25
+00:02:00,050 --> 00:02:04,780
+Of course the official docs or you official page has got you covered regarding that as well.
+
+26
+00:02:04,940 --> 00:02:10,100
+And what you see there is that in the annual import one thing from that stalled components package and
+
+27
+00:02:10,130 --> 00:02:17,250
+then you have this strange syntax down there and now it is is something you might have never seen before.
+
+28
+00:02:17,260 --> 00:02:22,100
+There is back tick back tick thing here after some of our code.
+
+29
+00:02:22,250 --> 00:02:28,640
+This is regular javascript though it's a feature called tacked templates and attached you find a link
+
+30
+00:02:28,640 --> 00:02:29,950
+where you can learn more about it.
+
+31
+00:02:29,960 --> 00:02:34,490
+It has nothing to do with react that is a way lable in vanilla javascript as well.
+
+32
+00:02:34,490 --> 00:02:41,210
+And in the end what this here is is a function call so button here would be a function or a method on
+
+33
+00:02:41,210 --> 00:02:47,840
+the stalled object to be precise and instead of having parentheses with function arguments as you're
+
+34
+00:02:47,840 --> 00:02:55,010
+used to you instead have to back takes between which you can pass text and then this text is the and
+
+35
+00:02:55,010 --> 00:03:02,390
+passed into the spot method in a special way which we don't have to care about where you can learn more
+
+36
+00:03:02,390 --> 00:03:04,370
+about than this attached link.
+
+37
+00:03:04,370 --> 00:03:10,130
+We just have to note that it will be passed into this but method here in such a way that this method
+
+38
+00:03:10,130 --> 00:03:17,360
+uses whatever you pass this text here as styling for this well button which this method creates back
+
+39
+00:03:17,360 --> 00:03:22,510
+takes in general can be used in javascript to create a so-called template literal.
+
+40
+00:03:22,640 --> 00:03:28,850
+So even without dad combination of a method with back takes you can't create strings in javascript with
+
+41
+00:03:28,850 --> 00:03:34,370
+just back takes and attached you all to find a link which introduces you to template liberals in case
+
+42
+00:03:34,370 --> 00:03:40,310
+you're not aware of them it's a regular jobs good feature has nothing to do with react but this becomes
+
+43
+00:03:40,310 --> 00:03:41,800
+cleaner if we use it.
+
+44
+00:03:41,940 --> 00:03:48,740
+So let's go back to our project and we want to style the dev here in the example of person J s right.
+
+45
+00:03:48,740 --> 00:03:57,440
+So in order to do that let's first of all import styled from styled dash components.
+
+46
+00:03:57,770 --> 00:04:06,570
+And then here instead of using the div like this year let's comment this out and let's instead return
+
+47
+00:04:06,660 --> 00:04:09,300
+styled dot death.
+
+48
+00:04:09,510 --> 00:04:16,600
+This styled object which we're importing from styled components basically has a method for every H2
+
+49
+00:04:16,620 --> 00:04:17,430
+male element.
+
+50
+00:04:17,430 --> 00:04:18,510
+You could create.
+
+51
+00:04:18,600 --> 00:04:24,750
+So you have div here you have the button here you have an anchor tag you have paragraph you have a h1
+
+52
+00:04:24,750 --> 00:04:30,540
+tag end zones have all these H Tim l elements a way double here as methods.
+
+53
+00:04:30,540 --> 00:04:32,820
+And here we want to render a death.
+
+54
+00:04:32,840 --> 00:04:39,780
+So we use death now as you see in the official docs then we use this strange syntax div in the end as
+
+55
+00:04:39,780 --> 00:04:42,200
+a function but we don't call it as such.
+
+56
+00:04:42,210 --> 00:04:46,890
+Instead we use this tact template approach and add to back takes after it.
+
+57
+00:04:46,950 --> 00:04:49,820
+So did we have style div like this.
+
+58
+00:04:50,040 --> 00:04:59,040
+Now the obvious question is what goes between these two back ticks here though between these back takes
+
+59
+00:04:59,640 --> 00:05:01,480
+go your styles.
+
+60
+00:05:01,500 --> 00:05:09,660
+So here we can actually go to the person C as as file comment this temporarily back in and then copy
+
+61
+00:05:09,660 --> 00:05:16,410
+this entire style and then commented all out if we want to actually remove or comment out the person
+
+62
+00:05:16,410 --> 00:05:23,160
+C assess the import here and now between these two back ticks we add our style however without the person
+
+63
+00:05:23,160 --> 00:05:32,460
+selector instead just the style properties like this so that we simply say this div should have these
+
+64
+00:05:32,520 --> 00:05:41,760
+styles now we can all add a media query here again without this selector though just with the property
+
+65
+00:05:41,850 --> 00:05:48,420
+we want to apply and the styled components package behind the scenes we'll make sure that these styles
+
+66
+00:05:48,420 --> 00:05:54,270
+including the media query end up on this def which is created here now at the moment we have invalid
+
+67
+00:05:54,270 --> 00:06:01,230
+code though we have some other code down there which should go between our two div tax the div opening
+
+68
+00:06:01,230 --> 00:06:02,060
+and closing tag.
+
+69
+00:06:02,550 --> 00:06:09,840
+So actually the solution here is or one solution is to grab this cactus and create a new component here.
+
+70
+00:06:09,840 --> 00:06:17,460
+So here we can create a new component style div maybe and there we create are styled death with this
+
+71
+00:06:17,460 --> 00:06:25,970
+template tag syntax copy in all that CSX code here without selectors.
+
+72
+00:06:25,970 --> 00:06:26,840
+As mentioned
+
+73
+00:06:31,000 --> 00:06:32,420
+and we'll be good to go.
+
+74
+00:06:32,560 --> 00:06:33,510
+Now important here.
+
+75
+00:06:33,550 --> 00:06:38,320
+I'm starting with the upper case character because I plan on using this component right in this file
+
+76
+00:06:38,440 --> 00:06:39,440
+down here.
+
+77
+00:06:39,460 --> 00:06:45,600
+I now use stall div as a regular react component because that's really important.
+
+78
+00:06:45,700 --> 00:06:53,290
+Every method provided by this styled object no matter if that's div age 1 or whatever it is returns
+
+79
+00:06:53,290 --> 00:06:54,430
+a react component.
+
+80
+00:06:54,730 --> 00:06:59,670
+So here we're not creating a react component where we get props and returns J is x.
+
+81
+00:06:59,680 --> 00:07:06,330
+No because this already returns our ReACT component so this already is a functional or class based.
+
+82
+00:07:06,340 --> 00:07:08,200
+We don't know component.
+
+83
+00:07:08,200 --> 00:07:13,810
+So instead of creating a function here a functional component we just stored the result of this method
+
+84
+00:07:13,810 --> 00:07:15,630
+call in our style.
+
+85
+00:07:15,640 --> 00:07:22,620
+They've constant here because this already is a valid react component provided by that third party library
+
+86
+00:07:23,170 --> 00:07:29,380
+and with Dad we can restart our development server here so that we can see this in action.
+
+87
+00:07:29,380 --> 00:07:32,350
+Make sure you're using a recent version of React for this.
+
+88
+00:07:32,350 --> 00:07:34,720
+In my case I'm using react 16 dots 10
+
+89
+00:07:37,400 --> 00:07:44,350
+and then you should be able to click on toggle persons and actually see what you saw before and just
+
+90
+00:07:44,350 --> 00:07:52,080
+to prove that this works if I remove the media query you see now I have these bigger boxes here on bigger
+
+91
+00:07:52,080 --> 00:08:00,260
+screens always 60 percent of my screen with if I re added and save and toggle you see now this width
+
+92
+00:08:00,260 --> 00:08:01,500
+gets applied.
+
+93
+00:08:01,550 --> 00:08:07,820
+So now the style components Library is doing its job and is styling these components and therefore again
+
+94
+00:08:07,850 --> 00:08:14,000
+we have a nice mixture of CSX and JavaScript all in one file with help of these stalled components.

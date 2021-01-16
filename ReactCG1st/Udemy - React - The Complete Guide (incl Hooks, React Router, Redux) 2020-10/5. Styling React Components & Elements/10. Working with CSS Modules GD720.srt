@@ -1,0 +1,699 @@
+1
+00:00:02,420 --> 00:00:10,700
+So stalled components are a pretty nice way of mixing javascript and CSX and getting components elements
+
+2
+00:00:10,790 --> 00:00:15,620
+H HTML elements with certain possibly dynamic styles added to them.
+
+3
+00:00:15,620 --> 00:00:21,190
+Now a lot of people like stalled components and you can probably already tell why now.
+
+4
+00:00:21,200 --> 00:00:30,620
+I also like styled components but I'm personally also a fan of having CSA as Stead is scoped to a certain
+
+5
+00:00:30,620 --> 00:00:36,820
+file or scope to a certain component and still lives inside of CSA as files.
+
+6
+00:00:36,820 --> 00:00:43,790
+Though I am personally not the biggest fan of this CSR s and JavaScript mixture since it loads the JavaScript
+
+7
+00:00:43,790 --> 00:00:44,880
+files a little bit.
+
+8
+00:00:44,900 --> 00:00:52,340
+We have all that extra code in there and since a lot of high to ease or environments you only get poor
+
+9
+00:00:53,000 --> 00:00:55,140
+IDE support when writing code here.
+
+10
+00:00:55,250 --> 00:01:01,880
+The auto completion and so on for a c as s commands and CSA as values is much better in C is as follows
+
+11
+00:01:01,880 --> 00:01:07,910
+typically so you can't absolutely use that but I personally am not the biggest fan of it and so I want
+
+12
+00:01:07,910 --> 00:01:13,640
+to show you yet another way of scoping styles to your components.
+
+13
+00:01:13,730 --> 00:01:21,020
+So of writing styles which only apply to a specific component instead of the entire application because
+
+14
+00:01:21,050 --> 00:01:23,120
+that is an important thing.
+
+15
+00:01:23,180 --> 00:01:29,540
+Often you really want to make sure that your styles don't apply everywhere to everywhere in your application
+
+16
+00:01:29,570 --> 00:01:31,380
+but only to certain parts.
+
+17
+00:01:31,400 --> 00:01:38,450
+For example if we would grab this code here and temporarily nowhere did we want to change it dynamically
+
+18
+00:01:38,450 --> 00:01:47,810
+sometimes if we grab this code here and add it to app CSA s then we could pass this year into a button
+
+19
+00:01:47,810 --> 00:01:55,700
+class lets say so let's move this in here and then here we have anything with a button clause and a
+
+20
+00:01:55,700 --> 00:02:01,190
+hover state which gets this style and then here of course we don't have this dynamic code but we just
+
+21
+00:02:01,190 --> 00:02:12,290
+have green here and we just have light green down there and this would be valid code but now everything
+
+22
+00:02:12,500 --> 00:02:19,580
+with a button class will get these styles which means if I add the button clause here to this button
+
+23
+00:02:19,580 --> 00:02:25,730
+down there and for that I will revert it to a regular button not using the style component removed all
+
+24
+00:02:25,730 --> 00:02:29,180
+the attribute and just add a class name here of button.
+
+25
+00:02:29,180 --> 00:02:35,990
+Then of course this button would get that style but any other button anywhere else in the app with the
+
+26
+00:02:35,990 --> 00:02:39,200
+same class name would get the same style too.
+
+27
+00:02:39,200 --> 00:02:45,680
+So if we have a button in person J as we don't but if we had one here which also has this button C as
+
+28
+00:02:45,680 --> 00:02:48,770
+this class it would get the same style and off.
+
+29
+00:02:48,770 --> 00:02:54,680
+That's not what you want you want to make sure instead that your styles or scope to a certain component
+
+30
+00:02:55,310 --> 00:02:59,000
+and that can be achieved with a novel concept as well.
+
+31
+00:02:59,030 --> 00:03:05,070
+CSX modules for that I will remove the stalled button here because I don't need it anymore.
+
+32
+00:03:05,090 --> 00:03:09,820
+Remove the stalled component and now for CSX modules to work.
+
+33
+00:03:09,980 --> 00:03:13,140
+We need to tweak the configuration of our project a little bit.
+
+34
+00:03:13,220 --> 00:03:20,490
+The underlying build configuration so the configuration which takes our code transforms it and bundles
+
+35
+00:03:20,490 --> 00:03:22,690
+it together to be precise.
+
+36
+00:03:22,700 --> 00:03:27,080
+We need to tweak the configuration if we're using react scripts.
+
+37
+00:03:27,190 --> 00:03:28,910
+Shown one here.
+
+38
+00:03:28,910 --> 00:03:34,130
+I recommend this version because with that you actually get a starting setup where you have a class
+
+39
+00:03:34,130 --> 00:03:39,890
+based component here which makes it easier to follow along in this course where we first start with
+
+40
+00:03:39,890 --> 00:03:46,200
+class based components and later focus on functional components with hooks in greater detail.
+
+41
+00:03:46,400 --> 00:03:48,740
+So that's why I'm using version 1 here.
+
+42
+00:03:48,740 --> 00:03:55,850
+If you are using react scripts words 2 or higher you have an alternative approach of enabling this feature
+
+43
+00:03:55,850 --> 00:04:01,340
+I'm about to show you here however I am using version 1 so we'll show you the approach that works with
+
+44
+00:04:01,340 --> 00:04:02,340
+this version.
+
+45
+00:04:02,470 --> 00:04:08,590
+For that you need to quit your development server and then run NPM run eject in your project folder.
+
+46
+00:04:08,630 --> 00:04:10,250
+Running this script.
+
+47
+00:04:10,250 --> 00:04:16,580
+What this will do is it will eject from this under the hood configuration where you don't really have
+
+48
+00:04:16,670 --> 00:04:22,580
+access to the underlying web packed conflict file and so on and give you access to the conflict files
+
+49
+00:04:22,820 --> 00:04:28,280
+so that you can tweak how your code is bundled together and so on and there is something we will need
+
+50
+00:04:28,280 --> 00:04:29,530
+to tweak there.
+
+51
+00:04:29,600 --> 00:04:35,640
+So if you run NPM run eject here your ask if you want to inject each act and you can answer why you're
+
+52
+00:04:35,660 --> 00:04:39,730
+free yes and you might get an error.
+
+53
+00:04:39,740 --> 00:04:42,940
+As I'm getting here that you have uncommitted changes.
+
+54
+00:04:43,190 --> 00:04:45,470
+For that I'll just add and you commit.
+
+55
+00:04:45,470 --> 00:04:50,810
+This only applies if you are using get for version control if you're not using that you will not get
+
+56
+00:04:50,810 --> 00:04:51,860
+that error.
+
+57
+00:04:52,220 --> 00:04:57,740
+So I'll quickly create a committee and then rerun and Pam Brown eject and Sir Y for yes here and now
+
+58
+00:04:57,740 --> 00:05:02,780
+what you get is a new scripts and then you can think folder and in that conflict folder here you'll
+
+59
+00:05:02,810 --> 00:05:08,600
+find a webpage conflict but DAF chars file and a webpage conflict out prod J.S. file.
+
+60
+00:05:08,600 --> 00:05:15,510
+These are already configuration files which are used under the hood by this react tooling here.
+
+61
+00:05:15,560 --> 00:05:18,080
+You'll see the package of Jason File now all the changed.
+
+62
+00:05:18,080 --> 00:05:20,250
+We have way more packages here now.
+
+63
+00:05:20,420 --> 00:05:26,930
+These are Indian packages used under the hood by create react app to give you that development server
+
+64
+00:05:27,110 --> 00:05:29,400
+and build your app and bundle it together.
+
+65
+00:05:29,480 --> 00:05:34,830
+And if you as this disk consecration for web spec which is the tool which is used for all of that now
+
+66
+00:05:35,060 --> 00:05:39,380
+then there are a lot of things you can tweak and you should only tweak them if you really know what
+
+67
+00:05:39,380 --> 00:05:40,460
+you're doing.
+
+68
+00:05:40,490 --> 00:05:43,780
+There is one specific option that's important to us though.
+
+69
+00:05:44,000 --> 00:05:51,050
+If you scroll down until you find this test CSA s thing here you will see that we're using CSR as loader
+
+70
+00:05:51,050 --> 00:05:53,280
+and there you'll find some options.
+
+71
+00:05:53,280 --> 00:05:59,780
+And now this is the part which you can tweak and which you should tweak if your config file looks a
+
+72
+00:05:59,780 --> 00:06:01,040
+bit differently.
+
+73
+00:06:01,040 --> 00:06:06,680
+Also check out the text lecture after this lecture where I show differently looking conflict files and
+
+74
+00:06:06,680 --> 00:06:08,320
+how you would adjust those.
+
+75
+00:06:08,450 --> 00:06:13,430
+So have a look at this lecture in that case if it looks like this then here's what you need to tweak
+
+76
+00:06:14,510 --> 00:06:17,090
+in the options here.
+
+77
+00:06:17,090 --> 00:06:23,930
+You have import loaders 1 one now there you'll all need to add a modules entry and set this to true
+
+78
+00:06:24,290 --> 00:06:31,090
+and then a local indent name entry which you set to a string which should look like this.
+
+79
+00:06:32,120 --> 00:06:41,480
+Square brackets name underscore underscore square brackets local between the brackets underscore underscore
+
+80
+00:06:41,540 --> 00:06:46,980
+brackets hash colon base 64 5.
+
+81
+00:06:47,010 --> 00:06:48,330
+Now that's looking very strange.
+
+82
+00:06:48,330 --> 00:06:50,310
+What does this all mean.
+
+83
+00:06:50,310 --> 00:06:56,850
+This enables to see us as modules feature which we're about to use and this will be used by that feature
+
+84
+00:06:56,850 --> 00:07:01,730
+to dynamically generate unique CSA as class names in the end.
+
+85
+00:07:02,010 --> 00:07:08,640
+Now we all need to do the same in the profile so you can copy these two lines go to the webpage conflict
+
+86
+00:07:08,640 --> 00:07:17,190
+profile and also search for the S test there and they are all to add these two entries to these options
+
+87
+00:07:17,190 --> 00:07:18,750
+off the CSA as loader.
+
+88
+00:07:18,750 --> 00:07:26,870
+Now with that you can rerun NPM start and it should now still work just fine without any issues.
+
+89
+00:07:26,880 --> 00:07:34,770
+Now what do we get by adding D configuration items though if we go to app J S we can now import from
+
+90
+00:07:34,770 --> 00:07:36,890
+that C as s file in a different way.
+
+91
+00:07:37,050 --> 00:07:42,870
+We can import colossus from for example and you can name this year whoever you want.
+
+92
+00:07:42,870 --> 00:07:47,970
+Now this is a different way of importing from the CSA as file which is now supported by the underlying
+
+93
+00:07:47,970 --> 00:07:51,570
+bill script because of our tweaks we just made.
+
+94
+00:07:51,570 --> 00:07:57,210
+What this will do is it will import all the classes we export here for example button which I'll label
+
+95
+00:07:57,210 --> 00:07:59,690
+with the upper case B don't need to do that.
+
+96
+00:07:59,760 --> 00:08:02,190
+Just want to do it to be in line with app.
+
+97
+00:08:02,190 --> 00:08:04,830
+It will import these classes here.
+
+98
+00:08:04,890 --> 00:08:08,250
+In the end ask properties on this object.
+
+99
+00:08:08,340 --> 00:08:09,620
+What does this mean.
+
+100
+00:08:09,630 --> 00:08:15,310
+It means that if we go down to our button I don't add button like this.
+
+101
+00:08:15,450 --> 00:08:18,030
+Instead here we add something dynamically.
+
+102
+00:08:18,030 --> 00:08:21,060
+We point at classes start button.
+
+103
+00:08:21,060 --> 00:08:26,280
+Now we need to be careful here because I already got a class's constant here.
+
+104
+00:08:26,280 --> 00:08:36,730
+So to avoid name clashes I'll renamed as two assigned classes here and here and here and what I push
+
+105
+00:08:36,730 --> 00:08:43,390
+here is all not red but instead classes dodge red referring to that import we're importing from the
+
+106
+00:08:43,390 --> 00:08:46,540
+CSX file and here it's class stock bold
+
+107
+00:08:49,710 --> 00:08:57,510
+now we all need to tweak this here and point at classes dot app so effectively I am pointing at properties
+
+108
+00:08:57,510 --> 00:09:03,200
+on these on this class classes object and the properties I'm pointing at are class names.
+
+109
+00:09:03,210 --> 00:09:08,140
+I set up an app C.S. s App rad bold button.
+
+110
+00:09:08,190 --> 00:09:15,180
+Now what am I doing here to see us as modules feature is a feature applied by some tool which is part
+
+111
+00:09:15,180 --> 00:09:16,540
+of the build process.
+
+112
+00:09:16,550 --> 00:09:22,830
+So if the process which takes our code and then compiles it transforms it and bundles it together and
+
+113
+00:09:22,830 --> 00:09:29,760
+this process simply detects this kind of import from a CSX file and understands that we don't just want
+
+114
+00:09:29,760 --> 00:09:37,950
+to add the CSX as it is but instead it now looks into the CSX file transforms every class name here
+
+115
+00:09:38,160 --> 00:09:47,940
+to a unique one to a random unique one and returns us a map of these generated unique class names mapped
+
+116
+00:09:47,940 --> 00:09:56,160
+to D class names we chose here as properties and is object which we import so every class name we have
+
+117
+00:09:56,250 --> 00:10:02,010
+to see as his file is now a property of this imported object and the value for every property will be
+
+118
+00:10:02,010 --> 00:10:07,610
+this randomly generated unique class name generated by this package.
+
+119
+00:10:07,620 --> 00:10:14,600
+The result is that if I now save this you'll see everything still works but if we analyze this spot
+
+120
+00:10:14,620 --> 00:10:20,380
+and you see the closet has is now actually app button some random hash this is what I mean.
+
+121
+00:10:20,420 --> 00:10:26,160
+This is this randomly generated name following our naming convention we set up in the webpage config
+
+122
+00:10:26,210 --> 00:10:27,380
+in the end.
+
+123
+00:10:27,500 --> 00:10:34,610
+This is guaranteed to be unique only in this component only new web component so we can't clash with
+
+124
+00:10:34,700 --> 00:10:42,560
+other components because only here I'm importing from app assassin in that way if I use let's say Button
+
+125
+00:10:42,560 --> 00:10:47,900
+class name written like this in another part of my app it will not clash with the styles here because
+
+126
+00:10:47,900 --> 00:10:51,500
+this will actually not be applied as a button class to the element.
+
+127
+00:10:51,500 --> 00:10:58,790
+But as this generated name this is the idea behind CFS modules and therefore they allow us to move code
+
+128
+00:10:58,790 --> 00:11:04,530
+in to see us as follows and still imported in a way that is scoped to this component.
+
+129
+00:11:04,580 --> 00:11:10,620
+Now the question of course is how can we now implement such dynamic style changes.
+
+130
+00:11:10,700 --> 00:11:15,820
+Now we're not setting the styles in the javascript code anymore but in C Ss files.
+
+131
+00:11:16,140 --> 00:11:20,950
+Well we just have to add different as classes based on the styles we want.
+
+132
+00:11:21,140 --> 00:11:26,930
+So we can't go to app CSX and then there we can add a new class ret.
+
+133
+00:11:27,050 --> 00:11:31,740
+And here I specify a selector that this only has an effect if it is on an element which all danced a
+
+134
+00:11:31,760 --> 00:11:42,890
+Button class and in there in button red we can now set background color to red and I also add button
+
+135
+00:11:42,890 --> 00:11:51,630
+Don to red hover to set specific hover stalls where I want to use background color and set this to Selman.
+
+136
+00:11:51,860 --> 00:11:56,370
+Now the default button hover sub will still apply but this will override the background color.
+
+137
+00:11:56,420 --> 00:11:58,350
+The color here will be capped.
+
+138
+00:11:58,700 --> 00:12:01,160
+So now with that we added a new class.
+
+139
+00:12:01,160 --> 00:12:04,120
+And by the way this is not to be confused with this red clause.
+
+140
+00:12:04,130 --> 00:12:10,710
+This has a lower case r this has an opera case R and this also has only the fact if it's on a button.
+
+141
+00:12:10,940 --> 00:12:18,800
+So now an app yes we can change our classes here on the button dynamically based on the condition we
+
+142
+00:12:18,800 --> 00:12:20,120
+have for that.
+
+143
+00:12:20,420 --> 00:12:28,790
+So we could say we have let's say not that style icons here but up there below or persons maybe we have
+
+144
+00:12:28,790 --> 00:12:36,530
+a button class variable which initially is an array where we just have classes dot button with an opera
+
+145
+00:12:36,530 --> 00:12:37,650
+case B.
+
+146
+00:12:38,090 --> 00:12:43,340
+And remember this will simply be a pointer at this unique class name which is generated by the C assess
+
+147
+00:12:43,340 --> 00:12:48,560
+modules package and it's this button class which I'll one up lie down there.
+
+148
+00:12:48,560 --> 00:12:53,440
+So here I'll add Button class join like this.
+
+149
+00:12:53,450 --> 00:12:58,160
+So because we have an array here I want to join all the classes that are in there together with a white
+
+150
+00:12:58,160 --> 00:13:03,790
+space in between we can of course also named as Button classes if you prefer it that well.
+
+151
+00:13:03,800 --> 00:13:10,280
+And now here in this place where we need to change styles dynamically we set Button class or we don't
+
+152
+00:13:10,280 --> 00:13:17,450
+set it but we push a new class onto it and that's classes start red upper case are using this special
+
+153
+00:13:17,450 --> 00:13:19,430
+red class we just added.
+
+154
+00:13:19,430 --> 00:13:26,030
+So now this will be an array Button class will be an array with the Button class and with the red class
+
+155
+00:13:26,480 --> 00:13:30,250
+and both combined here will have this effect.
+
+156
+00:13:30,290 --> 00:13:37,010
+So now with that if we save this and we reload you will see that if I toggle as we get the red button
+
+157
+00:13:37,040 --> 00:13:42,430
+with the Selman background we don't toggle we have the green button with the green background and you'll
+
+158
+00:13:42,440 --> 00:13:46,240
+see on the right that a new class gets additive when we toggle.
+
+159
+00:13:46,280 --> 00:13:52,610
+So this is how we could implement this with C as this modules we simply add differences as classes and
+
+160
+00:13:52,610 --> 00:13:59,110
+now our way of implementing this would be to say well instead of my app class every button should have
+
+161
+00:13:59,110 --> 00:14:00,000
+to stall.
+
+162
+00:14:00,010 --> 00:14:06,970
+So here we could say app button like this using the button tag selector here.
+
+163
+00:14:06,970 --> 00:14:07,940
+Not a class.
+
+164
+00:14:07,940 --> 00:14:12,070
+This is just a tax collector now just app as a class selector.
+
+165
+00:14:12,340 --> 00:14:22,280
+And then here we say well any button with the red clause inside of our app class we'll have these spells.
+
+166
+00:14:22,310 --> 00:14:27,680
+So now we use a more complex or a little bit more complex CSF selector.
+
+167
+00:14:27,680 --> 00:14:33,290
+We say every button is out of element which has the app clause should have that style and every button
+
+168
+00:14:33,300 --> 00:14:38,840
+inside of our element with the app class which also has to read class should have these styles.
+
+169
+00:14:38,960 --> 00:14:44,240
+Now since my button here is inside of an element with the app class this button will get these styles
+
+170
+00:14:44,600 --> 00:14:49,900
+and then we could simplified this here to say we just want to add button class here and button classes
+
+171
+00:14:49,910 --> 00:14:54,860
+not an array but button clauses equal to classes stored right here.
+
+172
+00:14:54,860 --> 00:15:03,080
+So to my special class which I want to add eventually and by default button class simply is empty.
+
+173
+00:15:03,260 --> 00:15:09,820
+So by default we go to the place where button classes to find here because we're not working with a
+
+174
+00:15:09,820 --> 00:15:16,360
+default button class but any button inside of an app class decorate that element We'll have that style
+
+175
+00:15:16,680 --> 00:15:19,350
+and we would have the same effect as before.

@@ -1,0 +1,159 @@
+1
+00:00:02,200 --> 00:00:08,050
+Now you learned how to read and understand arrow messages and how to find logical errors.
+
+2
+00:00:08,050 --> 00:00:12,760
+Sometimes you want to know the current state of your react app and wealth.
+
+3
+00:00:12,760 --> 00:00:15,700
+You might be able to figure that out with the developer tools.
+
+4
+00:00:15,700 --> 00:00:17,810
+It can be inconvenient.
+
+5
+00:00:17,890 --> 00:00:23,080
+Thankfully there is a cool extension you can add to Chrome D react.
+
+6
+00:00:23,110 --> 00:00:25,740
+Developer Tools let's install it together.
+
+7
+00:00:25,900 --> 00:00:32,260
+You can simply google for react developer tools and you will will find the github repository where you
+
+8
+00:00:32,260 --> 00:00:38,200
+can learn more about them how to use them and can even contribute to the project or you had right to
+
+9
+00:00:38,200 --> 00:00:39,580
+the Chrome Web Store.
+
+10
+00:00:39,590 --> 00:00:42,860
+No no worries these are free in the Chrome Web Store.
+
+11
+00:00:42,880 --> 00:00:48,260
+I already added them to Chrome but you can click Add to grow if you haven't done so.
+
+12
+00:00:48,580 --> 00:00:54,400
+Once you added them you probably need to restart chrome and thereafter in the Chrome developer tools.
+
+13
+00:00:54,400 --> 00:01:00,590
+You should find queue entries here components and profiler with this react symbol next to them.
+
+14
+00:01:00,720 --> 00:01:07,720
+And if you click on components you should see something like this year you'll see a representation of
+
+15
+00:01:07,760 --> 00:01:10,560
+the react components currently rendered on the screen.
+
+16
+00:01:10,600 --> 00:01:15,090
+So at the moment this is my app component at the bottom you'll see props.
+
+17
+00:01:15,100 --> 00:01:16,990
+This component receives end state.
+
+18
+00:01:17,020 --> 00:01:19,240
+This component manages.
+
+19
+00:01:19,240 --> 00:01:23,130
+Now if I click toggle persons be there for all to see all the person components here.
+
+20
+00:01:23,290 --> 00:01:28,630
+We can all click on those to see the properties components get which components renders them and so
+
+21
+00:01:28,630 --> 00:01:29,100
+on.
+
+22
+00:01:30,140 --> 00:01:36,920
+You can also log such a component to the console so that you can dive into it in more detail here.
+
+23
+00:01:36,920 --> 00:01:42,650
+You can also inspect the matching DOM element which takes you to the elements tab and then show us your
+
+24
+00:01:42,650 --> 00:01:48,810
+which element is rendered by this concrete component and of course you can also inspect the source code.
+
+25
+00:01:48,890 --> 00:01:54,560
+You were taken to the source as Taproot can see that blaze breakpoints and so on.
+
+26
+00:01:54,600 --> 00:02:00,420
+You can also go to the settings here and tweak this a little bit there you can for example change how
+
+27
+00:02:00,420 --> 00:02:03,850
+things are displayed in a compact or a comfortable way.
+
+28
+00:02:03,900 --> 00:02:10,530
+If you have a light or dark mode here you can go to components specifically and also highlight certain
+
+29
+00:02:10,530 --> 00:02:12,270
+components of a certain type.
+
+30
+00:02:12,270 --> 00:02:16,200
+If you wish to but generally the default settings should be fine.
+
+31
+00:02:16,200 --> 00:02:21,930
+You can all use to select will here select something in the DOM and it automatically selects the react
+
+32
+00:02:21,930 --> 00:02:27,780
+component which is responsible for rendering that thing so the react afterwards are a great way of diving
+
+33
+00:02:27,780 --> 00:02:31,080
+deeper into this but you cannot just inspect things here.
+
+34
+00:02:31,080 --> 00:02:32,590
+Girls would change things.
+
+35
+00:02:32,730 --> 00:02:38,280
+For example they could change to age prop here and hence here we see 30.
+
+36
+00:02:38,400 --> 00:02:44,910
+We can of course also change the state and set this to false and it has the same effect as if we clicked
+
+37
+00:02:44,970 --> 00:02:46,170
+the toggle button.
+
+38
+00:02:46,260 --> 00:02:51,990
+So it's a great place to play around with your components test different states and props with ease
+
+39
+00:02:51,990 --> 00:02:58,080
+without having to hard code anything in your code and it's all great for inspecting what you have on
+
+40
+00:02:58,080 --> 00:03:03,910
+the screen and understanding what's getting displayed there and why and how things work together.
