@@ -1,0 +1,443 @@
+1
+00:00:02,170 --> 00:00:08,080
+Over the last lectures, we had a lot of deep dives into how components work under the hood, how they are
+
+2
+00:00:08,080 --> 00:00:12,490
+created and updated and how you can control updates and hook
+
+3
+00:00:12,490 --> 00:00:18,160
+and with that, I don't mean React hooks but tap into different points during the update and creation
+
+4
+00:00:18,160 --> 00:00:24,910
+cycle to execute your own code, both in functional components with the use of fact hook and in class
+
+5
+00:00:24,910 --> 00:00:29,050
+based components with the different lifecycle hooks we implemented there.
+
+6
+00:00:29,050 --> 00:00:33,610
+Now there is more to React components that I want to cover and I want to dive into something you'll
+
+7
+00:00:33,610 --> 00:00:35,820
+see throughout this course,
+
+8
+00:00:36,100 --> 00:00:40,870
+I want to dive into that thing that I mentioned that you have to always return
+
+9
+00:00:40,870 --> 00:00:44,410
+just one JSX element inside of a component.
+
+10
+00:00:44,410 --> 00:00:50,770
+Now that JSX element can contain other JSX elements, like here in the person component but you must
+
+11
+00:00:50,800 --> 00:00:57,910
+only have one root JSX element, be that another component or a normal HTML element. So I'm
+
+12
+00:00:57,910 --> 00:01:03,310
+not allowed, for example, to have an adjacent div here.
+
+13
+00:01:03,700 --> 00:01:09,490
+So if I try to return this and of course it does not matter if that's a div or a h1 tag or anything
+
+14
+00:01:09,490 --> 00:01:11,920
+like that, then I get an error, adjacent
+
+15
+00:01:11,920 --> 00:01:17,870
+JSX elements must be wrapped in enclosing tag. So I'm basically not allowed to return adjacent
+
+16
+00:01:17,880 --> 00:01:20,710
+JSX elements like this on a root level,
+
+17
+00:01:20,740 --> 00:01:27,100
+so inside of that div, so these elements here, there it's okay that they're adjacent but the root element
+
+18
+00:01:27,130 --> 00:01:34,240
+I'm returning in this component or in any place where I need to return JSX has to be one single element
+
+19
+00:01:34,420 --> 00:01:37,490
+with as many children as you want.
+
+20
+00:01:37,570 --> 00:01:44,350
+Now this is not entirely true though because if you have a look at the persons component, there we actually
+
+21
+00:01:44,350 --> 00:01:48,320
+return an array of persons, right? So that's not one single element,
+
+22
+00:01:48,400 --> 00:01:55,720
+it's an array. Now technically, an array of course still is one object but with multiple elements in there
+
+23
+00:01:56,200 --> 00:02:03,010
+and indeed, React does allow us to return an array of adjacent elements as long as all the items in there
+
+24
+00:02:03,010 --> 00:02:09,730
+have a key and that key is required so that React can efficiently update and reorder these elements
+
+25
+00:02:10,090 --> 00:02:12,820
+as it might be required by your app.
+
+26
+00:02:12,970 --> 00:02:14,530
+So where can we see this in action?
+
+27
+00:02:14,650 --> 00:02:16,570
+Well let's go back to the person component,
+
+28
+00:02:16,570 --> 00:02:18,090
+so a single person
+
+29
+00:02:18,200 --> 00:02:22,690
+and there we have that div with our CSS class
+
+30
+00:02:22,900 --> 00:02:26,460
+and of course that div is theoretically something I want here,
+
+31
+00:02:26,470 --> 00:02:29,920
+I want to have that wrapping container which implies a style
+
+32
+00:02:29,920 --> 00:02:35,230
+but for now, let's temporarily remove it and therefore of course this is invalid because now we have
+
+33
+00:02:35,290 --> 00:02:42,070
+adjacent elements but let's now not return them like this but let's wrap them in square brackets.
+
+34
+00:02:42,070 --> 00:02:46,570
+So here, I will return my JSX elements in an array.
+
+35
+00:02:46,570 --> 00:02:52,820
+Now this might look strange but remember, JSX is just syntactic sugar for React create element,
+
+36
+00:02:52,900 --> 00:02:57,820
+so in the end we're just returning a couple of calls to React create element here or the results of
+
+37
+00:02:57,820 --> 00:02:59,510
+these calls to be precise.
+
+38
+00:02:59,650 --> 00:03:03,360
+Hence we need to separate these items with commas after each of them,
+
+39
+00:03:03,370 --> 00:03:03,640
+right?
+
+40
+00:03:03,640 --> 00:03:09,690
+So a comma after the paragraph, a comma after this paragraph and then well this is the last element.
+
+41
+00:03:09,850 --> 00:03:17,190
+So this is now an array of elements and if I now save that, actually if I click toggle persons, it works
+
+42
+00:03:17,190 --> 00:03:20,840
+but I'm getting a warning regarding that key and that is what I mentioned,
+
+43
+00:03:20,850 --> 00:03:23,120
+you should add a key here.
+
+44
+00:03:23,280 --> 00:03:26,870
+Well for that, we can simply add a key on these elements
+
+45
+00:03:27,000 --> 00:03:32,990
+and here we're not generating the key dynamically, we're not extracting a unique value from anywhere.
+
+46
+00:03:33,150 --> 00:03:39,200
+You can of course assign your own unique value like i1 for item 1 or whatever you want,
+
+47
+00:03:39,210 --> 00:03:42,230
+any identifier that you simply don't repeat,
+
+48
+00:03:42,240 --> 00:03:43,850
+that's the only important thing,
+
+49
+00:03:43,980 --> 00:03:47,930
+each key here should be unique in that array.
+
+50
+00:03:48,000 --> 00:03:54,060
+So now I have three different keys and that means that this now works without any issue, without any
+
+51
+00:03:54,060 --> 00:03:57,820
+warning and in exactly the same way as before it.
+
+52
+00:03:57,870 --> 00:04:03,010
+The only difference is the missing styling because that div we had around our elements,
+
+53
+00:04:03,090 --> 00:04:09,150
+that actually was not just there to have a root level element, it did provide some useful styling but
+
+54
+00:04:09,150 --> 00:04:14,850
+that is OK here because I want to show you this concept of adjacent elements because later in this course
+
+55
+00:04:15,210 --> 00:04:21,240
+and also in the course project of this course, we will actually have use cases and scenarios where we
+
+56
+00:04:21,240 --> 00:04:27,750
+want to have multiple top level elements sit next to each other and having to introduce an extra wrapping
+
+57
+00:04:27,750 --> 00:04:34,050
+div or a section just because React forces us when we don't technically need it from a HTML
+
+58
+00:04:34,050 --> 00:04:40,290
+or CSS point of view, that is a bit of redundancy that we don't want to add to our app and therefore
+
+59
+00:04:40,290 --> 00:04:45,750
+it's important to know that if you don't technically need a wrapping element for a styling or structural
+
+60
+00:04:45,750 --> 00:04:53,130
+reasons, then you can avoid it by using an array but this is not even the only way of doing it. You can
+
+61
+00:04:53,130 --> 00:04:59,180
+of course create such an array but it's a bit inconvenient, you have to wrap this in square brackets,
+
+62
+00:04:59,280 --> 00:05:05,190
+you have to assign the key and so on, so that is not really that great. How else could you do that besides
+
+63
+00:05:05,190 --> 00:05:06,490
+using an array?
+
+64
+00:05:06,720 --> 00:05:11,670
+Well this approach might look a bit hacky at first but it's perfectly fine and actually built into
+
+65
+00:05:11,670 --> 00:05:18,200
+React as you will learn. You can create a wrapping component that does not render any actual HTML
+
+66
+00:05:18,210 --> 00:05:24,730
+code but that simply is there to fulfill React's requirement of having a wrapping component. And for this,
+
+67
+00:05:24,810 --> 00:05:30,660
+I'll create a new folder which I'll name hoc which stands for a higher order component and we'll dive
+
+68
+00:05:30,660 --> 00:05:34,190
+deeper into higher order components in the next lectures.
+
+69
+00:05:34,230 --> 00:05:38,500
+They are basically components that wrap other components and in there,
+
+70
+00:05:38,700 --> 00:05:45,350
+I will create a new file which I will name aux.js for auxilliary and side note for Windows users, there
+
+71
+00:05:45,460 --> 00:05:47,250
+aux.js will not work,
+
+72
+00:05:47,250 --> 00:05:54,040
+so on Windows you should name this auxilliary.js simply because aux is a reserved word or
+
+73
+00:05:54,040 --> 00:05:58,230
+name on Windows systems, on Linux and Mac, this is no problem.
+
+74
+00:05:58,230 --> 00:06:00,740
+Now how does this aux component look like?
+
+75
+00:06:00,870 --> 00:06:07,050
+First of all, I import React from React, that is important and then I have my const which I'll name
+
+76
+00:06:07,080 --> 00:06:14,850
+aux which gets props and that's the interesting thing, will only return props children here. Children
+
+77
+00:06:14,850 --> 00:06:20,760
+is a special property that simply outputs whatever gets entered between the opening and closing tag
+
+78
+00:06:20,760 --> 00:06:21,810
+of this component.
+
+79
+00:06:22,200 --> 00:06:25,740
+So then I export my aux component here as the default
+
+80
+00:06:25,980 --> 00:06:28,860
+and now we can import this into the person component,
+
+81
+00:06:29,250 --> 00:06:38,520
+so let's import aux with a capital A from and now let's go all the way up to the higher order component
+
+82
+00:06:38,520 --> 00:06:40,860
+folder and import aux
+
+83
+00:06:41,040 --> 00:06:53,410
+and now we can use aux like a regular JSX element to wrap all the other JSX code here, simply like
+
+84
+00:06:53,410 --> 00:06:54,410
+this.
+
+85
+00:06:54,820 --> 00:07:00,390
+Now that might look very strange at first because of course the aux component doesn't do anything
+
+86
+00:07:00,520 --> 00:07:03,850
+but as you can see, it works, it renders our content.
+
+87
+00:07:04,030 --> 00:07:06,130
+It's basically an empty wrapper
+
+88
+00:07:06,130 --> 00:07:10,270
+using that special children property which React reserves for us,
+
+89
+00:07:10,270 --> 00:07:12,620
+so that really is a reserved property name,
+
+90
+00:07:12,760 --> 00:07:19,840
+that React reserves for us and children will always refer to the content between the opening and closing
+
+91
+00:07:19,840 --> 00:07:21,120
+tag of your component.
+
+92
+00:07:21,130 --> 00:07:25,320
+So in this case, children will refer to all this content and all the aux component
+
+93
+00:07:25,330 --> 00:07:28,420
+does is it outputs that content.
+
+94
+00:07:28,420 --> 00:07:34,030
+Now you might argue but isn't is a set of adjacent elements in this place then.
+
+95
+00:07:34,150 --> 00:07:38,440
+Well that is the hard thing to wrap your head around, it kind of is
+
+96
+00:07:38,440 --> 00:07:45,430
+you could say but actually, it isn't because the requirement of having this wrapping top level element
+
+97
+00:07:45,790 --> 00:07:52,090
+is a pure technical one from a Javascript point of view that you must only return one expression and
+
+98
+00:07:52,090 --> 00:07:58,390
+that is what we're doing here because you must never forget that these JSX elements are always
+
+99
+00:07:58,390 --> 00:08:07,930
+calls to React create element and in a return statement, you couldn't return multiple React create element
+
+100
+00:08:07,930 --> 00:08:11,010
+calls like this next to each other and therefore you can't
+
+101
+00:08:11,050 --> 00:08:18,340
+do this either for JSX code. But the moment you wrap this with one React create element call so to say, this
+
+102
+00:08:18,340 --> 00:08:23,270
+works and then here in the aux component, you're just returning an input,
+
+103
+00:08:23,290 --> 00:08:26,150
+so technically from a Javascript point of view, that is fine,
+
+104
+00:08:26,170 --> 00:08:32,500
+we're only returning one expression here. So it can be tricky to wrap your head around, it is a pure
+
+105
+00:08:32,530 --> 00:08:37,370
+Javascript thing here or it's actually the case in most programming languages.
+
+106
+00:08:37,450 --> 00:08:41,740
+You must only return one expression and here it's one expression now
+
+107
+00:08:41,860 --> 00:08:44,180
+and here, it's now one expression.
+
+108
+00:08:44,180 --> 00:08:50,140
+Now as a side note, in the aux component, we now don't even need the React import here because we're not
+
+109
+00:08:50,140 --> 00:08:51,630
+using any JSX in here,
+
+110
+00:08:51,700 --> 00:08:57,550
+so we're not implicitly using React create element and therefore this works even if you remove that
+
+111
+00:08:57,550 --> 00:08:57,940
+import.

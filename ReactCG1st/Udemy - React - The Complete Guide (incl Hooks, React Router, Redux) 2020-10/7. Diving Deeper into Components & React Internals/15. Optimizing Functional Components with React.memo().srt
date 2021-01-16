@@ -1,0 +1,159 @@
+1
+00:00:02,210 --> 00:00:08,840
+Before we have a look at the internal re-rendering process, let's have a look at how we can optimize performance
+
+2
+00:00:08,990 --> 00:00:15,050
+with functional components though because shouldComponentUpdate is a great tool but it's only available
+
+3
+00:00:15,290 --> 00:00:17,030
+in class-based components.
+
+4
+00:00:17,030 --> 00:00:19,460
+Now what about functional components, what can we do there,
+
+5
+00:00:19,460 --> 00:00:21,350
+what about the cockpit component?
+
+6
+00:00:21,350 --> 00:00:26,870
+Because with the paint flashing, we see that and I will disable this now, we see that of course the cockpit
+
+7
+00:00:26,870 --> 00:00:29,050
+is never touched when I type here
+
+8
+00:00:29,090 --> 00:00:32,820
+but still we can tell that it executed its code.
+
+9
+00:00:32,870 --> 00:00:37,820
+So how can we prevent this if nothing about the cockpit changed?
+
+10
+00:00:37,820 --> 00:00:43,100
+And for that, we first of all have to look at the cockpit and we see that the only thing that the cockpit
+
+11
+00:00:43,130 --> 00:00:51,950
+uses internally and that therefore should trigger a re-rendering of that cockpit are the persons length here
+
+12
+00:00:53,110 --> 00:00:56,410
+and then also this title.
+
+13
+00:00:59,250 --> 00:01:02,640
+The names of the persons and so on are totally irrelevant.
+
+14
+00:01:03,270 --> 00:01:08,690
+So what can you do now to prevent this unnecessary re-rendering? React
+
+15
+00:01:08,700 --> 00:01:16,650
+also has a tool for functional components. You can wrap your export, so your entire component here in
+
+16
+00:01:16,650 --> 00:01:25,020
+the cockpit.js file with React memo. This basically uses memoization which is a technique where React
+
+17
+00:01:25,020 --> 00:01:26,610
+will memoize,
+
+18
+00:01:26,610 --> 00:01:34,260
+so basically store a snapshot of this component and only if its input changes, it will re-render it
+
+19
+00:01:34,290 --> 00:01:41,070
+and otherwise if its inputs do not change and some parent component wants to update this cockpit component,
+
+20
+00:01:41,310 --> 00:01:47,730
+React will give back that stored component. So therefore now initially this of course runs because there
+
+21
+00:01:47,730 --> 00:01:56,430
+is no stored data and here it actually runs again, now why is that? Because in the cockpit component, it only
+
+22
+00:01:56,430 --> 00:02:01,800
+re-renders when its props change but of course one of the props we depend on is the persons.
+
+23
+00:02:01,800 --> 00:02:09,640
+We only use the length but that is not something React picks up here. To fix that, we can optimize the
+
+24
+00:02:09,640 --> 00:02:16,420
+way we pass data into our cockpit though. Here on cockpit instead of passing in the persons, we can pass
+
+25
+00:02:16,420 --> 00:02:20,680
+in the persons length let's say which is this state persons length.
+
+26
+00:02:20,680 --> 00:02:25,030
+So instead of determining the length inside of the cockpit, we do it outside of the cockpit
+
+27
+00:02:25,030 --> 00:02:31,060
+now and we only pass in persons length. This of course will now only change if the persons length here
+
+28
+00:02:31,060 --> 00:02:32,470
+changes.
+
+29
+00:02:32,500 --> 00:02:38,590
+So now back in the cockpit.js file where I used props persons.length,
+
+30
+00:02:38,770 --> 00:02:43,130
+I use props persons length but this is now a separate property,
+
+31
+00:02:43,150 --> 00:02:46,140
+there is no dot in between, I'm not accessing a length property here,
+
+32
+00:02:46,210 --> 00:02:54,130
+this is a new prop I get. Now with that, we made that calculation or we outsourced that calculation that
+
+33
+00:02:54,130 --> 00:03:00,250
+used the complete persons array which of course changes with every keystroke, we outsourced this into app.js
+
+34
+00:03:00,250 --> 00:03:06,250
+and now we only get data that does not change with every keystroke and therefore now if I clear this,
+
+35
+00:03:06,250 --> 00:03:11,700
+if I type here, we see nothing about cockpit.js being executed here.
+
+36
+00:03:11,830 --> 00:03:15,250
+This will only happen once we do something that does affect the cockpit,
+
+37
+00:03:15,310 --> 00:03:21,850
+so then you see that run but you don't see any cockpit output for changes that do not relate to it. So
+
+38
+00:03:21,850 --> 00:03:29,110
+React memo is a great way of also getting optimization for your functional components and therefore
+
+39
+00:03:29,110 --> 00:03:35,740
+it is a good idea to wrap functional components that might not need to update with every change in the
+
+40
+00:03:35,740 --> 00:03:37,210
+parent component with it.

@@ -1,0 +1,231 @@
+1
+00:00:02,360 --> 00:00:09,500
+To conclude this module, we'll now dive into another exciting feature React offers you that can help you
+
+2
+00:00:09,500 --> 00:00:13,990
+avoid overly long chains of passing props around.
+
+3
+00:00:14,070 --> 00:00:17,150
+Now what do I mean by that?
+
+4
+00:00:17,260 --> 00:00:19,100
+Let me give you an example.
+
+5
+00:00:19,150 --> 00:00:25,960
+We have our person component here and let's say now we also manage some authentication status in this
+
+6
+00:00:25,960 --> 00:00:31,270
+application and I want to output whether we're authenticated down here in my person component,
+
+7
+00:00:31,270 --> 00:00:34,040
+I want to manage the authentication in the cockpit though.
+
+8
+00:00:34,300 --> 00:00:41,440
+So in the cockpit component, I'll add another extra button and add a caption of login, of course
+
+9
+00:00:41,440 --> 00:00:42,820
+that is totally up to you
+
+10
+00:00:42,970 --> 00:00:47,760
+and register an onClick listener and I don't want to manage my authentication status in here,
+
+11
+00:00:47,800 --> 00:00:51,590
+I just want to trigger a change to it with logging in here.
+
+12
+00:00:51,610 --> 00:00:59,650
+So I expect to get with a prop, a let's say login prop and of course you can choose any name you want.
+
+13
+00:00:59,650 --> 00:01:08,140
+Now we do use our cockpit component in the app.js file and in there, we now need to pass a login prop
+
+14
+00:01:08,170 --> 00:01:10,210
+because we're expecting this in a cockpit component,
+
+15
+00:01:10,210 --> 00:01:11,990
+we just added it here.
+
+16
+00:01:12,340 --> 00:01:18,700
+Now in the app.js file, we now need to add a method that does something when that login is triggered,
+
+17
+00:01:18,700 --> 00:01:26,560
+so when this button is clicked in a cockpit. For this, I'll add a new method here, authenticate or login
+
+18
+00:01:26,650 --> 00:01:33,480
+handler and all I want to do is I want to set some authentication state here to true.
+
+19
+00:01:33,480 --> 00:01:41,030
+So let's go to the state and in there, let's add authenticated and set this to false,
+
+20
+00:01:41,060 --> 00:01:44,280
+so by default the user is not authenticated let's say
+
+21
+00:01:44,550 --> 00:01:48,450
+and of course we're not adding real authentication here, we'll do this later in the app but not right
+
+22
+00:01:48,450 --> 00:01:49,150
+now
+
+23
+00:01:49,360 --> 00:01:56,370
+and in the login handler, I can then call this set state and set authenticated to true, like that.
+
+24
+00:01:59,580 --> 00:02:03,540
+The login handler is what I now pass to the cockpit component here on login,
+
+25
+00:02:03,540 --> 00:02:06,030
+so this login handler.
+
+26
+00:02:06,030 --> 00:02:07,110
+So all good,
+
+27
+00:02:07,110 --> 00:02:12,480
+now we're managing the authentication status in the app component but we want to use that in a person
+
+28
+00:02:12,480 --> 00:02:13,650
+component.
+
+29
+00:02:13,650 --> 00:02:16,240
+Now we only have access to the persons,
+
+30
+00:02:16,290 --> 00:02:20,020
+so multiple persons component in our app.js file.
+
+31
+00:02:20,040 --> 00:02:25,770
+So there we can pass our information let's say on an isAuthenticated prop and that prop name here is
+
+32
+00:02:25,770 --> 00:02:27,900
+of course totally up to you
+
+33
+00:02:28,020 --> 00:02:34,080
+and what I passed down is this state authenticated. In the persons component,
+
+34
+00:02:34,080 --> 00:02:38,400
+I'm not interested in that, I want to forward it to the person component.
+
+35
+00:02:38,400 --> 00:02:42,960
+So there, I can forward isAuth just to mix up the names,
+
+36
+00:02:42,960 --> 00:02:50,640
+this name is of course also up to you and I forward props isAuthenticated, so that prop we're passing
+
+37
+00:02:50,640 --> 00:02:56,580
+in from app.js here, isAuthenticated we're passing to persons, inside of persons, I'm forwarding
+
+38
+00:02:56,580 --> 00:03:00,270
+this to isAuth and this is a class-based component,
+
+39
+00:03:00,270 --> 00:03:08,180
+so it's this props of course. So now in person, we get isAuth as a property and in here, I can now ultimately
+
+40
+00:03:08,540 --> 00:03:15,320
+conditionally output a paragraph and check if this props isAuth, if this is true and then I want to output
+
+41
+00:03:15,350 --> 00:03:23,300
+a paragraph where I say authenticated and otherwise, I'll say please login.
+
+42
+00:03:27,030 --> 00:03:28,780
+Let's save that and see it in action.
+
+43
+00:03:28,800 --> 00:03:37,900
+This reloads, here is our login button and if I click that login button now, we see authenticated in
+
+44
+00:03:37,900 --> 00:03:38,810
+all these components.
+
+45
+00:03:38,830 --> 00:03:42,010
+So passing the data around works just as it should
+
+46
+00:03:42,220 --> 00:03:50,520
+and yet I am not really happy with my set up here because we're passing down props across multiple levels
+
+47
+00:03:50,590 --> 00:03:57,010
+and for example, the persons component really only forwards the authentication status. It receives is
+
+48
+00:03:57,010 --> 00:03:59,810
+authenticated as a prop but it doesn't really care
+
+49
+00:03:59,980 --> 00:04:06,550
+and this is not so great because it simply leads to extra redundancy and it makes our components a bit
+
+50
+00:04:06,550 --> 00:04:12,550
+less reusable because wherever we're using the persons component, we have to make sure we pass in is
+
+51
+00:04:12,550 --> 00:04:20,080
+authenticated so that we can forward it and there, we have a feature called context which helps us solve
+
+52
+00:04:20,110 --> 00:04:28,090
+the issue. Context was introduced by React and it helps us handle cases like this, where you need certain
+
+53
+00:04:28,360 --> 00:04:35,410
+data, certain state in multiple components and you don't want to pass that state across multiple layers
+
+54
+00:04:35,410 --> 00:04:42,100
+of components just to get it from component A at the top to component D at the very bottom when the
+
+55
+00:04:42,100 --> 00:04:45,580
+components B, C in between don't really care about it 
+
+56
+00:04:45,670 --> 00:04:47,560
+and that's exactly the use case here.
+
+57
+00:04:47,620 --> 00:04:52,910
+We want to skip the persons component and with the React context feature, we can do that.
+
+58
+00:04:52,960 --> 00:04:53,860
+How does it work then?

@@ -1,0 +1,199 @@
+1
+00:00:02,320 --> 00:00:07,990
+I mentioned that the aux component is a so-called higher order component which is why it's placed in
+
+2
+00:00:07,990 --> 00:00:14,860
+the hoc folder and it's named higher order component because all it does essentially is it wraps
+
+3
+00:00:14,920 --> 00:00:16,090
+another component,
+
+4
+00:00:16,210 --> 00:00:22,470
+it does not contain its own logic, its own styling or add any structure to the
+
+5
+00:00:22,490 --> 00:00:26,080
+JSX code or to the real DOM that will be rendered,
+
+6
+00:00:26,140 --> 00:00:31,900
+it just wraps another component and then maybe adds some extra logic to it, though the aux component
+
+7
+00:00:31,900 --> 00:00:33,720
+here doesn't even add any logic,
+
+8
+00:00:33,760 --> 00:00:36,220
+it's just a technical wrapper.
+
+9
+00:00:36,370 --> 00:00:42,880
+Now another example for a higher order component that you could create would be a component that sets
+
+10
+00:00:42,880 --> 00:00:48,330
+up a div that contains a class or sets up a class, like here. In app.js,
+
+11
+00:00:48,340 --> 00:00:51,740
+we're using a div and we're assigning a class there
+
+12
+00:00:51,850 --> 00:00:54,170
+and of course there's nothing wrong with that.
+
+13
+00:00:54,220 --> 00:01:00,330
+We're doing the same in our person component or we did before we added aux, before we did that,
+
+14
+00:01:00,340 --> 00:01:04,400
+here we also had a div where we assigned that person class.
+
+15
+00:01:04,450 --> 00:01:10,300
+Now obviously, there is nothing wrong with just using a div with a class name but this serves as a good
+
+16
+00:01:10,300 --> 00:01:16,230
+example for a custom higher order component you could create that does more than the aux component, so this
+
+17
+00:01:16,230 --> 00:01:17,340
+is simply an example
+
+18
+00:01:17,340 --> 00:01:24,640
+now. I will create a new file in the hoc folder and I'll name it withClass.js, like this.
+
+19
+00:01:24,640 --> 00:01:30,880
+It's kind of a convention to name higher order components with a with at the beginning, though of course
+
+20
+00:01:30,970 --> 00:01:34,320
+ultimately it's up to you how you name your components.
+
+21
+00:01:34,330 --> 00:01:37,030
+Now how does the withClass component look like?
+
+22
+00:01:37,030 --> 00:01:44,050
+Well this now needs to import React from React because it will render some JSX and then I'll name
+
+23
+00:01:44,050 --> 00:01:49,720
+it withClass here and this will be a regular functional component getting props
+
+24
+00:01:49,720 --> 00:01:54,910
+and then in the end, we'll export withClass here so that we can use it in other files.
+
+25
+00:01:54,910 --> 00:02:00,700
+Now inside of the function body or of the return statement of this function body which I have here,
+
+26
+00:02:01,830 --> 00:02:10,500
+I will render a div with a class name of and now that's the fun part, props classes let's say and
+
+27
+00:02:10,500 --> 00:02:13,080
+you can name this here classes whatever you want,
+
+28
+00:02:13,080 --> 00:02:19,230
+this will be a property I expect to get on that higher order component. Between my opening and closing
+
+29
+00:02:19,230 --> 00:02:25,710
+tags of the div, I'll then return props children which again is the entire content between the opening
+
+30
+00:02:25,710 --> 00:02:29,250
+and closing tag of this withClass component when we're using it.
+
+31
+00:02:30,180 --> 00:02:34,950
+So this is now my higher order component, withClass, that simply does one thing,
+
+32
+00:02:35,130 --> 00:02:41,100
+it sets up a class on a div that wraps my component.
+
+33
+00:02:41,150 --> 00:02:42,740
+Now how would we use that?
+
+34
+00:02:42,810 --> 00:02:45,510
+Let's test it in app.js, there
+
+35
+00:02:45,530 --> 00:02:57,350
+I will import WithClass like this with a capital W from hoc withClass and now withClass can be
+
+36
+00:02:57,350 --> 00:03:03,640
+used instead of the div here, so let me replace div opening and closing with
+
+37
+00:03:03,640 --> 00:03:12,340
+withClass and instead of class name, I will simply pass classes because in withClass, I'm expecting
+
+38
+00:03:12,340 --> 00:03:14,220
+a class property.
+
+39
+00:03:14,380 --> 00:03:21,360
+Now if I do that as the app reloads, you see it looks exactly the same way as before.
+
+40
+00:03:21,370 --> 00:03:26,920
+So if we check our app.css file, the text is still aligned in the center,
+
+41
+00:03:26,920 --> 00:03:30,220
+so if it wouldn't work, all our text should be on the left and
+
+42
+00:03:30,250 --> 00:03:38,250
+of course if I inspect any of these items here, I can indeed see that we are applying the style here.
+
+43
+00:03:38,290 --> 00:03:41,350
+Now let me repeat, this is just an example here,
+
+44
+00:03:41,350 --> 00:03:46,440
+obviously there would be nothing wrong with sticking to a div but we'll introduce other higher order
+
+45
+00:03:46,440 --> 00:03:52,750
+components throughout the course where we for example add error handling that we can wrap around any
+
+46
+00:03:52,750 --> 00:03:57,810
+component that makes an HTTP request and all of a sudden, this becomes more useful.
+
+47
+00:03:57,880 --> 00:04:04,390
+The general concept is simply that you have a component that wraps other components that adds something
+
+48
+00:04:04,390 --> 00:04:10,540
+to it, that could be styling, that could be additional HTML structure around it or that could also
+
+49
+00:04:10,540 --> 00:04:15,330
+be some logic and we'll add that logic later once we added HTTP requests
+
+50
+00:04:15,370 --> 00:04:18,460
+as I said, to automatically handle HTTP errors.

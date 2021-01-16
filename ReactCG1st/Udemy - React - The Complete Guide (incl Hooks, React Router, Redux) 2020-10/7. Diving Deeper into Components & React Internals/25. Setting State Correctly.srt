@@ -1,0 +1,255 @@
+1
+00:00:02,170 --> 00:00:04,910
+We learned a lot about higher order components,
+
+2
+00:00:04,930 --> 00:00:07,550
+let's go back to our regular components
+
+3
+00:00:07,570 --> 00:00:16,770
+so to say and there we have components like our app.js component here, our app component that do use
+
+4
+00:00:16,830 --> 00:00:17,520
+state.
+
+5
+00:00:17,520 --> 00:00:19,020
+This one is a class-based component
+
+6
+00:00:19,110 --> 00:00:24,090
+and what I want to show you now only matters for class-based components that use the state property
+
+7
+00:00:24,330 --> 00:00:28,920
+and that therefore use set state to update their state.
+
+8
+00:00:29,010 --> 00:00:32,460
+Now the good news is we're using set state correctly here,
+
+9
+00:00:32,580 --> 00:00:37,630
+bad news is you can use it incorrectly but I will show you how and how to avoid it.
+
+10
+00:00:37,650 --> 00:00:41,490
+So how could you use it in an invalid way?
+
+11
+00:00:41,490 --> 00:00:49,620
+Let's say that whenever our name changes and we execute the name changed handler, we want to count that,
+
+12
+00:00:49,620 --> 00:00:53,730
+so we essentially count every keystroke made or every change made.
+
+13
+00:00:53,820 --> 00:01:00,440
+So in our name changed handler here, we would not just want to update persons but also some counter
+
+14
+00:01:00,450 --> 00:01:06,200
+we keep track of. Now therefore we can of course add a counter to our state object, here
+
+15
+00:01:06,210 --> 00:01:15,620
+change counter and that starts at 0 and in named changed handler, we now call set state
+
+16
+00:01:16,010 --> 00:01:18,420
+and we set change counter equal
+
+17
+00:01:18,440 --> 00:01:20,840
+and now of course this always depends on the old state,
+
+18
+00:01:20,840 --> 00:01:21,110
+right?
+
+19
+00:01:21,110 --> 00:01:23,710
+Because we want to increment it by one,
+
+20
+00:01:23,720 --> 00:01:26,460
+so we need the old change counter plus one
+
+21
+00:01:26,660 --> 00:01:31,350
+and therefore of course we can say this state change counter plus one
+
+22
+00:01:31,550 --> 00:01:39,100
+and now we have a setup where we should increment the change counter. If I save this, let me bring up the
+
+23
+00:01:39,160 --> 00:01:45,820
+React developer tools so that we can actually inspect our current state of the app component.
+
+24
+00:01:46,780 --> 00:01:49,210
+So there we see the change counter
+
+25
+00:01:49,210 --> 00:01:55,930
+and if I toggle my persons and I start typing here, Maxmillian, you see this go up and you see that
+
+26
+00:01:55,930 --> 00:01:56,620
+go down.
+
+27
+00:01:57,250 --> 00:01:58,700
+So it seems to work, right
+
+28
+00:01:58,900 --> 00:02:07,990
+and yet it is the wrong way of updating this. Behind the scenes, set state does not immediately trigger
+
+29
+00:02:08,110 --> 00:02:12,600
+an update of the state of this component in a re-render cycle,
+
+30
+00:02:12,670 --> 00:02:18,710
+instead it's basically scheduled by React and React will then perform the state update and the re-render
+
+31
+00:02:18,710 --> 00:02:23,470
+cycle when it has the available resources to do that,
+
+32
+00:02:23,470 --> 00:02:29,230
+so when it basically decides that now is a good point of time to do that. Typically, that will of course
+
+33
+00:02:29,230 --> 00:02:32,530
+be instantly especially in simple applications like this one
+
+34
+00:02:32,530 --> 00:02:34,630
+but it's not guaranteed
+
+35
+00:02:34,750 --> 00:02:38,220
+and I want you to memorize this because that is really important.
+
+36
+00:02:38,260 --> 00:02:46,880
+You call set state synchronously here but it's not guaranteed to execute and finish immediately and
+
+37
+00:02:46,950 --> 00:02:55,670
+therefore, this state when used for a state update is not guaranteed to be the latest state or the previous
+
+38
+00:02:55,670 --> 00:02:57,230
+state on which you depend,
+
+39
+00:02:57,260 --> 00:02:58,850
+it could be an older state.
+
+40
+00:02:58,880 --> 00:03:05,270
+Let's say you're also calling set state somewhere else in your application which happens almost simultaneously
+
+41
+00:03:05,270 --> 00:03:11,440
+to this set state update and for some reason, this does not execute immediately and the other set state update
+
+42
+00:03:11,810 --> 00:03:12,830
+finishes earlier,
+
+43
+00:03:12,860 --> 00:03:20,120
+something like this. Then the state you depending on here might be an unexpected state, it might not be
+
+44
+00:03:20,120 --> 00:03:26,150
+the previous state you would expect it to be and therefore there is a better way of updating state when
+
+45
+00:03:26,150 --> 00:03:34,010
+you are depending on the old state. Set state does not only take a Javascript object, it also works when
+
+46
+00:03:34,010 --> 00:03:37,690
+you pass in a function, so you can use either syntax.
+
+47
+00:03:37,700 --> 00:03:43,010
+Now when you're doing state updates that don't depend on the old state, there is nothing wrong with just
+
+48
+00:03:43,010 --> 00:03:44,240
+passing the object,
+
+49
+00:03:44,240 --> 00:03:50,240
+so without the change counter, this is perfect. With the change counter however, you should use that optional
+
+50
+00:03:50,240 --> 00:03:57,620
+syntax where you actually receive two arguments and I'm using an anonymous arrow function here, where
+
+51
+00:03:57,620 --> 00:04:02,780
+the first argument is your old state and I'll name it prev state for previous state
+
+52
+00:04:02,990 --> 00:04:10,190
+and the second argument are your current props in case you need those. Then you have your function body
+
+53
+00:04:10,220 --> 00:04:15,760
+and in that function body, you should return this new state object, like this.
+
+54
+00:04:15,770 --> 00:04:22,190
+Now of course there, you are now not referring to this state but you can refer to previous state change
+
+55
+00:04:22,190 --> 00:04:29,720
+counter and here, React guarantees you that this will be the actual previous state as you would expect it
+
+56
+00:04:29,810 --> 00:04:31,520
+for this set state update.
+
+57
+00:04:32,450 --> 00:04:37,130
+So now if I save that, we'll see the exact same result as before.
+
+58
+00:04:37,130 --> 00:04:44,030
+So if I go in here and inspect my app and the change counter, as I start typing, it goes up and it goes
+
+59
+00:04:44,030 --> 00:04:50,080
+down or it stays up when I increase that I mean but it changes and that is the expected behavior
+
+60
+00:04:50,090 --> 00:04:55,730
+but this is the better way and the recommended way of updating the state when you're depending on old
+
+61
+00:04:55,730 --> 00:05:02,180
+state and therefore, you'll see me use that throughout the course whenever we do depend on old state. Super
+
+62
+00:05:02,180 --> 00:05:03,620
+important to keep that in mind,
+
+63
+00:05:03,800 --> 00:05:09,890
+it's an important pattern, not an optional solution but really the best practice for state updates that
+
+64
+00:05:09,890 --> 00:05:11,090
+depend on the old state.

@@ -1,0 +1,155 @@
+1
+00:00:02,380 --> 00:00:07,390
+There is something I want to add to the lectures where we worked with shouldComponentUpdate.
+
+2
+00:00:07,570 --> 00:00:13,510
+If you are having a class-based component, so a component created with the class keyword extending component,
+
+3
+00:00:13,900 --> 00:00:16,280
+where you implement shouldComponentUpdate,
+
+4
+00:00:17,050 --> 00:00:24,250
+if you implement a check where you simply want to compare all props that matter to a component for difference,
+
+5
+00:00:24,670 --> 00:00:27,460
+then there is an easier way of writing that component.
+
+6
+00:00:27,460 --> 00:00:31,610
+Let me demonstrate this at the example of the persons component. There
+
+7
+00:00:31,690 --> 00:00:35,260
+I'm currently checking whether persons changed.
+
+8
+00:00:35,260 --> 00:00:37,840
+Now let's see which props we're using in persons.
+
+9
+00:00:37,840 --> 00:00:44,590
+We're not just using person data, so we're not just using persons from our props,
+
+10
+00:00:44,590 --> 00:00:50,150
+we also have the changed function which we trigger and the clicked function.
+
+11
+00:00:50,230 --> 00:00:53,460
+Now these are functions not data we output, yet
+
+12
+00:00:53,650 --> 00:01:01,150
+if such a function reference would change, if we somehow get a new function reference from outside, then
+
+13
+00:01:01,150 --> 00:01:05,830
+this component will need to know about that and it should update appropriately.
+
+14
+00:01:05,860 --> 00:01:12,760
+Therefore you could argue that we want to update this if check here to check whether persons is different
+
+15
+00:01:13,210 --> 00:01:20,530
+or if next props changed is different to this props changed, referring to that changed function or
+
+16
+00:01:20,800 --> 00:01:23,520
+if next props clicked,
+
+17
+00:01:23,530 --> 00:01:29,310
+so with that I mean this property here, is different to our current
+
+18
+00:01:29,320 --> 00:01:38,210
+clicked value, so if it's not equal to this props clicked. So I now added these new two if checks and if any
+
+19
+00:01:38,210 --> 00:01:40,600
+of them basically returns true,
+
+20
+00:01:40,610 --> 00:01:44,360
+so if something changed here, then we will continue with the update,
+
+21
+00:01:44,360 --> 00:01:52,010
+if neither persons nor changed nor clicked were changed, we return false and we don't continue. Now with
+
+22
+00:01:52,010 --> 00:01:59,840
+that if I save that, if I toggle my persons here and I then remove the cockpit, you see that in our persons,
+
+23
+00:01:59,870 --> 00:02:04,150
+we still stop at shouldComponentUpdate because nothing changed about that,
+
+24
+00:02:04,190 --> 00:02:08,520
+if I type here however, we do continue with the update, so that works as before.
+
+25
+00:02:08,570 --> 00:02:14,360
+Now if you have such a scenario where you check all the props of a given component for changes, which
+
+26
+00:02:14,360 --> 00:02:20,300
+is not that uncommon of course because typically you want to make sure that no props of this component
+
+27
+00:02:20,300 --> 00:02:25,130
+changed and you're not just interested in one or two of the properties you are getting,
+
+28
+00:02:25,130 --> 00:02:31,970
+so if you are checking all properties, then you can also not use shouldComponentUpdate and therefore
+
+29
+00:02:31,970 --> 00:02:36,570
+I'll comment this out but instead extend a different type of component,
+
+30
+00:02:36,710 --> 00:02:46,250
+you can extend a pure component. So you can then simply extend pure component here and what pure component
+
+31
+00:02:46,280 --> 00:02:56,560
+does is it works just as before, I can type here and you see the persons update lifecycle runs
+
+32
+00:02:56,560 --> 00:03:02,590
+but if I remove the cockpit, we don't execute any code from persons, not even shouldComponentUpdate
+
+33
+00:03:02,590 --> 00:03:08,380
+because I commented that out but also no other lifecycle hook because pure component in the end is
+
+34
+00:03:08,380 --> 00:03:15,250
+just a normal component that already implements shouldComponentUpdate with a complete props check,
+
+35
+00:03:15,430 --> 00:03:19,230
+so that checks for any changes in any prop of that component.
+
+36
+00:03:19,330 --> 00:03:25,060
+So if that is what you need, you can also just use pure component instead of manually implementing this
+
+37
+00:03:25,060 --> 00:03:26,660
+shouldComponentUpdate check.
+
+38
+00:03:26,740 --> 00:03:31,720
+The result will be the same, so you can do either of these but of course you can save some code if you
+
+39
+00:03:31,720 --> 00:03:32,800
+use pure component.

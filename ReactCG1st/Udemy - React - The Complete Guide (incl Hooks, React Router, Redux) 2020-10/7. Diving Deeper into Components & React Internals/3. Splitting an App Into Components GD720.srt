@@ -1,0 +1,755 @@
+1
+00:00:02,200 --> 00:00:06,760
+So in the last lecture, we created this new project structure,
+
+2
+00:00:06,770 --> 00:00:10,810
+let's now start filling the cockpit and persons.js file with some life.
+
+3
+00:00:10,810 --> 00:00:17,200
+I'll start with persons and persons can be a functional component here because I don't plan on managing
+
+4
+00:00:17,200 --> 00:00:23,080
+state in here, though with React hooks we could of course do that theoretically but I'll keep that structure
+
+5
+00:00:23,080 --> 00:00:29,170
+where we use class based components for state management and functional components for the presentation
+
+6
+00:00:29,170 --> 00:00:30,000
+of content.
+
+7
+00:00:30,010 --> 00:00:34,280
+So therefore here I'll go with a functional component that will never be wrong.
+
+8
+00:00:34,330 --> 00:00:40,840
+So what I will do is I will again create a constant, persons, which is just a function in the end,
+
+9
+00:00:41,800 --> 00:00:45,370
+a function that will receive props though.
+
+10
+00:00:45,460 --> 00:00:51,190
+Now here is another way we can write this function body though.
+
+11
+00:00:51,520 --> 00:00:54,460
+Thus far we always simply return something there,
+
+12
+00:00:54,460 --> 00:01:01,930
+now we can definitely do that but if we only want to return something in that function body due to our
+
+13
+00:01:01,930 --> 00:01:08,410
+project set up and all the ES6 features we can use or the next-gen features in general we can use, we
+
+14
+00:01:08,410 --> 00:01:12,970
+can shorten this to just return parentheses.
+
+15
+00:01:12,970 --> 00:01:16,180
+Now this is simply due to the way arrow functions work,
+
+16
+00:01:16,180 --> 00:01:23,290
+if you write them in one line and this by the way does not mean that you can't split the part inside
+
+17
+00:01:23,290 --> 00:01:28,390
+the parentheses across multiple lines but you start with that in the same line,
+
+18
+00:01:28,390 --> 00:01:34,630
+if you only have that one line and not multiple lines as a function body, you can simply start with the
+
+19
+00:01:34,630 --> 00:01:35,800
+return statement
+
+20
+00:01:35,980 --> 00:01:38,920
+and if you return parentheses, this is what we got here
+
+21
+00:01:38,920 --> 00:01:42,300
+since you omit you return statement in this one line notation.
+
+22
+00:01:42,490 --> 00:01:45,100
+So that's the default ES6 error function notation,
+
+23
+00:01:45,130 --> 00:01:50,870
+if it's in one line, this automatically gets returned and you can hence omit the return statement.
+
+24
+00:01:50,920 --> 00:01:54,860
+Now in here, you directly put your JSX code.
+
+25
+00:01:54,880 --> 00:01:56,620
+Now this is not everything,
+
+26
+00:01:56,620 --> 00:02:00,710
+we of course also have to import React as before
+
+27
+00:02:01,060 --> 00:02:07,750
+and now we know that props will contain an array of persons which we want to transform into an array
+
+28
+00:02:07,750 --> 00:02:14,630
+of JSX elements, just as we did in app.js. So we can basically copy the code from there,
+
+29
+00:02:14,740 --> 00:02:23,170
+the persons map code here where we map our array into an array of persons, I'll copy this code,
+
+30
+00:02:23,170 --> 00:02:27,100
+we still will need to adjust it though but this will be relatively easy.
+
+31
+00:02:27,700 --> 00:02:36,590
+So in persons.js here inside my parentheses, I will call persons map though on the props, props persons
+
+32
+00:02:36,610 --> 00:02:37,780
+map 
+
+33
+00:02:37,780 --> 00:02:45,400
+and now here keep in mind, we're already writing JSX, so we can even omit the parentheses here because
+
+34
+00:02:45,400 --> 00:02:48,810
+we're not having a JSX expression here,
+
+35
+00:02:48,850 --> 00:02:55,090
+this is normal Javascript after all. It will contain JSX in the inside but that doesn't change the
+
+36
+00:02:55,090 --> 00:02:59,440
+fact that props persons map is normal Javascript code we're calling.
+
+37
+00:02:59,440 --> 00:03:06,400
+So with that, we're now returning person here and we need to import that person component. So import person
+
+38
+00:03:06,400 --> 00:03:12,260
+from ./person/person pointing to the person.js file.
+
+39
+00:03:12,490 --> 00:03:17,260
+With that, we got a very short and concise way of writing this.
+
+40
+00:03:17,260 --> 00:03:25,630
+We got our persons which we expect to receive on our props and then we still map persons, this array
+
+41
+00:03:25,810 --> 00:03:28,930
+into an array of JSX elements.
+
+42
+00:03:28,930 --> 00:03:35,380
+Now one thing we still need to do is, we need to adjust our click and changed handler because this delete
+
+43
+00:03:35,380 --> 00:03:37,960
+person handler and this name changed handler,
+
+44
+00:03:37,960 --> 00:03:42,400
+that won't work anymore because we no longer have these methods here,
+
+45
+00:03:42,430 --> 00:03:44,200
+we no longer have a class here,
+
+46
+00:03:44,200 --> 00:03:49,240
+this is just a function. Of course we could create a class here and handle the deletion and so on here
+
+47
+00:03:49,600 --> 00:03:55,720
+but keep in mind that this should typically be handled in a couple of or very few containers and not
+
+48
+00:03:55,720 --> 00:03:57,340
+in all your components.
+
+49
+00:03:57,340 --> 00:04:05,440
+So the way to handle this would be to not call this but props delete person handler and props, though
+
+50
+00:04:05,440 --> 00:04:13,750
+again not delete person handler but more likely the name of the property we want to use, like props clicked
+
+51
+00:04:14,140 --> 00:04:19,020
+and maybe props changed. With these changes in place,
+
+52
+00:04:19,030 --> 00:04:31,070
+let's export our persons function here, so export default persons and make sure to save all files.
+
+53
+00:04:31,070 --> 00:04:33,230
+Now let's go back to the app.js file,
+
+54
+00:04:33,230 --> 00:04:36,190
+there we no longer need this code of course
+
+55
+00:04:36,200 --> 00:04:42,620
+instead what we do need here is we simply need to reach out to our persons component.
+
+56
+00:04:42,830 --> 00:04:49,240
+So let's add this import, import persons from persons/persons,
+
+57
+00:04:49,250 --> 00:04:55,550
+this is our new import path pointing to the persons.js file in the persons folder.
+
+58
+00:04:55,550 --> 00:05:02,300
+With that, we can use persons like this here and now we need to pass three pieces of information to that
+
+59
+00:05:02,300 --> 00:05:02,870
+component,
+
+60
+00:05:03,860 --> 00:05:10,670
+the three props we're using - the persons prop, the clicked prop and the changed prop,
+
+61
+00:05:10,820 --> 00:05:15,180
+these are the three props we're accessing. Person name, age and key,
+
+62
+00:05:15,410 --> 00:05:19,790
+that doesn't really matter because that's the individual person from the persons array we're looping
+
+63
+00:05:19,790 --> 00:05:20,710
+through,
+
+64
+00:05:21,000 --> 00:05:23,230
+so we only need props, 
+
+65
+00:05:23,240 --> 00:05:34,300
+persons, clicked and changed, back in app.js, we should pass that. Persons simply is this state persons,
+
+66
+00:05:34,410 --> 00:05:41,570
+let me split this over multiple lines to make it easier to read. Clicked should pass a reference to the
+
+67
+00:05:41,570 --> 00:05:45,650
+function you want to execute when this is fired from the persons component,
+
+68
+00:05:45,710 --> 00:05:46,300
+so here
+
+69
+00:05:46,340 --> 00:05:52,800
+this will be this delete person handler and changed,
+
+70
+00:05:53,110 --> 00:05:58,630
+that will be this name changed handler.
+
+71
+00:05:58,640 --> 00:06:01,100
+Now let's see if that works as it should.
+
+72
+00:06:01,130 --> 00:06:03,930
+We can now remove that old code down there,
+
+73
+00:06:03,980 --> 00:06:09,050
+all we have here is our persons component which will render the list and we still conditionally show
+
+74
+00:06:09,050 --> 00:06:10,720
+it or don't show it.
+
+75
+00:06:10,730 --> 00:06:17,630
+Make sure all files are saved and let's reload our application, make sure npm start is still running
+
+76
+00:06:18,250 --> 00:06:21,650
+and toggle the persons and this looks pretty good.
+
+77
+00:06:21,680 --> 00:06:28,460
+We can still work with it as we did before but now if we use the React developer tools and dive into
+
+78
+00:06:28,460 --> 00:06:33,830
+that, you see we did got our persons component here with our individual person
+
+79
+00:06:33,980 --> 00:06:40,180
+or if we reload, of course with all our persons, these three.
+
+80
+00:06:40,190 --> 00:06:45,620
+So it's working as before but we improved the structure a little bit because now in the app container,
+
+81
+00:06:45,860 --> 00:06:48,920
+we don't have to worry about the logic of creating that list,
+
+82
+00:06:48,980 --> 00:06:55,310
+we outsource this to the persons.js file and it is the best practice to create granular pieces where
+
+83
+00:06:55,310 --> 00:06:58,110
+each component has a clear focus.
+
+84
+00:06:58,220 --> 00:07:01,470
+Now the same goes for the cockpit, there
+
+85
+00:07:01,520 --> 00:07:04,400
+we also want to outsource the logic into the cockpit.js 
+
+86
+00:07:04,400 --> 00:07:11,900
+file and for the cockpit, we basically need to put the h1 tag, the paragraph and the button
+
+87
+00:07:12,050 --> 00:07:17,150
+into its own component. So we can simply do that by going into the cockpit.js
+
+88
+00:07:17,150 --> 00:07:20,910
+file and there again, this will be a functional component here,
+
+89
+00:07:21,080 --> 00:07:27,080
+we could manage state in there anyways with use state but I'll not even do that because in this component,
+
+90
+00:07:27,110 --> 00:07:30,250
+I don't want to manage any state, still following that
+
+91
+00:07:30,290 --> 00:07:33,980
+best practice of using as many functional components as possible.
+
+92
+00:07:34,730 --> 00:07:41,870
+So here, this will be the cockpit constant which is just an arrow function where we simply return some
+
+93
+00:07:41,870 --> 00:07:50,300
+JSX maybe, though there I will probably need more logic due to this styling of the button, so we can
+
+94
+00:07:50,420 --> 00:07:55,490
+return a normal function body inside of which we return our JSX.
+
+95
+00:07:55,580 --> 00:08:02,660
+We will also receive props here and as always, we need to import React from React to be able to really
+
+96
+00:08:02,720 --> 00:08:04,210
+render JSX
+
+97
+00:08:04,430 --> 00:08:09,620
+and finally, we will export our cockpit as the default.
+
+98
+00:08:09,710 --> 00:08:11,460
+Now what should go in there?
+
+99
+00:08:11,480 --> 00:08:13,700
+Let's go back to that app.js file.
+
+100
+00:08:13,880 --> 00:08:18,160
+I already mentioned, it's basically this JSX code which should go into our cockpit.
+
+101
+00:08:18,590 --> 00:08:24,540
+So let's cut it here and let's move it into this return statement here in the cockpit.
+
+102
+00:08:24,650 --> 00:08:32,300
+Now as you see, this of course throws an error because here we return multiple elements without a root
+
+103
+00:08:32,300 --> 00:08:32,970
+node
+
+104
+00:08:33,140 --> 00:08:35,750
+and this is not supported here.
+
+105
+00:08:35,780 --> 00:08:39,730
+Now we will dive into ways of supporting this in the next lectures, for now
+
+106
+00:08:39,830 --> 00:08:47,420
+let's simply wrap it into a div but again, we will find other ways of not having to use this div over the
+
+107
+00:08:47,420 --> 00:08:51,220
+next lectures because React 16 offers us alternatives.
+
+108
+00:08:51,440 --> 00:08:57,200
+By the way, we already see one alternative in persons, there we return a list and of course this means
+
+109
+00:08:57,380 --> 00:09:00,830
+that we have multiple person objects sitting next to each other,
+
+110
+00:09:00,860 --> 00:09:08,450
+there is no wrapping div but this is okay for React 16, this is a feature which is supported, if you
+
+111
+00:09:08,450 --> 00:09:14,510
+return a list, that is OK, you just may not hardcode elements next to each other.
+
+112
+00:09:14,510 --> 00:09:16,550
+So we will fix this too in the next lecture
+
+113
+00:09:16,550 --> 00:09:18,480
+but for now, let's go with that
+
+114
+00:09:18,590 --> 00:09:24,220
+and of course we got this assigned classes thing here in the cockpit where we manage the CSS classes
+
+115
+00:09:24,220 --> 00:09:29,500
+this paragraph should have and the CSS class this button should have. We get the code for this
+
+116
+00:09:29,500 --> 00:09:32,210
+in the app.js file, there
+
+117
+00:09:32,240 --> 00:09:40,040
+we now need to grab the code, like const assign classes where we take the persons length into account.
+
+118
+00:09:40,520 --> 00:09:47,200
+Let's cut it from app.js and move it into our cockpit function here, there we of course access the
+
+119
+00:09:47,200 --> 00:09:50,010
+state and this won't work.
+
+120
+00:09:50,170 --> 00:10:00,590
+So we should expect to get persons as props on our cockpit element. Now classes here needs to be imported,
+
+121
+00:10:00,630 --> 00:10:10,050
+so we need a cockpit.css file and in there, I will simply store the classes I'm using, red and
+
+122
+00:10:10,050 --> 00:10:18,040
+bold and my app button classes here. I will move them into the cockpit
+
+123
+00:10:18,250 --> 00:10:22,780
+but this app class here no longer is correct,
+
+124
+00:10:22,840 --> 00:10:30,010
+instead this should be cockpit probably because we no longer will nest this below this app class,
+
+125
+00:10:30,130 --> 00:10:34,650
+the app class belongs to the app container and due to component scoping,
+
+126
+00:10:34,780 --> 00:10:41,520
+if we were to reference app here in a different component, this would not be the same automatically created
+
+127
+00:10:41,530 --> 00:10:43,960
+unique identifier, so it wouldn't work.
+
+128
+00:10:44,260 --> 00:10:48,740
+We need to create a custom class for this component which we use.
+
+129
+00:10:48,760 --> 00:10:51,790
+So with that, we get the CSS classes added here,
+
+130
+00:10:51,790 --> 00:11:00,070
+we of course need to add that import to the file too. So import classes from ./cockpit.css
+
+131
+00:11:00,190 --> 00:11:03,070
+and with that, we can use classes here again.
+
+132
+00:11:03,070 --> 00:11:11,430
+We also should create a root class here, class name which can be classes.cockpit
+
+133
+00:11:11,550 --> 00:11:17,160
+and with that we should get scoping of our classes in the cockpit component again.
+
+134
+00:11:17,410 --> 00:11:20,350
+We still need to set up this button class here,
+
+135
+00:11:20,350 --> 00:11:28,810
+so back in the app.js file, here we're switching button class conditionally depending on whether we
+
+136
+00:11:28,900 --> 00:11:30,660
+show persons or not,
+
+137
+00:11:30,880 --> 00:11:37,600
+we'll have to put this logic into our cockpit component and also put the declaration of the button class
+
+138
+00:11:37,600 --> 00:11:38,420
+there,
+
+139
+00:11:38,440 --> 00:11:42,830
+so let's remove it from the app.js file and let's move it in there.
+
+140
+00:11:42,850 --> 00:11:54,100
+Here I will store my red class assignment temporarily and set up button class to be empty at the
+
+141
+00:11:54,100 --> 00:11:55,270
+beginning.
+
+142
+00:11:55,300 --> 00:12:01,960
+Now this will become important again for switching or for adding this red class to the button and then setting
+
+143
+00:12:01,960 --> 00:12:03,760
+the appropriate styling.
+
+144
+00:12:03,760 --> 00:12:11,290
+Now with that, we have to add this check whether we want to add the red class to the button. So we can simply
+
+145
+00:12:11,290 --> 00:12:14,420
+do this by checking if props
+
+146
+00:12:14,530 --> 00:12:18,980
+and then we should expect to get this show persons information,
+
+147
+00:12:19,240 --> 00:12:28,910
+so if props show person, if that's the case, then we should execute this class or add this class
+
+148
+00:12:28,920 --> 00:12:31,500
+basically, set this class.
+
+149
+00:12:31,500 --> 00:12:39,350
+So now if we analyze this, we expect to get properties defining whether we're showing persons and the persons.
+
+150
+00:12:39,600 --> 00:12:43,590
+Maybe we could even just get the persons length but that's totally up to you,
+
+151
+00:12:43,590 --> 00:12:51,390
+so for now I will simply go with the whole persons array which I expect. We should implement the cockpit
+
+152
+00:12:51,390 --> 00:12:58,690
+component in the app.js file appropriately. So in app.js which got a lot leaner,
+
+153
+00:12:58,980 --> 00:13:07,520
+we now want to use our cockpit component, cockpit. For that, we first of all need to add the import,
+
+154
+00:13:07,560 --> 00:13:09,050
+so let's quickly do that.
+
+155
+00:13:09,120 --> 00:13:15,810
+Let's import cockpit with a capital CS for all custom components from the components folder and there
+
+156
+00:13:15,810 --> 00:13:18,320
+from the cockpit sub-folder and from the cockpit.js
+
+157
+00:13:18,320 --> 00:13:21,610
+file without the file extension as always.
+
+158
+00:13:22,490 --> 00:13:29,930
+Now we can use cockpit and we're doing so down here and now I mentioned we expect two props there, show
+
+159
+00:13:29,930 --> 00:13:38,630
+persons is one and this should simply be this state show persons and the other one is the persons array
+
+160
+00:13:38,630 --> 00:13:39,570
+itself,
+
+161
+00:13:39,590 --> 00:13:45,620
+let me split this over multiple lines to make it easier to read, the persons property should be this
+
+162
+00:13:45,980 --> 00:13:48,500
+state persons.
+
+163
+00:13:48,680 --> 00:13:57,770
+Now with that, we got a clearly focused app.js file with the cockpit and our persons array, we can now
+
+164
+00:13:57,800 --> 00:14:02,270
+even clean this up a bit more by removing this wrapping div around the persons array,
+
+165
+00:14:02,270 --> 00:14:03,040
+we don't need that,
+
+166
+00:14:03,050 --> 00:14:06,190
+we can just return persons like this.
+
+167
+00:14:06,230 --> 00:14:12,140
+It's one component which renders the list so we clean this up even a bit more and beyond that, we only
+
+168
+00:14:12,140 --> 00:14:15,520
+got our handlers, our functions here which manipulate the state
+
+169
+00:14:15,780 --> 00:14:18,620
+and that's exactly the idea behind such a container.
+
+170
+00:14:18,710 --> 00:14:24,610
+It manages the state, it manipulates the state. Make sure all files are saved
+
+171
+00:14:24,810 --> 00:14:26,540
+and let's now see if this still works.
+
+172
+00:14:27,370 --> 00:14:32,360
+If we reload, we got the toggle persons button but it's not working.
+
+173
+00:14:32,400 --> 00:14:33,590
+Now I know why,
+
+174
+00:14:33,600 --> 00:14:38,640
+because one prop was forgotten. When we click this button, onClick,
+
+175
+00:14:38,640 --> 00:14:42,560
+we tried to execute this toggle persons handler, this of course doesn't work,
+
+176
+00:14:42,560 --> 00:14:44,160
+we don't have this method here,
+
+177
+00:14:44,190 --> 00:14:46,790
+we're not in a class here, we're in a function.
+
+178
+00:14:46,890 --> 00:14:58,650
+So here, we probably want to execute props clicked and then in our app.js file on our cockpit component,
+
+179
+00:14:58,650 --> 00:15:05,160
+we want to provide this prop clicked which we just defined and there, execute toggle persons handler.
+
+180
+00:15:05,820 --> 00:15:09,250
+Now with that, we should have a working button again and we do.
+
+181
+00:15:09,510 --> 00:15:13,820
+We can toggle this, you see it gets the right styling and everything works as before
+
+182
+00:15:14,160 --> 00:15:16,010
+but now we get a much better structure
+
+183
+00:15:16,020 --> 00:15:22,320
+with clearly focused components and this is actually how you should compose and create your React application.
+
+184
+00:15:22,320 --> 00:15:28,380
+You should have clear responsibilities of your components, have them narrowly focused, create granular
+
+185
+00:15:28,380 --> 00:15:29,490
+components,
+
+186
+00:15:29,490 --> 00:15:36,280
+use as many functional components as possible and have your containers be as lean as possible
+
+187
+00:15:36,360 --> 00:15:43,230
+when it comes to JSX and styling, some containers might not even have a style file because they only
+
+188
+00:15:43,230 --> 00:15:46,410
+import other components which then do the styling.
+
+189
+00:15:46,470 --> 00:15:52,350
+So this is a very lean setup here which allows us to have a flexible and maintainable application.

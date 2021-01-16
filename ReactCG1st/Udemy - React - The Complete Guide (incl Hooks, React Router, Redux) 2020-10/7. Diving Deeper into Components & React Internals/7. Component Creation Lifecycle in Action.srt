@@ -1,0 +1,323 @@
+1
+00:00:02,240 --> 00:00:08,510
+Here in our application, let's start with the app.js file which is a class-based component and therefore
+
+2
+00:00:08,510 --> 00:00:11,880
+here, we have access to lifecycle hooks.
+
+3
+00:00:11,900 --> 00:00:18,440
+Now as I mentioned, the first thing that will execute is the constructor. The constructor receives some
+
+4
+00:00:18,440 --> 00:00:19,230
+props
+
+5
+00:00:19,250 --> 00:00:24,170
+and when you add a constructor as I mentioned, you have to call super props in here.
+
+6
+00:00:24,200 --> 00:00:29,570
+This will basically execute the constructor of the component you're extending and that is important
+
+7
+00:00:29,780 --> 00:00:36,680
+to make sure that everything gets initialized correctly and you can do things like access this set state.
+
+8
+00:00:36,680 --> 00:00:47,260
+Now here, I simply want to log app.js constructor and I have that app.js identifier only there so
+
+9
+00:00:47,260 --> 00:00:53,670
+that we can clearly see from which file this output stems. Now in the constructor,
+
+10
+00:00:53,670 --> 00:00:56,610
+you could also initialize your state by the way.
+
+11
+00:00:56,640 --> 00:00:58,850
+So we're doing it down there,
+
+12
+00:00:59,010 --> 00:01:04,280
+you could do that whole state initialization also here instead of down there.
+
+13
+00:01:04,290 --> 00:01:10,680
+This actually, this down here is just a more modern syntax which behind the scenes will basically add
+
+14
+00:01:10,710 --> 00:01:15,690
+the constructor for you, call super props and set the state up in the constructor,
+
+15
+00:01:15,690 --> 00:01:20,250
+that is what our old syntax, this one here actually does.
+
+16
+00:01:20,360 --> 00:01:25,610
+If you don't want to use it or you're working in a project set up that doesn't support this more modern
+
+17
+00:01:25,610 --> 00:01:31,730
+Javascript syntax, you can set state here in constructor and that will just work fine. Important just
+
+18
+00:01:31,790 --> 00:01:37,040
+since you initialize the state, you should set the state like this and not with this set state because
+
+19
+00:01:37,040 --> 00:01:43,820
+there will be no state to merge this state with. Now after the constructor,
+
+20
+00:01:43,820 --> 00:01:49,000
+we learned that getDerivedStateFromProps runs. For that,
+
+21
+00:01:49,260 --> 00:01:55,460
+I'll add getDerivedStateFromProps and this actually is a so-called static method,
+
+22
+00:01:55,470 --> 00:01:58,670
+so you have to add the static keyword in front of it.
+
+23
+00:01:58,770 --> 00:02:05,010
+This is just important for React so that React can execute this correctly. You will get your props
+
+24
+00:02:05,010 --> 00:02:12,240
+and your state in here and you should return your updated state and here I'll just return the old state
+
+25
+00:02:12,240 --> 00:02:14,910
+but of course I want to console log
+
+26
+00:02:18,650 --> 00:02:19,670
+app.js
+
+27
+00:02:21,950 --> 00:02:32,020
+getDerivedStateFromProps and I will also log my props here. Now after getDerivedStateFromProps,
+
+28
+00:02:32,020 --> 00:02:34,650
+the render method executes, this one here,
+
+29
+00:02:34,750 --> 00:02:36,400
+so let me console log
+
+30
+00:02:39,350 --> 00:02:48,360
+app.js render and as I mentioned, then all the child components will be rendered. So all the person
+
+31
+00:02:48,360 --> 00:02:49,590
+components will be rendered
+
+32
+00:02:49,620 --> 00:02:54,810
+and if that were class-based components, we could add the lifecycle there too and see it run for all
+
+33
+00:02:54,810 --> 00:02:55,460
+the persons,
+
+34
+00:02:55,470 --> 00:03:01,770
+I'll not do it right now, though there is one thing I will do. In my persons component which is the component
+
+35
+00:03:01,770 --> 00:03:13,600
+that is executed here, I will actually add a console log here, persons.js rendering because when
+
+36
+00:03:13,600 --> 00:03:18,520
+the component gets rendered, even though it is a functional one, of course that code here gets executed,
+
+37
+00:03:19,060 --> 00:03:21,080
+not here in the map though
+
+38
+00:03:22,520 --> 00:03:23,810
+but actually outside of it.
+
+39
+00:03:23,810 --> 00:03:33,600
+For that, let's wrap this with curly braces then add a return keyword here and then also add a closing
+
+40
+00:03:33,600 --> 00:03:38,460
+curly brace after this so that we have a real function body here and now I just want to indicate that
+
+41
+00:03:38,460 --> 00:03:42,870
+persons.js is rendering. Again, we can of course add this here because this function will be
+
+42
+00:03:42,870 --> 00:03:48,390
+executed when this renders and therefore this console log will be printed too and in the person.js file
+
+43
+00:03:48,570 --> 00:03:50,030
+so that we can see that too,
+
+44
+00:03:50,070 --> 00:03:57,060
+here I'll also add a console log, person.js rendering.
+
+45
+00:03:57,290 --> 00:03:58,580
+So now I change this,
+
+46
+00:03:58,580 --> 00:04:04,880
+now back in app.js, render will execute, persons component will render, the individual person components
+
+47
+00:04:04,970 --> 00:04:10,880
+in the persons component will then render and once all of that is done, componentDidMount will run,
+
+48
+00:04:10,910 --> 00:04:18,290
+so here I'll add componentDidMount. componentDidMount would allow us to make an HTTP request for
+
+49
+00:04:18,290 --> 00:04:23,810
+example and that is something we'll do later, for now I'll just output componentDidMount here. And
+
+50
+00:04:23,810 --> 00:04:26,840
+now with all that setup work, let's see it in practice.
+
+51
+00:04:29,800 --> 00:04:36,160
+So here if I open my console and I reload this page, we can clearly see the constructor, we see 
+
+52
+00:04:36,220 --> 00:04:41,950
+getDerivedStateFromProps and we see that props is an object with the app title, we see render and then we
+
+53
+00:04:41,950 --> 00:04:43,190
+see componentDidMount.
+
+54
+00:04:43,390 --> 00:04:48,650
+We don't see the outputs from the person components because these didn't render yet, right?
+
+55
+00:04:48,700 --> 00:04:55,180
+If I toggle, then we see toggling actually also triggered getDerivedStateFromProps and then
+
+56
+00:04:55,270 --> 00:05:01,670
+render for app.js ran, rendering for a persons.js ran and then three times rendering in person.js
+
+57
+00:05:01,690 --> 00:05:05,540
+ran. So that is how the lifecycle hook works here,
+
+58
+00:05:05,560 --> 00:05:11,780
+this is how we can go through the different lifecycle hooks when a component is created.
+
+59
+00:05:11,910 --> 00:05:18,240
+It's also worth highlighting that historically, there were other hooks as well and these are still
+
+60
+00:05:18,240 --> 00:05:22,030
+supported and I'll actually use one of them later in the course still.
+
+61
+00:05:22,110 --> 00:05:28,830
+Now one of them was componentWillMount and I'm saying was even though it still exists because whilst
+
+62
+00:05:28,840 --> 00:05:29,640
+you can use it,
+
+63
+00:05:29,730 --> 00:05:32,250
+it's not insecure and nothing like that,
+
+64
+00:05:32,250 --> 00:05:37,560
+these hooks were very rarely used and could be used incorrectly and therefore they will be removed in
+
+65
+00:05:37,560 --> 00:05:38,560
+the future.
+
+66
+00:05:38,570 --> 00:05:41,070
+Still as I mentioned, you can still use them,
+
+67
+00:05:41,070 --> 00:05:43,780
+nothing wrong with that in general
+
+68
+00:05:43,890 --> 00:05:49,620
+and so here I will execute componentWillMount. That was executed right before the componentWouldMount
+
+69
+00:05:49,710 --> 00:05:53,910
+and indeed it would be hard to explain what kind of work you do in here,
+
+70
+00:05:53,910 --> 00:06:00,120
+generally it would be something like preparing your state correctly and that is something you would
+
+71
+00:06:00,120 --> 00:06:06,410
+now do in the getDerivedStateFromProps and both were actually relatively seldom to be used and therefore
+
+72
+00:06:06,440 --> 00:06:07,790
+this will be removed
+
+73
+00:06:07,920 --> 00:06:14,760
+and this one here is still there and will stay here but you'll actually not use that too often either.
+
+74
+00:06:14,900 --> 00:06:20,060
+Now besides componentWillMount which still is there but it will be removed at some point in the future,
+
+75
+00:06:20,070 --> 00:06:24,900
+we also got some other hooks which will only become important once we have a look at the updating lifecycle
+
+76
+00:06:25,020 --> 00:06:26,430
+for components.
+
+77
+00:06:26,430 --> 00:06:30,870
+Now accessing the render method by the way does not mean that the real DOM gets re-rendered,
+
+78
+00:06:30,960 --> 00:06:37,080
+it simply means that React will now re-render its internal virtual DOM and then check if the real DOM
+
+79
+00:06:37,080 --> 00:06:39,060
+needs to be changed and that is also something
+
+80
+00:06:39,060 --> 00:06:44,070
+I'll dive into with you in this module where I dive a bit deeper into how React actually updates the
+
+81
+00:06:44,070 --> 00:06:44,370
+DOM.

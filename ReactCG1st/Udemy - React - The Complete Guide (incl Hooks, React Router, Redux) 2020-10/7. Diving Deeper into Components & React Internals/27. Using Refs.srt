@@ -1,0 +1,355 @@
+1
+00:00:02,040 --> 00:00:09,060
+By now, we had a super deep dive into many amazing features about React components and by the way, no
+
+2
+00:00:09,060 --> 00:00:12,000
+worries if that is getting a lot to remember,
+
+3
+00:00:12,000 --> 00:00:16,830
+you'll see a lot of that throughout this course, in the course project and in other modules.
+
+4
+00:00:17,100 --> 00:00:21,680
+So this is really just there to get it out of the way, to introduce you to a concept,
+
+5
+00:00:21,700 --> 00:00:27,090
+you'll see it applied then throughout this course and therefore, this will become clearer and clearer
+
+6
+00:00:27,210 --> 00:00:29,770
+as we use the different things you learned about.
+
+7
+00:00:30,030 --> 00:00:36,650
+We're not done yet though. In person component, we have that input where we can change the name of a person,
+
+8
+00:00:36,660 --> 00:00:42,040
+right? Now the approach or the way of changing this is absolutely fine here,
+
+9
+00:00:42,040 --> 00:00:47,310
+however if you want to get access to an HTML element like this input
+
+10
+00:00:47,310 --> 00:00:52,470
+but actually what I'm about to show you works with any HTML element, with any JSX element I
+
+11
+00:00:52,470 --> 00:00:53,540
+should say here,
+
+12
+00:00:53,790 --> 00:00:59,980
+then you are not limited to setting up two-way binding because that of course is nice for getting the
+
+13
+00:00:59,980 --> 00:01:01,170
+value you entered
+
+14
+00:01:01,170 --> 00:01:03,790
+but let's say you want to focus that input,
+
+15
+00:01:03,930 --> 00:01:11,870
+let's say when we render all our persons here, the last person should automatically receive focus.
+
+16
+00:01:11,870 --> 00:01:14,430
+Well then this is kind of hard to do here right,
+
+17
+00:01:14,430 --> 00:01:18,750
+how do we focus this? In regular Javascript,
+
+18
+00:01:18,780 --> 00:01:23,580
+you could of course write something like in componentDidMount, so right after this rendered
+
+19
+00:01:23,580 --> 00:01:30,030
+let's say, you could use document.querySelector, select your input and on that input, you could then
+
+20
+00:01:30,030 --> 00:01:32,250
+call the focus method.
+
+21
+00:01:32,250 --> 00:01:38,430
+Now if we try that actually and componentDidMount works here of course because it's a class-based component,
+
+22
+00:01:39,570 --> 00:01:47,660
+if I try that, then I do indeed focus but I focus the first one simply because document.querySelector
+
+23
+00:01:47,660 --> 00:01:53,600
+selects the first input it finds here and additionally, this is not really that great because it doesn't
+
+24
+00:01:53,600 --> 00:01:59,420
+refer to the input rendered by this component, otherwise it would render the last input because that
+
+25
+00:01:59,420 --> 00:02:01,220
+was the last component rendered,
+
+26
+00:02:01,220 --> 00:02:08,990
+so this code here actually executed the last time in that last person component and it didn't focus the
+
+27
+00:02:08,990 --> 00:02:15,140
+input of that person component but still, the first input it found on the entire page because document.querySelector
+
+28
+00:02:15,140 --> 00:02:19,850
+is not something that is related to React,
+
+29
+00:02:19,850 --> 00:02:27,020
+it is a general web or browser feature, a general DOM selector and it always works on the entire DOM,
+
+30
+00:02:27,020 --> 00:02:33,580
+it doesn't care whether we use React or not and therefore, this is not the optimal way of selecting this.
+
+31
+00:02:33,590 --> 00:02:40,220
+Sure we could set up an ID here to select it by ID but React actually has an easier way for us to
+
+32
+00:02:40,220 --> 00:02:48,410
+select an element, a concept called refs which stands for references. On any element and that does really
+
+33
+00:02:48,410 --> 00:02:52,760
+mean not just on inputs but on any element including your own components,
+
+34
+00:02:52,970 --> 00:03:00,710
+you can add a special ref keyword. Now ref, just like key, is a special property you can pass into any
+
+35
+00:03:00,710 --> 00:03:05,010
+component, it is detected and understood by React.
+
+36
+00:03:05,330 --> 00:03:11,240
+Now ref can be used in a couple of different ways and here is way number one which is supported in older
+
+37
+00:03:11,240 --> 00:03:18,990
+versions of React too. You pass a function here and this can be an anonymous arrow function as I'm doing
+
+38
+00:03:18,990 --> 00:03:25,470
+it here and the argument you're getting is a reference to the element you place this on, 
+
+39
+00:03:25,800 --> 00:03:31,980
+so here we could name this inputEl but you can name it whatever you want. In that function body, you then
+
+40
+00:03:32,010 --> 00:03:33,270
+can use that,
+
+41
+00:03:33,420 --> 00:03:38,950
+therefore here of course, we could call focus actually but that's not what I want to do here,
+
+42
+00:03:38,970 --> 00:03:44,370
+instead let's say we want to use that in some other place of the application and therefore what you
+
+43
+00:03:44,370 --> 00:03:50,280
+can also do is, you can add a new property to your class, so not to your state but really just to the class
+
+44
+00:03:50,630 --> 00:03:54,960
+by using this, then any name of your choice like input element
+
+45
+00:03:54,960 --> 00:03:56,830
+but this can really be name, whatever you want
+
+46
+00:03:56,940 --> 00:03:58,770
+and this holds the inputEl
+
+47
+00:03:58,770 --> 00:04:03,510
+we're getting as an argument. So we're getting access to the input element here and then we're storing
+
+48
+00:04:03,510 --> 00:04:05,190
+this in a global property,
+
+49
+00:04:05,190 --> 00:04:11,220
+so from that point on we can use it anywhere in our application. And since componentDidMount executes
+
+50
+00:04:11,280 --> 00:04:15,140
+after render, input element will have been set by then,
+
+51
+00:04:15,150 --> 00:04:20,690
+so in here we can call input element focus, excuse me,
+
+52
+00:04:20,710 --> 00:04:26,830
+this input element focus of course because input element is a property of this class and therefore this approach
+
+53
+00:04:26,830 --> 00:04:34,190
+only works in class-based components, not in functional components. If we saved that, it reloads and
+
+54
+00:04:34,190 --> 00:04:35,420
+if I toggle my persons,
+
+55
+00:04:35,420 --> 00:04:41,070
+now the last persons input is selected, thanks to this reference.
+
+56
+00:04:41,210 --> 00:04:47,070
+Now this is one approach of using references but as I mentioned, it's not the only one. Since
+
+57
+00:04:47,090 --> 00:04:48,920
+React 16.3,
+
+58
+00:04:48,920 --> 00:04:56,600
+we also have another way of setting up a reference and that includes the constructor or requires us
+
+59
+00:04:56,600 --> 00:04:58,760
+to use the constructor
+
+60
+00:04:58,760 --> 00:05:06,440
+and in there, you can now set up your input element, so the same property I'm using down there, input element
+
+61
+00:05:07,450 --> 00:05:20,010
+by calling React create ref. So create ref is a method offered on the React object we're importing
+
+62
+00:05:20,430 --> 00:05:23,360
+and I'm storing it here in the input element.
+
+63
+00:05:23,400 --> 00:05:27,490
+Now that means of course this is not necessarily my input,
+
+64
+00:05:27,540 --> 00:05:33,420
+this is any reference object React gives me, whatever that is behind the scenes.
+
+65
+00:05:33,420 --> 00:05:38,790
+You can now use this reference here and therefore I'll name it inputEl, element ref to make it really
+
+66
+00:05:38,790 --> 00:05:46,890
+clear that this is just a reference, you can now use this here instead of passing a function to ref. So
+
+67
+00:05:47,160 --> 00:05:52,350
+this function approach is OK and therefore I'll comment it out to keep it here but you can now set ref
+
+68
+00:05:52,380 --> 00:05:55,140
+equal to this input element ref,
+
+69
+00:05:55,290 --> 00:06:04,410
+so to this property you're initializing here in the constructor. This holds an access to this ref object
+
+70
+00:06:04,470 --> 00:06:10,400
+React gives me and then I'm assigning this to my ref property and behind the scenes, React will make
+
+71
+00:06:10,420 --> 00:06:17,160
+the connection and input element ref will then actually allow me access to the element on which this
+
+72
+00:06:17,160 --> 00:06:19,520
+ref assignment was placed.
+
+73
+00:06:19,590 --> 00:06:28,210
+So now in componentDidMount, I can use this input element ref, so this ref property and there, I actually
+
+74
+00:06:28,210 --> 00:06:31,220
+have a current property which you have to access first
+
+75
+00:06:31,300 --> 00:06:34,900
+and this gives you access to your current reference.
+
+76
+00:06:34,900 --> 00:06:41,170
+So here, I'll access current and then focus because the current element stored in this reference here
+
+77
+00:06:41,530 --> 00:06:42,810
+is this element here,
+
+78
+00:06:42,820 --> 00:06:47,290
+so the input element and that does have a focus method.
+
+79
+00:06:47,310 --> 00:06:50,190
+So with that, we would always be able to do that.
+
+80
+00:06:50,190 --> 00:06:56,340
+Now one thing, if you add a constructor, you have to call super here and of course you should forward
+
+81
+00:06:56,400 --> 00:07:00,450
+the props you're getting here to make sure everything works correctly,
+
+82
+00:07:00,540 --> 00:07:04,020
+always when you add a constructor, add super first.
+
+83
+00:07:04,020 --> 00:07:10,870
+So now with that, we got everything set up and now this app reloads and you can see that still the last
+
+84
+00:07:10,870 --> 00:07:12,860
+person is selected,
+
+85
+00:07:13,030 --> 00:07:18,910
+thanks to our reference. So you can use either approach, either with React create ref which is the more
+
+86
+00:07:18,910 --> 00:07:24,890
+modern approach or by using that function form down there to get direct access to the element,
+
+87
+00:07:24,940 --> 00:07:30,010
+this is the older approach and therefore it also works in older versions of React and it's up to you
+
+88
+00:07:30,160 --> 00:07:35,200
+to use which version you want depending on which version, the version of React you're using, is allowing
+
+89
+00:07:35,200 --> 00:07:35,800
+you to use.

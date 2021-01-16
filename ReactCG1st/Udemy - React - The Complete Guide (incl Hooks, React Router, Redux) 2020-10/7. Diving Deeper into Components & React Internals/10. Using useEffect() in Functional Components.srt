@@ -1,0 +1,167 @@
+1
+00:00:02,480 --> 00:00:04,250
+Let's have a look at our cockpit component,
+
+2
+00:00:04,250 --> 00:00:06,270
+this is a functional component still
+
+3
+00:00:06,290 --> 00:00:09,530
+and therefore in here, we can use React hooks
+
+4
+00:00:09,710 --> 00:00:14,830
+if we're using the right React version that actually supports React hooks of course.
+
+5
+00:00:14,960 --> 00:00:21,140
+Now in here, we can't add componentDidMount or anything like that but we can of course manage state
+
+6
+00:00:21,140 --> 00:00:21,660
+with useState,
+
+7
+00:00:21,690 --> 00:00:23,530
+though that doesn't help us
+
+8
+00:00:23,870 --> 00:00:31,410
+but what we can use is another hook. We have to import it from React and it's called useEffect. useEffect
+
+9
+00:00:31,500 --> 00:00:38,510
+is the second most important React hook you can use next to useState because useEffect and now
+
+10
+00:00:38,510 --> 00:00:44,900
+that sounds strange but useEffect basically combines the functionality or the use cases you can cover
+
+11
+00:00:45,080 --> 00:00:51,740
+of all these class-based lifecycle hooks in one React hook here and both is called hook,
+
+12
+00:00:51,770 --> 00:00:53,210
+it's actually not related.
+
+13
+00:00:53,210 --> 00:00:54,630
+This is not a lifecycle hook,
+
+14
+00:00:54,650 --> 00:00:55,650
+this is a React hook
+
+15
+00:00:55,850 --> 00:01:00,660
+so basically a function you can add into one of your functional components.
+
+16
+00:01:00,670 --> 00:01:02,290
+Now how does it work?
+
+17
+00:01:02,320 --> 00:01:11,230
+You can add it anywhere here in your functional component body and useEffect as a default takes a function
+
+18
+00:01:11,710 --> 00:01:14,680
+that will run for every render cycle.
+
+19
+00:01:14,680 --> 00:01:28,980
+So here I will add console log and output cockpit.js useEffect, like this. If we save that and
+
+20
+00:01:28,990 --> 00:01:31,950
+I reload, we see cockpit.js useEffect already,
+
+21
+00:01:31,960 --> 00:01:37,030
+so this function I passed to useEffect and that's important, you pass in a function here which doesn't
+
+22
+00:01:37,030 --> 00:01:42,670
+take any arguments but it has to be a function, you pass a function to useEffect and this will execute
+
+23
+00:01:42,670 --> 00:01:49,960
+for every render cycle of the cockpit. If I now click here, we see it again because we changed something
+
+24
+00:01:49,960 --> 00:01:58,510
+here and that re-rendered that cockpit. If I now type something here, we see useEffect again. Of course
+
+25
+00:01:58,510 --> 00:02:03,790
+nothing changed in the cockpit if I type here but because we haven't added any performance optimizations
+
+26
+00:02:03,790 --> 00:02:10,270
+thus far, React will basically re-render app.js when we type because in app.js, we manage the state
+
+27
+00:02:10,270 --> 00:02:16,720
+of the persons and that state changes when we type and therefore it calls the render method of app.js
+
+28
+00:02:16,720 --> 00:02:23,590
+and in there, we of course include our cockpit and so the cockpit gets re-rendered too. As always when
+
+29
+00:02:23,590 --> 00:02:29,920
+I say re-rendered, I don't mean in the real DOM as you will learn but in that virtual DOM, React will
+
+30
+00:02:29,920 --> 00:02:35,440
+check if it needs to touch the real DOM. We can prevent this and we'll do so later but for now, it is
+
+31
+00:02:35,440 --> 00:02:42,730
+what it is. So useEffect runs here, it runs for every update and this means we can already use it for
+
+32
+00:02:42,730 --> 00:02:48,280
+all the things we would have done in componentDidUupdate and indeed that is OK. If you need to send
+
+33
+00:02:48,280 --> 00:02:55,230
+an HTTP request or anything like that in here, you can do that. It also obviously runs when the
+
+34
+00:02:55,230 --> 00:02:56,670
+component is created, right
+
+35
+00:02:56,760 --> 00:03:03,780
+because if I quickly save this and I reload my app and therefore the cockpit is created, it is up here,
+
+36
+00:03:04,110 --> 00:03:10,740
+it executed because it executes for every render cycle and that includes the first one. So it is
+
+37
+00:03:10,740 --> 00:03:14,830
+componentDidMount and componentDidUpdate combined in one effect.
+
+38
+00:03:15,180 --> 00:03:21,510
+Now some hooks like getDerivedStateFromProps is not included in here but you also don't
+
+39
+00:03:21,510 --> 00:03:27,510
+really need it because if you have props here and you want to base your state on that, well then you
+
+40
+00:03:27,510 --> 00:03:33,180
+can useState and pass some data from your props as an initial state into this, right?
+
+41
+00:03:33,210 --> 00:03:40,620
+So you have that built into this because it is a functional component per definition. useEffect is
+
+42
+00:03:40,620 --> 00:03:44,400
+for the other, more important and useful lifecycle hooks I'd say.

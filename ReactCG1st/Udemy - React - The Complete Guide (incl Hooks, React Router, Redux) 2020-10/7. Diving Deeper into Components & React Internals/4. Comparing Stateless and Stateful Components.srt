@@ -1,0 +1,159 @@
+1
+00:00:02,370 --> 00:00:06,280
+So now that we optimize our little demo application here,
+
+2
+00:00:06,330 --> 00:00:12,890
+let me dive into that stateless versus stateful or presentational versus container component
+
+3
+00:00:12,900 --> 00:00:18,900
+thing again because that is really important to understand when working with React because you'll hear
+
+4
+00:00:18,900 --> 00:00:19,900
+it a lot.
+
+5
+00:00:20,040 --> 00:00:24,300
+Now we're referring to stateful components when we're managing state in them, like we're doing in
+
+6
+00:00:24,300 --> 00:00:29,520
+the app.js. We got state here and we're calling set state to change that state.
+
+7
+00:00:29,520 --> 00:00:35,280
+Now a functional component that manages its own state with the useState would of course also be a
+
+8
+00:00:35,280 --> 00:00:40,590
+stateful component, so stateful does not automatically mean class-based component,
+
+9
+00:00:40,740 --> 00:00:46,800
+though historically this has been the case because React hooks like useState are a really new feature
+
+10
+00:00:47,040 --> 00:00:52,530
+and therefore, you will still find plenty of applications where state is only managed in class-based
+
+11
+00:00:52,530 --> 00:00:53,100
+components.
+
+12
+00:00:53,190 --> 00:00:59,460
+Still since React 16.8, stateful is not automatically a class-based component. It is a component
+
+13
+00:00:59,490 --> 00:01:07,500
+that manages state, he that with state in a class or with the useState hook. Presentational, also called
+
+14
+00:01:07,530 --> 00:01:14,640
+dumb or stateless components historically have always been functional components because prior to React
+
+15
+00:01:14,640 --> 00:01:20,820
+16.8, these functional components could not manage state. Since React 16.8, functional
+
+16
+00:01:20,820 --> 00:01:27,810
+components can also manage state with the useState hook but still, you want to have many presentational
+
+17
+00:01:27,810 --> 00:01:33,420
+components in your app and now what is a presentational component? It is a functional component that
+
+18
+00:01:33,420 --> 00:01:42,390
+does not manage state. Even though you could with useState, it is still a good practice to restrict yourself
+
+19
+00:01:42,390 --> 00:01:49,020
+to a couple of components that are involved in the state management and of course, a couple depends on
+
+20
+00:01:49,020 --> 00:01:55,440
+how big your app is, in big apps that can easily be hundreds of components but the majority of your components
+
+21
+00:01:55,590 --> 00:02:01,910
+should be presentational, stateless components, so functional components that don't manage state. Now
+
+22
+00:02:01,920 --> 00:02:09,300
+the question of course is why and the answer is by splitting your app into container components which
+
+23
+00:02:09,300 --> 00:02:16,050
+is another term for these components that manage the state in your app and the dumb presentational components,
+
+24
+00:02:16,320 --> 00:02:22,890
+by making that split, you keep your app manageable because you have a predictable flow of data, you know
+
+25
+00:02:22,890 --> 00:02:28,470
+where your state changes, that will be in a couple of components and the other components are only there
+
+26
+00:02:28,470 --> 00:02:35,130
+to render a nice user interface and they only define on external inputs, on props and that simply ensures
+
+27
+00:02:35,130 --> 00:02:40,770
+that these components are highly predictable, that you can throw them anywhere into your application
+
+28
+00:02:40,770 --> 00:02:46,410
+and they work if you pass the right inputs in and as your application grows, you therefore have an easier
+
+29
+00:02:46,410 --> 00:02:47,850
+time maintaining it.
+
+30
+00:02:47,880 --> 00:02:53,530
+So having a lot of dumb or presentational components is a good idea.
+
+31
+00:02:53,730 --> 00:02:58,610
+Now of course, you definitely should not restrict yourself to one component only that does state management
+
+32
+00:02:58,650 --> 00:03:03,900
+though. The more you work with React, the more you'll get a feeling for which component now should manage
+
+33
+00:03:03,900 --> 00:03:09,900
+some state so that its child components get the right inputs and which components would better be just
+
+34
+00:03:09,900 --> 00:03:16,680
+presentational components but again as a rule, certainly think before you start managing state in a
+
+35
+00:03:16,680 --> 00:03:22,220
+component, maybe you can do it in another component and keep that component you're working on a presentational
+
+36
+00:03:22,230 --> 00:03:29,280
+one. So that is how you should think about stateful and stateless or container and dumb or presentational
+
+37
+00:03:29,280 --> 00:03:30,240
+components.
+
+38
+00:03:30,570 --> 00:03:35,670
+We also of course have class-based and functional components and in the past, the difference was very easy.
+
+39
+00:03:35,790 --> 00:03:41,610
+Class-based components could manage state, functional components couldn't, since React 16, that changed.
+
+40
+00:03:41,610 --> 00:03:43,890
+So what's the difference now, when should you use which?

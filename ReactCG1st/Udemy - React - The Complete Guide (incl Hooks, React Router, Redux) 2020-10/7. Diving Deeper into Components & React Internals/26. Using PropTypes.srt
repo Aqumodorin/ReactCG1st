@@ -1,0 +1,331 @@
+1
+00:00:02,260 --> 00:00:04,990
+Now that we know how to update the state correctly,
+
+2
+00:00:04,990 --> 00:00:11,740
+let me also explore how you can improve the way you're receiving props. And for that, let's have a look at our
+
+3
+00:00:11,740 --> 00:00:13,470
+person component.
+
+4
+00:00:13,690 --> 00:00:16,080
+There we're using a couple of props, 
+
+5
+00:00:16,120 --> 00:00:23,140
+we have the name property, we have the age property, children is a special prop and then we have changed
+
+6
+00:00:23,380 --> 00:00:24,240
+as well.
+
+7
+00:00:24,490 --> 00:00:31,570
+Now nothing wrong with the way we're setting this up here but you can actually improve this to be more
+
+8
+00:00:31,570 --> 00:00:39,390
+clear about which props your component uses and to also throw an error or a warning if you try to pass
+
+9
+00:00:39,400 --> 00:00:41,230
+in incorrect props.
+
+10
+00:00:41,230 --> 00:00:46,360
+Now if you are working on your own application and you're working alone, that is not really that important
+
+11
+00:00:46,360 --> 00:00:53,260
+because you obviously know which props your components take but if you're building a library that you
+
+12
+00:00:53,260 --> 00:01:00,280
+want to distribute to other people, let's say via npm or you're working in a bigger team, then you might
+
+13
+00:01:00,280 --> 00:01:06,850
+have scenarios where people start using your component incorrectly because they don't know that age
+
+14
+00:01:06,970 --> 00:01:07,970
+should be a number,
+
+15
+00:01:07,990 --> 00:01:13,180
+maybe they try to pass in a string, wouldn't matter too much here but let's say you're using it in a
+
+16
+00:01:13,180 --> 00:01:15,550
+calculation, then it might matter
+
+17
+00:01:15,790 --> 00:01:22,780
+or they try to set a hobby on that user even though there is no way to work with a hobby prop because
+
+18
+00:01:22,780 --> 00:01:30,100
+you're not needing it. So it can help if you provide some instructions on which props these components
+
+19
+00:01:30,100 --> 00:01:35,310
+accepts and which type of prop each prop should be,
+
+20
+00:01:35,310 --> 00:01:43,040
+so that name should be a string and age maybe should be a number or whatever you need. And you can do
+
+21
+00:01:43,040 --> 00:01:51,170
+this by importing or by installing an extra package, you do this with npm install --save and
+
+22
+00:01:51,170 --> 00:01:59,140
+then the name of the package is prop-types. That is provided by the React community or by the official
+
+23
+00:01:59,140 --> 00:02:00,920
+React team actually
+
+24
+00:02:01,090 --> 00:02:07,120
+and it's not built into React core but it is part of React so to say, it's just an extra installation
+
+25
+00:02:07,120 --> 00:02:13,780
+away because it's optional to use. So let's wait for this to finish and here it did finish successfully
+
+26
+00:02:13,780 --> 00:02:16,040
+in the end and now in the places,
+
+27
+00:02:16,040 --> 00:02:24,650
+so in the component where you want to add some prop types annotations, you simply import prop types, recommended
+
+28
+00:02:24,650 --> 00:02:34,070
+with an uppercase starting character but not strictly required, from prop-types. With that added,
+
+29
+00:02:34,670 --> 00:02:36,290
+on your component
+
+30
+00:02:36,290 --> 00:02:44,060
+you can add an extra property and now this works in both functional and class-based components. After your
+
+31
+00:02:44,060 --> 00:02:45,470
+component definition,
+
+32
+00:02:45,470 --> 00:02:51,800
+so either here after your class definition or on a functional component, after setting up the function
+
+33
+00:02:51,800 --> 00:02:56,340
+and storing it in a constant, you access your component, so here
+
+34
+00:02:56,340 --> 00:03:02,480
+person or if that were a functional component, we would probably have written it with a lowercase p,
+
+35
+00:03:02,510 --> 00:03:11,430
+so here uppercase, Person and you add a new property here by adding a dot and then prop types, like
+
+36
+00:03:11,430 --> 00:03:12,800
+this with a lowercase p,
+
+37
+00:03:12,800 --> 00:03:14,450
+that's important here.
+
+38
+00:03:14,460 --> 00:03:20,730
+This should now be a Javascript object and prop types is a special property which you add to any Javascript
+
+39
+00:03:20,760 --> 00:03:28,590
+object or any Javascript component object, I should say, that React will watch out for in development
+
+40
+00:03:28,590 --> 00:03:34,500
+mode and give you a warning if you then pass in incorrect props. Because in here, in this object, you now
+
+41
+00:03:34,500 --> 00:03:40,610
+define which props this component uses and which type of data each component should be of.
+
+42
+00:03:40,620 --> 00:03:46,920
+So here, you simply set up key-value pairs where the keys are your prop names, like for example click
+
+43
+00:03:47,650 --> 00:03:53,060
+and you then add click here and now you define as a value which type of value should this be
+
+44
+00:03:53,150 --> 00:03:56,390
+and for that, you use the prop types thing here
+
+45
+00:03:56,490 --> 00:03:58,050
+you import up there.
+
+46
+00:03:58,050 --> 00:04:01,090
+So now we use prop types with a capital P
+
+47
+00:04:01,240 --> 00:04:07,440
+and now this provides us a couple of data types you can use and after this lecture, you'll find more
+
+48
+00:04:07,500 --> 00:04:09,830
+on the available data types.
+
+49
+00:04:09,870 --> 00:04:16,170
+So here, I'll use func which stands for function, which indicates that for click, I expect to get a
+
+50
+00:04:16,170 --> 00:04:22,280
+pointer at a function, not a string, not a number but a pointer at a function.
+
+51
+00:04:22,280 --> 00:04:25,370
+Now of course we're also working with name and age,
+
+52
+00:04:25,370 --> 00:04:32,420
+so let's add name and name is a string and there is a string prop type.
+
+53
+00:04:32,420 --> 00:04:34,600
+Now let's say age should be a number,
+
+54
+00:04:34,610 --> 00:04:40,970
+well there also is a number prop type and you'll basically find all the types of data you have in
+
+55
+00:04:40,970 --> 00:04:41,710
+Javascript,
+
+56
+00:04:41,780 --> 00:04:47,480
+you can even set up more advanced prop types like hey this should be a function that gets this and that
+
+57
+00:04:47,480 --> 00:04:49,910
+argument and returns something like this,
+
+58
+00:04:49,910 --> 00:04:57,410
+so you can get really advanced here. Now last but not least, we also have the changed prop here and this
+
+59
+00:04:57,410 --> 00:04:58,700
+should also be a function,
+
+60
+00:04:58,700 --> 00:05:00,900
+so again it's prop types
+
+61
+00:05:01,070 --> 00:05:06,710
+func. With that if you add it, you shouldn't see any difference in your application,
+
+62
+00:05:06,780 --> 00:05:08,720
+let me open the console here,
+
+63
+00:05:08,790 --> 00:05:10,370
+it should all work.
+
+64
+00:05:10,380 --> 00:05:18,480
+Let me now show you how to break it by going to app.js and there in the state which ultimately
+
+65
+00:05:18,480 --> 00:05:21,150
+is the data we pass into the person component,
+
+66
+00:05:21,150 --> 00:05:29,230
+let me switch that age of Max to a string. So it's still 28 but it's now a string not a number anymore
+
+67
+00:05:29,280 --> 00:05:37,100
+and remember that in the person component, I did set up that age should be a number. Now in our app
+
+68
+00:05:37,300 --> 00:05:44,500
+if I toggle persons, I actually get a warning that I do pass the invalid prop age of type string where
+
+69
+00:05:44,530 --> 00:05:45,580
+it expected a number.
+
+70
+00:05:45,580 --> 00:05:46,850
+So this is pretty clear
+
+71
+00:05:46,930 --> 00:05:53,110
+and as I mentioned, this is especially helpful in scenarios where you distribute your components as a
+
+72
+00:05:53,110 --> 00:05:59,260
+package to other developers or where you're working in a bigger team because if someone uses your component
+
+73
+00:05:59,260 --> 00:06:04,730
+incorrectly, during development, they will get such a warning and then they can fix their error.
+
+74
+00:06:05,110 --> 00:06:10,180
+So here of course, I fix it by simply converting this back to a number.
+
+75
+00:06:10,180 --> 00:06:12,310
+These are prop types,
+
+76
+00:06:12,310 --> 00:06:16,060
+now should you use prop types on every component then?
+
+77
+00:06:16,510 --> 00:06:18,310
+That is of course up to you.
+
+78
+00:06:18,310 --> 00:06:20,560
+I'll not do it here in this course
+
+79
+00:06:20,560 --> 00:06:26,170
+but of course I wanted to introduce prop types so that you are aware of them and feel free to use them
+
+80
+00:06:26,470 --> 00:06:33,190
+on any component you have or on your most important components and definitely consider using them if
+
+81
+00:06:33,190 --> 00:06:39,550
+you are building a component library which you want to share with other developers. So consider using them
+
+82
+00:06:39,730 --> 00:06:46,000
+whenever you have scenarios where other people are using your components and it might not be super
+
+83
+00:06:46,000 --> 00:06:51,490
+clear which props your components take and which type of data goes into which prop.

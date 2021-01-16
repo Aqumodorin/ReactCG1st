@@ -1,0 +1,219 @@
+1
+00:00:02,110 --> 00:00:03,200
+How does React
+
+2
+00:00:03,220 --> 00:00:06,190
+update the real DOM, the DOM in the browser
+
+3
+00:00:06,190 --> 00:00:13,960
+I mean with that. The render method being called does not immediately also render this to the real DOM.
+
+4
+00:00:13,960 --> 00:00:15,700
+The name can be misleading,
+
+5
+00:00:15,700 --> 00:00:18,760
+this does not mean that it renders it to the DOM.
+
+6
+00:00:18,760 --> 00:00:26,380
+Render is more a suggestion of what the HTML should look like in the end but render can very well
+
+7
+00:00:26,380 --> 00:00:33,580
+be called and lead to the same result as is already displayed and that is part of the reason why we
+
+8
+00:00:33,670 --> 00:00:39,050
+use shouldComponentUpdate to prevent unnecessary render calls.
+
+9
+00:00:39,070 --> 00:00:46,390
+But even if we don't catch an unnecessary render call, maybe a prop did change and still we would render
+
+10
+00:00:46,390 --> 00:00:49,600
+the same result for whatever reason,
+
+11
+00:00:49,600 --> 00:00:56,880
+even then this does not mean that it immediately hits the real DOM and starts re-rendering it, instead
+
+12
+00:00:57,370 --> 00:01:00,290
+it first of all does something else,
+
+13
+00:01:00,610 --> 00:01:03,580
+it compares virtual DOMs,
+
+14
+00:01:03,730 --> 00:01:11,920
+It has an old virtual DOM and a re-rendered or a future virtual DOM. React takes this virtual DOM
+
+15
+00:01:11,920 --> 00:01:14,730
+approach because it's faster than the real DOM.
+
+16
+00:01:14,890 --> 00:01:20,230
+Now a virtual DOM simply is a DOM representation in Javascript.
+
+17
+00:01:20,230 --> 00:01:29,050
+You can of course represent all HTML and therefore DOM elements and objects in pure Javascript, so
+
+18
+00:01:29,050 --> 00:01:31,690
+without rendering anything to the browser
+
+19
+00:01:31,990 --> 00:01:34,600
+and this is what happens here and React
+
+20
+00:01:34,600 --> 00:01:37,580
+basically keeps two copies of the DOM.
+
+21
+00:01:37,600 --> 00:01:43,780
+It has the old virtual DOM and then the re-rendered one, the re-rendered one is the one which gets created
+
+22
+00:01:43,810 --> 00:01:45,610
+when the render method is called.
+
+23
+00:01:45,640 --> 00:01:51,310
+Now as I mentioned though, re-rendering or calling render doesn't immediately update the real DOM, instead
+
+24
+00:01:51,310 --> 00:01:53,080
+React makes a comparison.
+
+25
+00:01:53,080 --> 00:01:58,650
+It compares the old virtual DOM to the new one and it checks if there are any differences.
+
+26
+00:01:58,960 --> 00:02:06,250
+If it can detect differences, it reaches out to the real DOM and updates it and even then, it doesn't
+
+27
+00:02:06,250 --> 00:02:09,040
+re-render the real DOM entirely,
+
+28
+00:02:09,040 --> 00:02:13,490
+it only changes it in the places where differences were detected,
+
+29
+00:02:13,510 --> 00:02:20,020
+for example if a button text changed, it will only update that text and not re-render the whole button,
+
+30
+00:02:20,050 --> 00:02:22,140
+leave alone the whole DOM.
+
+31
+00:02:22,450 --> 00:02:28,870
+If no differences were found, then it doesn't touch the real DOM. Render did execute, the comparison
+
+32
+00:02:28,870 --> 00:02:33,780
+was made and that is why shouldComponentUpdate might make sense to prevent this
+
+33
+00:02:33,790 --> 00:02:38,830
+if it's not needed because this of course already also costs some resources but nonetheless the real
+
+34
+00:02:38,830 --> 00:02:39,930
+DOM is never touched,
+
+35
+00:02:39,940 --> 00:02:46,030
+you can rely on that. The real DOM will only be touched if there are real differences and this of course
+
+36
+00:02:46,030 --> 00:02:51,350
+is important because as you might know, accessing the DOM is really slow,
+
+37
+00:02:51,370 --> 00:02:58,600
+this is something you want to do as little as possible and hence, React has this virtual DOM idea, compares
+
+38
+00:02:58,600 --> 00:03:04,810
+the virtual DOM and make sure that the real DOM is only touched if needed.
+
+39
+00:03:04,810 --> 00:03:10,330
+This is what happens behind the scenes and this is what we can see in our application too. Back in this
+
+40
+00:03:10,330 --> 00:03:11,790
+application,
+
+41
+00:03:11,800 --> 00:03:19,830
+we of course have all our checks in place now with shouldComponentUpdate but what we can still see
+
+42
+00:03:19,830 --> 00:03:25,120
+is that if we inspect anything here and I click toggle persons,
+
+43
+00:03:25,290 --> 00:03:26,980
+clearly these divs were added,
+
+44
+00:03:27,030 --> 00:03:35,670
+you saw them flash but if you watch closely the button and the cockpit div, if I click here, this never
+
+45
+00:03:35,670 --> 00:03:38,710
+flashes because it's not re-rendered.
+
+46
+00:03:38,730 --> 00:03:39,960
+This is what I meant,
+
+47
+00:03:40,020 --> 00:03:46,800
+it doesn't really change. Yes the button styling changed but the part above the button, like this paragraph
+
+48
+00:03:46,800 --> 00:03:51,800
+here, you see the class of the button changed but the paragraph and the h1 tag on the right,
+
+49
+00:03:51,990 --> 00:03:58,890
+these never flash because they never changed, so they aren't re-rendered, they aren't untouched by React at all.
+
+50
+00:03:59,040 --> 00:04:00,570
+This is what I mean.
+
+51
+00:04:00,570 --> 00:04:04,340
+The render method for the cockpit was executed,
+
+52
+00:04:04,440 --> 00:04:07,220
+otherwise the button class wouldn't be updated
+
+53
+00:04:07,440 --> 00:04:13,640
+but still, this didn't re-render everything. It did do so in the future virtual DOM but it didn't
+
+54
+00:04:13,650 --> 00:04:21,360
+do so in the actual DOM because React compared the future virtual DOM to the old one and only
+
+55
+00:04:21,360 --> 00:04:24,930
+touched the real DOM in the places where differences were found.

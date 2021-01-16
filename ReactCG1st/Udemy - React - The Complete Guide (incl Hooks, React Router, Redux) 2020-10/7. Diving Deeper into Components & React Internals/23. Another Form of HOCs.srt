@@ -1,0 +1,287 @@
+1
+00:00:02,230 --> 00:00:09,220
+The withClass component here is a higher order component but actually this way of creating it is just
+
+2
+00:00:09,220 --> 00:00:12,640
+one of two ways of creating higher order components,
+
+3
+00:00:12,640 --> 00:00:15,750
+so let me show you that other way as well.
+
+4
+00:00:15,910 --> 00:00:22,450
+The other way does not work by returning a functional component here but instead by using a regular
+
+5
+00:00:22,510 --> 00:00:29,650
+Javascript function where the first argument will actually be our wrapped component and you can name
+
+6
+00:00:29,650 --> 00:00:34,600
+this whatever you want but it must start with a capital character because this will actually be a reference
+
+7
+00:00:34,600 --> 00:00:36,020
+to a component
+
+8
+00:00:36,340 --> 00:00:40,410
+and the second argument then is something that you need in your higher order component
+
+9
+00:00:40,420 --> 00:00:45,730
+and of course that depends on which kind of higher order component you're creating and what your idea
+
+10
+00:00:45,760 --> 00:00:48,610
+behind the higher order component could be.
+
+11
+00:00:48,610 --> 00:00:56,020
+Here, it will be my class name but you can use whatever you want here as an argument and again, that really
+
+12
+00:00:56,020 --> 00:01:00,490
+is very specific to why you are creating a higher order component.
+
+13
+00:01:00,490 --> 00:01:06,970
+This higher order component has the purpose of adding a div with a certain CSS class around any element
+
+14
+00:01:07,240 --> 00:01:11,180
+and therefore, getting that class name that should be added makes a lot of sense,
+
+15
+00:01:11,200 --> 00:01:16,210
+of course you can also accept as many arguments as you want based on what your higher order component
+
+16
+00:01:16,210 --> 00:01:18,030
+does.
+
+17
+00:01:18,060 --> 00:01:19,410
+So now here
+
+18
+00:01:19,410 --> 00:01:25,460
+I get this wrapped component and I get this class name. In my higher order component,
+
+19
+00:01:25,460 --> 00:01:32,320
+I then will actually return a function body in which I'll return a functional component.
+
+20
+00:01:32,370 --> 00:01:33,820
+OK so now that is really strange,
+
+21
+00:01:33,820 --> 00:01:39,400
+we have a function and that is a normal Javascript function, not a component function because we're not
+
+22
+00:01:39,400 --> 00:01:45,910
+getting props here and we're not returning JSX but instead I'm returning yet another function definition
+
+23
+00:01:46,150 --> 00:01:50,890
+and that is now the function definition of a component function.
+
+24
+00:01:51,310 --> 00:01:54,660
+So here I'm getting props and I'm returning JSX,
+
+25
+00:01:54,660 --> 00:01:55,950
+not yet but soon,
+
+26
+00:01:56,080 --> 00:02:01,630
+this here is a functional component. So in the end, I have a function that returns a function and the
+
+27
+00:02:01,630 --> 00:02:06,220
+function that I return is a functional component. In that functional component,
+
+28
+00:02:06,220 --> 00:02:15,160
+I'll then add that div where I set class name equal to class name and the class name here refers to
+
+29
+00:02:15,160 --> 00:02:24,460
+this argument class name I'm getting. Now inside of that div, I then output my wrapped component and that's
+
+30
+00:02:24,460 --> 00:02:30,610
+why we needed to have a capital W here because this first argument I'm getting, that is expected to be
+
+31
+00:02:30,610 --> 00:02:36,520
+a component and that should of course therefore first start with a capital character so that in our JSX
+
+32
+00:02:36,520 --> 00:02:39,670
+code, we can use it as a component.
+
+33
+00:02:39,670 --> 00:02:43,390
+So now here I have a function that returns a functional component,
+
+34
+00:02:43,390 --> 00:02:47,100
+how do we use this kind of higher order component?
+
+35
+00:02:47,170 --> 00:02:52,810
+We don't use it as we do before by wrapping our component with it,
+
+36
+00:02:53,140 --> 00:03:00,760
+instead here, we don't wrap this and therefore here I will actually use that aux component now because
+
+37
+00:03:00,760 --> 00:03:06,590
+we don't have a root level element but we have adjacent elements, we need that aux component
+
+38
+00:03:06,820 --> 00:03:09,040
+and for this, we need to import this,
+
+39
+00:03:09,160 --> 00:03:14,110
+so let's import aux from hoc aux.
+
+40
+00:03:14,330 --> 00:03:17,390
+Now that has nothing to do with our new withClass component.
+
+41
+00:03:17,390 --> 00:03:23,560
+There however, I can already change the name because now I'll import that with a lowercase character.
+
+42
+00:03:23,590 --> 00:03:24,410
+Why?
+
+43
+00:03:24,610 --> 00:03:29,380
+Because we'll not use this as a component anymore because well, it isn't a component anymore,
+
+44
+00:03:29,380 --> 00:03:36,160
+it's a normal function, a function that returns a component function but not a component itself.
+
+45
+00:03:36,160 --> 00:03:41,710
+I will also rename the class name here to have a lowercase character to make this really clear that
+
+46
+00:03:41,710 --> 00:03:48,970
+in this file, I have no functional component, that I have a normal function in there instead. And now in
+
+47
+00:03:48,970 --> 00:03:54,610
+app.js, I of course need to adjust my import here too to import from withClass with the lowercase
+
+48
+00:03:54,610 --> 00:04:00,750
+W and then I use withClass here or I get it here, and now how do I use it?
+
+49
+00:04:00,760 --> 00:04:07,300
+Well you don't use it here in your JSX code, instead here where you export your entire app component,
+
+50
+00:04:07,690 --> 00:04:12,050
+I now call withClass and now remember that to withClass,
+
+51
+00:04:12,160 --> 00:04:14,980
+the first argument was the component you want to wrap.
+
+52
+00:04:14,980 --> 00:04:18,260
+So my first argument will be the app component here.
+
+53
+00:04:18,310 --> 00:04:20,590
+The second argument then is the class name,
+
+54
+00:04:20,590 --> 00:04:26,750
+so here that will be classes.app, classes referring to our CS modules classes.
+
+55
+00:04:26,750 --> 00:04:29,780
+And with that saved, as this reloads,
+
+56
+00:04:29,830 --> 00:04:36,280
+we still have that centered style and everything but now we're using that alternative way of using a
+
+57
+00:04:36,910 --> 00:04:41,990
+higher order component and that of course leads to the question, which approach should you use
+
+58
+00:04:42,010 --> 00:04:44,350
+and the answer is it depends.
+
+59
+00:04:44,350 --> 00:04:50,980
+There are higher order components, like this one actually would be that mostly change the HTML code
+
+60
+00:04:51,220 --> 00:04:58,480
+or change some styling and I would argue that those best go into your JSX code as a wrapping component,
+
+61
+00:04:58,480 --> 00:05:00,260
+so what we had before.
+
+62
+00:05:00,460 --> 00:05:06,910
+There are other higher order components that add some behind the scenes logic, some Javascript code that
+
+63
+00:05:06,910 --> 00:05:11,040
+handles errors or sends analytics data or anything like that.
+
+64
+00:05:11,290 --> 00:05:17,830
+Such higher order components maybe should be used or should be written in this style here to really
+
+65
+00:05:17,830 --> 00:05:23,290
+make it clear that they're not so much involved in the JSX code that gets rendered but in the logic
+
+66
+00:05:23,290 --> 00:05:24,100
+that runs
+
+67
+00:05:24,100 --> 00:05:29,890
+but as you see at this example, you can ultimately write any higher order component in any way.
+
+68
+00:05:29,890 --> 00:05:33,850
+This is a semantical thing that ultimately is up to you.
+
+69
+00:05:33,850 --> 00:05:39,670
+Now throughout this course, we will see multiple higher order components, not all written by us but also
+
+70
+00:05:39,670 --> 00:05:43,240
+some introduced by third-party packages we'll be using
+
+71
+00:05:43,240 --> 00:05:48,670
+and when you see them, remember what they do behind the scenes, they add something extra to the component.
+
+72
+00:05:48,910 --> 00:05:53,650
+That could be styles, that could be HTML code or that could be some extra Javascript logic.

@@ -1,0 +1,67 @@
+1
+00:00:02,250 --> 00:00:09,090
+So we had a look at that aux component and we'll use that aux component as a wrapper in cases where I want
+
+2
+00:00:09,090 --> 00:00:14,190
+to have adjacent elements without an extra DOM element being rendered to the real DOM,
+
+3
+00:00:14,220 --> 00:00:19,480
+so without an extra HTML element like a div being rendered. We'll use that aux component throughout this course
+
+4
+00:00:19,500 --> 00:00:21,660
+and throughout the course project.
+
+5
+00:00:21,660 --> 00:00:29,490
+Now since React 16.2, there is a built-in aux component, built into React so to say and whenever I
+
+6
+00:00:29,490 --> 00:00:33,390
+use aux and this custom built higher order component,
+
+7
+00:00:33,390 --> 00:00:36,840
+you can also use that built-in aux component.
+
+8
+00:00:36,870 --> 00:00:43,350
+It's not named aux though for auxilliary, instead React ships with a component that you access on the React
+
+9
+00:00:43,620 --> 00:00:51,020
+and then .fragment. Might look strange at first but this is also a valid JSX syntax here, a valid component.
+
+10
+00:00:51,180 --> 00:00:57,000
+So on the React package, there is this fragment and if you don't like that dot notation here, you can
+
+11
+00:00:57,000 --> 00:01:02,760
+also simply import fragment from React like this, just as we're importing the component here and then
+
+12
+00:01:02,760 --> 00:01:09,150
+you can just use fragment here and the fragment does exactly the same thing as our aux component does,
+
+13
+00:01:09,330 --> 00:01:12,180
+so under the hood, it looks exactly the same.
+
+14
+00:01:12,270 --> 00:01:15,640
+Therefore it's still nice to learn how this works under the hood,
+
+15
+00:01:15,720 --> 00:01:21,420
+it works just like this. And I'll leave it up to you whether you want to use that fragment or aux. Since
+
+16
+00:01:21,420 --> 00:01:23,070
+we created the aux component,
+
+17
+00:01:23,160 --> 00:01:27,330
+I will revert this code to use aux but again, technically, they do the same.

@@ -1,0 +1,123 @@
+1
+00:00:02,840 --> 00:00:09,920
+Now with the React memo and shouldComponentUpdate, it would be kind of logical to basically add either
+
+2
+00:00:09,920 --> 00:00:12,400
+of the two to any component you're creating,
+
+3
+00:00:12,440 --> 00:00:17,840
+every functional component could be wrapped with React memo and every class-based component could implement
+
+4
+00:00:17,840 --> 00:00:19,020
+shouldComponentUpdate.
+
+5
+00:00:19,040 --> 00:00:20,780
+Is that wise?
+
+6
+00:00:20,780 --> 00:00:22,510
+Now this might sound like a good idea
+
+7
+00:00:22,550 --> 00:00:24,470
+but it actually isn't.
+
+8
+00:00:24,470 --> 00:00:31,100
+You will have components that will basically always update when their parent updates.
+
+9
+00:00:31,100 --> 00:00:37,040
+In such cases where you depend on some input from your parent component, that is about the only data
+
+10
+00:00:37,040 --> 00:00:40,910
+your parent component manages and therefore when your parent component updates,
+
+11
+00:00:40,970 --> 00:00:47,180
+you will also have to update because then that data changed. In such cases if you implement shouldComponentUpdate
+
+12
+00:00:47,180 --> 00:00:49,550
+or React memo,
+
+13
+00:00:49,550 --> 00:00:54,500
+then these functions will run and will check whether the input changed and they will find out
+
+14
+00:00:54,500 --> 00:00:59,580
+yes it changed like it always does and they will allow you to re-render.
+
+15
+00:00:59,750 --> 00:01:01,040
+So all good, right?
+
+16
+00:01:01,040 --> 00:01:06,170
+You didn't stop anything from happening. Well but you executed this unnecessary code.
+
+17
+00:01:06,170 --> 00:01:09,500
+This check here of course doesn't come for free.
+
+18
+00:01:09,530 --> 00:01:14,630
+It's not a super performance heavy check but still, it is code that executes
+
+19
+00:01:14,630 --> 00:01:20,630
+and if you wrap all your components with such checks and let's say 60% of your components actually
+
+20
+00:01:20,630 --> 00:01:23,660
+always need to update when their parent updates,
+
+21
+00:01:23,720 --> 00:01:28,970
+well if you then wrapped all your components with these extra checks, then you're running unnecessary
+
+22
+00:01:28,970 --> 00:01:35,390
+checks on 60% of your component codebase and that is not really something you want to do. So
+
+23
+00:01:35,390 --> 00:01:37,820
+you should evaluate this carefully,
+
+24
+00:01:38,060 --> 00:01:45,290
+is this component part of a parent component that could change related to something that does not affect
+
+25
+00:01:45,290 --> 00:01:51,710
+me at all, as it is the case here where the persons component is certainly not interested in changes
+
+26
+00:01:51,710 --> 00:01:53,230
+related to the cockpit,
+
+27
+00:01:53,240 --> 00:01:55,940
+well then you should implement your check here.
+
+28
+00:01:56,060 --> 00:02:03,680
+Otherwise if you're pretty sure that in all or almost all cases where your parent updates, you will need
+
+29
+00:02:03,680 --> 00:02:04,820
+to update too,
+
+30
+00:02:05,030 --> 00:02:11,150
+then you should not add shouldComponentUpdate or React memo because you will just execute some extra
+
+31
+00:02:11,150 --> 00:02:16,130
+logic that makes no sense and actually just slows down the application a tiny bit.

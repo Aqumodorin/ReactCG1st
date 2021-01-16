@@ -1,0 +1,83 @@
+1
+00:00:02,300 --> 00:00:08,940
+We had a look at the useEffect hook here and I just came up with one interesting change to it here actually.
+
+2
+00:00:09,170 --> 00:00:13,830
+Now we do have our app here that when it reloads, it gives us this alert, right.
+
+3
+00:00:14,150 --> 00:00:16,070
+Now what if I remove the cockpit,
+
+4
+00:00:16,220 --> 00:00:17,760
+the alert still shows.
+
+5
+00:00:17,870 --> 00:00:20,740
+Now I explained how we could do cleanup work here,
+
+6
+00:00:20,780 --> 00:00:22,270
+why don't we just do it?
+
+7
+00:00:22,280 --> 00:00:28,820
+We have that timer which I certainly want to remove if this cockpit component here unmounts and this
+
+8
+00:00:28,820 --> 00:00:30,650
+code here runs when it unmounts
+
+9
+00:00:30,650 --> 00:00:36,020
+because of that second argument where we have an empty array which ensures that this code executes only
+
+10
+00:00:36,020 --> 00:00:41,420
+when a component is mounted and rendered for the first time and when it then is unmounted.
+
+11
+00:00:41,540 --> 00:00:51,320
+So let's actually store our timer here in a constant, timer and let's clear this timeout when we
+
+12
+00:00:52,250 --> 00:00:53,000
+umount.
+
+13
+00:00:53,000 --> 00:00:56,800
+So here I can call clear timeout and pass timer,
+
+14
+00:00:56,840 --> 00:01:03,680
+so this constant here. And with that if I save this and this app reloads, now if I remove this, we never see
+
+15
+00:01:03,680 --> 00:01:09,990
+the alert because the timer never goes off because I clean it up when this cockpit is unmounted
+
+16
+00:01:10,070 --> 00:01:15,410
+and if I do that before the alert shows, so before the timer finished, then it's simply canceled
+
+17
+00:01:15,410 --> 00:01:18,360
+and of course if I don't do that, then we see the alert.
+
+18
+00:01:18,380 --> 00:01:24,290
+So that was just a tiny variation which I came up with after this initial recording which I of course
+
+19
+00:01:24,290 --> 00:01:25,730
+didn't want to hide from you.
+
+20
+00:01:25,910 --> 00:01:31,400
+Now I'll remove it here because I don't have it in the code for the next lectures but still, this is a great
+
+21
+00:01:31,400 --> 00:01:34,520
+example for how you can do cleanup work in useEffect.

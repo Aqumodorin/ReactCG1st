@@ -1,0 +1,279 @@
+1
+00:00:02,710 --> 00:00:08,290
+With class-based and functional components, it's important to understand which kind of component can
+
+2
+00:00:08,290 --> 00:00:13,180
+do what, what their history is and what their future is. So class-based components,
+
+3
+00:00:13,180 --> 00:00:17,050
+with that I simply mean components that extend that component object
+
+4
+00:00:17,050 --> 00:00:22,420
+we can import from the React package and functional components are simply these functions that take
+
+5
+00:00:22,420 --> 00:00:23,540
+props and return some
+
+6
+00:00:23,560 --> 00:00:27,100
+JSX code. Now these components do differ
+
+7
+00:00:27,130 --> 00:00:32,230
+when it comes to managing state and to something called lifecycle hooks which we haven't had a look
+
+8
+00:00:32,230 --> 00:00:38,410
+yet but which we'll dive into in this section. Class-based components can access state and they can change
+
+9
+00:00:38,410 --> 00:00:44,650
+it with set state and they also can use these lifecycle hooks as you will learn. Functional components,
+
+10
+00:00:44,740 --> 00:00:47,390
+there it's a bit tricky. In the past before React
+
+11
+00:00:47,390 --> 00:00:53,050
+hooks were introduced, they couldn't manage state but since React hooks were introduced, they can with
+
+12
+00:00:53,050 --> 00:00:54,730
+the useState hook.
+
+13
+00:00:54,730 --> 00:00:59,870
+So access to state is actually possible but lifecycle hooks are still not supported.
+
+14
+00:00:59,980 --> 00:01:05,530
+Functional components are way more powerful than they have been in the past though and the difference
+
+15
+00:01:05,530 --> 00:01:10,030
+between class-based components and functional components therefore is way less strong than it used to
+
+16
+00:01:10,030 --> 00:01:10,780
+be.
+
+17
+00:01:10,780 --> 00:01:15,790
+What's important to note though that not every React project you might be working on will use the latest
+
+18
+00:01:15,790 --> 00:01:20,620
+version of React and therefore, it's still important to be aware of the fact that historically, state
+
+19
+00:01:20,620 --> 00:01:25,390
+management could only be done in class-based components and therefore you had to transform your
+
+20
+00:01:25,390 --> 00:01:30,680
+components to class-based components if you wanted to access state. And actually in this course,
+
+21
+00:01:30,700 --> 00:01:37,750
+I will have that split where all components where I use state are class-based and only towards the end
+
+22
+00:01:37,750 --> 00:01:39,290
+or later down the course,
+
+23
+00:01:39,370 --> 00:01:45,700
+I will also show you how to convert the entire course project we'll build to a hooks-based approach simply
+
+24
+00:01:45,700 --> 00:01:52,570
+because majority of projects still use that class-based approach and I want you to learn both approaches.
+
+25
+00:01:52,570 --> 00:01:59,020
+Now regarding the way we access state and also props, it's important to know that in class-based components,
+
+26
+00:01:59,020 --> 00:02:06,610
+you need the this keyword because state and props are properties of the component class and we haven't
+
+27
+00:02:06,610 --> 00:02:12,640
+used this props yet, we'll do so in this video still but just keep that in mind, you need the this keyword
+
+28
+00:02:12,670 --> 00:02:13,460
+there.
+
+29
+00:02:13,570 --> 00:02:18,610
+In functional components, you get props as an argument and therefore you can just use it like this, like
+
+30
+00:02:18,610 --> 00:02:21,640
+a normal variable in your function.
+
+31
+00:02:21,640 --> 00:02:26,740
+So when should you use what? When you're using a version of React that doesn't support React hooks,
+
+32
+00:02:26,740 --> 00:02:33,080
+the answer is simple. When you're working with state or you need lifecycle hooks, use the class-based approach.
+
+33
+00:02:33,220 --> 00:02:36,580
+If you're in a project that uses React hooks, it's less simple.
+
+34
+00:02:36,580 --> 00:02:42,250
+You might want to use functional components only but as we'll doing this course, you can also still split
+
+35
+00:02:42,250 --> 00:02:47,110
+it to have a clear separation between components that are involved with state management and components
+
+36
+00:02:47,110 --> 00:02:53,000
+that aren't and as it's optimal to have as many presentational only components as possible,
+
+37
+00:02:53,050 --> 00:02:58,240
+this might make it easier for you to keep that separation between stateful and stateless components.
+
+38
+00:02:58,930 --> 00:03:04,510
+So use class by components if you need to manage state or access to lifecycle hooks and you don't want
+
+39
+00:03:04,540 --> 00:03:06,210
+or you can't use React hooks,
+
+40
+00:03:06,430 --> 00:03:08,680
+use functional components in all other cases.
+
+41
+00:03:08,740 --> 00:03:14,350
+So if you can use React hooks and you use the right versions of React and you want to use it, go functional
+
+42
+00:03:14,350 --> 00:03:18,910
+and do your state management in there and you will learn what replaces lifecycle hooks in this module
+
+43
+00:03:18,910 --> 00:03:19,690
+too.
+
+44
+00:03:19,870 --> 00:03:25,840
+If you are using an older version of React, then use functional components for all your presentational
+
+45
+00:03:25,840 --> 00:03:32,810
+components, so all the components that only get inputs, props and don't need to manage state. Now regarding
+
+46
+00:03:32,810 --> 00:03:35,450
+that the this state and the this props thing,
+
+47
+00:03:35,630 --> 00:03:38,710
+I haven't really shown you what I meant by that. Now
+
+48
+00:03:38,750 --> 00:03:46,070
+thus far we only access this state here in the app.js file, we access this state to pass our state to the
+
+49
+00:03:46,100 --> 00:03:48,350
+cockpit component for example.
+
+50
+00:03:48,560 --> 00:03:54,470
+Now the app.js file here simply doesn't receive any props or the app component doesn't receive any props
+
+51
+00:03:54,830 --> 00:03:57,940
+but we can change this. In our index.js file,
+
+52
+00:03:57,950 --> 00:04:02,690
+we can of course send a prop into our app component simply by setting it here,
+
+53
+00:04:02,720 --> 00:04:10,420
+for example our app title, our application title. That could be our person manager because we're clearly
+
+54
+00:04:10,420 --> 00:04:11,590
+managing some persons,
+
+55
+00:04:11,620 --> 00:04:16,210
+so I'm sending this string on the app title prop into my app component
+
+56
+00:04:16,210 --> 00:04:22,060
+and now if I want to use it in there, I need to use the this keyword. So in app.js, I could now use this
+
+57
+00:04:22,060 --> 00:04:23,570
+prop anywhere in here
+
+58
+00:04:23,680 --> 00:04:26,990
+but I actually want to forward it to the cockpit.
+
+59
+00:04:27,190 --> 00:04:31,530
+So there, I'll add a title prop and you could name this prop whatever you want
+
+60
+00:04:31,570 --> 00:04:37,430
+and if I now want to access the property of this app component, I do this on this props
+
+61
+00:04:37,540 --> 00:04:39,010
+and then there, it's app title,
+
+62
+00:04:39,010 --> 00:04:44,440
+that was the name of the prop I set in the index.js file and here I'm just passing that through to
+
+63
+00:04:44,440 --> 00:04:45,390
+the cockpit.
+
+64
+00:04:45,400 --> 00:04:51,310
+So in the cockpit if I go there, I will now have that new title property which I can use to output my
+
+65
+00:04:51,310 --> 00:04:52,460
+title down there,
+
+66
+00:04:52,480 --> 00:04:58,810
+so instead of Hi I'm a React app, I'll now output props.title and here it's just props.title
+
+67
+00:04:58,840 --> 00:05:04,240
+because this is not a class, therefore we don't need to use this to access the props.
+
+68
+00:05:04,240 --> 00:05:07,420
+It's important to keep that difference in mind as well.
+
+69
+00:05:07,420 --> 00:05:12,100
+With that, if we go back to our application, we see the person manager up there. The rest works as it did
+
+70
+00:05:12,190 --> 00:05:12,640
+before.

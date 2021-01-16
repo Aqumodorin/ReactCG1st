@@ -1,0 +1,427 @@
+1
+00:00:02,340 --> 00:00:07,110
+I will add a new folder and name it context and you can name it whatever you want,
+
+2
+00:00:07,110 --> 00:00:13,430
+that of course does not matter and in there, I'll an auth-context.js file. In here, 
+
+3
+00:00:13,440 --> 00:00:17,660
+I'll create a so-called context object and React gives us access to that,
+
+4
+00:00:17,670 --> 00:00:25,200
+so we need to import React from React and then I'll create my authContext here by calling React create
+
+5
+00:00:25,410 --> 00:00:32,050
+context and I'll export this authContext as a default for this file.
+
+6
+00:00:32,150 --> 00:00:38,090
+Now React create context actually allows us to initialize our context with a default value because what
+
+7
+00:00:38,090 --> 00:00:42,440
+the context in the end is is a globally available Javascript object
+
+8
+00:00:42,440 --> 00:00:46,070
+you could say, though globally available is not entirely correct,
+
+9
+00:00:46,100 --> 00:00:52,250
+you decide where it is available. But it is a Javascript object that can be passed between React components
+
+10
+00:00:52,460 --> 00:00:58,850
+without using props, behind the scenes so to say. So you can initialize as with any value you want,
+
+11
+00:00:58,850 --> 00:01:06,620
+for example here I'll set authenticated to false and I'll also add a login method here.
+
+12
+00:01:06,620 --> 00:01:12,200
+However this method will not do anything, it's an empty anonymous function and I'm adding this here because
+
+13
+00:01:12,500 --> 00:01:18,650
+if I initialize my default value with everything I want to be able to access on this context from different
+
+14
+00:01:18,650 --> 00:01:24,620
+components in my application, then I actually get better auto-completion from the IDE and that's the
+
+15
+00:01:24,620 --> 00:01:31,820
+only reason and I don't really care too much about that default value here otherwise because now that
+
+16
+00:01:31,820 --> 00:01:37,910
+authContext will be used in app.js and I will show you how to use it there and why doesn't matter what
+
+17
+00:01:37,910 --> 00:01:40,680
+you set as a default value. So in there,
+
+18
+00:01:40,680 --> 00:01:50,010
+let's import AuthContext with a capital A at the beginning from the context folder and there of course
+
+19
+00:01:50,020 --> 00:01:57,890
+the auth-context file. Now authContext can be used as a component and it should wrap and that's important,
+
+20
+00:01:58,130 --> 00:02:03,710
+it should wrap all the parts of your application that need access to this context.
+
+21
+00:02:03,770 --> 00:02:08,540
+In my case, that will be the cockpit component and the persons component which I'll output down there.
+
+22
+00:02:08,990 --> 00:02:12,640
+So this part here needs to be wrapped by my context,
+
+23
+00:02:12,710 --> 00:02:17,540
+this button doesn't really care and if I had other components being rendered in here and they don't
+
+24
+00:02:17,540 --> 00:02:22,220
+need authentication information, then they also don't need to be wrapped.
+
+25
+00:02:22,220 --> 00:02:29,420
+So down here, I will use my authContext which I imported now as a JSX element but not like this but
+
+26
+00:02:29,420 --> 00:02:33,200
+instead here, you can access with a .provider.
+
+27
+00:02:33,200 --> 00:02:37,520
+So this actually gives you a provider JSX component
+
+28
+00:02:37,520 --> 00:02:44,510
+on this authContext object and you wrap everything where you want to be able to access this context
+
+29
+00:02:44,510 --> 00:02:45,850
+later on.
+
+30
+00:02:45,860 --> 00:02:52,400
+So now inside of the cockpit and of persons, we'll be able to interact with our context and also in the
+
+31
+00:02:52,400 --> 00:02:57,620
+app.js file because here I'm setting up this provider component. Now the provider,
+
+32
+00:02:57,650 --> 00:03:03,590
+this component takes a value prop and this is why the default values here don't really matter,
+
+33
+00:03:03,590 --> 00:03:10,220
+the default value will apply when you don't set any other value. However in many use cases like this
+
+34
+00:03:10,220 --> 00:03:13,220
+one, you actually want to have a dynamic value,
+
+35
+00:03:13,310 --> 00:03:19,580
+the authentication status can change afterall and therefore, I'll manage the status here in app.js and
+
+36
+00:03:19,580 --> 00:03:29,180
+I pass my current state of the authentication status here to value. So value will be a Javascript object,
+
+37
+00:03:29,300 --> 00:03:35,840
+hence the double curly braces, outer curly braces are there to enter dynamic content, inner curly braces
+
+38
+00:03:35,840 --> 00:03:42,770
+construct Javascript object and there I'll have the exact same structure as here in the default context
+
+39
+00:03:42,800 --> 00:03:50,030
+object, so I'll have authenticated and login as keys and again, I did set it up here in my authContext
+
+40
+00:03:50,030 --> 00:03:54,820
+initialization because this now gives me better auto-completion in my IDE.
+
+41
+00:03:55,460 --> 00:04:01,850
+So in app.js, in this object here, we now have this authenticated key here and this should refer to this
+
+42
+00:04:01,910 --> 00:04:08,630
+state authenticated, so we'll still manage the authentication status in my state of this component because
+
+43
+00:04:08,630 --> 00:04:12,230
+one thing does not change when you use context,
+
+44
+00:04:12,230 --> 00:04:19,790
+React will re-render when state or props change. So only changing something in a context object would
+
+45
+00:04:19,790 --> 00:04:23,590
+not cause a re-render cycle and therefore this is not enough.
+
+46
+00:04:23,990 --> 00:04:30,550
+Hence I still manage my authentication status in the state of this component but I then also store
+
+47
+00:04:30,550 --> 00:04:37,790
+the current state in that authenticated prop of the object I am passing as a value to the authContext
+
+48
+00:04:38,150 --> 00:04:41,690
+and since this effectively is a prop of the authContext provider,
+
+49
+00:04:41,690 --> 00:04:45,880
+this will update whenever this state updates.
+
+50
+00:04:46,040 --> 00:04:52,190
+Now we also have the login key and that should point at my login handler,
+
+51
+00:04:52,190 --> 00:04:56,810
+so this just stores a reference to this login handler function.
+
+52
+00:04:56,810 --> 00:05:03,380
+Now this is in my context object that can now be accessed from cockpit and persons because they are
+
+53
+00:05:03,380 --> 00:05:12,910
+inside of the provider wrapper. So let's now access this inside of persons, how can we get access to our
+
+54
+00:05:13,000 --> 00:05:14,770
+authContext here?
+
+55
+00:05:14,770 --> 00:05:22,070
+First of all, we have to import it again. So I'll import AuthContext with a capital A from
+
+56
+00:05:22,120 --> 00:05:26,630
+and then you go up to the context folder and then authContext.
+
+57
+00:05:26,920 --> 00:05:33,610
+And now here we don't want to provide the context but we want to consume it and you do this by going
+
+58
+00:05:33,610 --> 00:05:39,760
+to the place where you return your JSX code, where you want to use that context and then you simply
+
+59
+00:05:40,180 --> 00:05:45,970
+use authContext.consumer as a JSX component
+
+60
+00:05:45,970 --> 00:05:52,720
+and this now wraps your other JSX code, since this is some Javascript expression, we need to wrap this
+
+61
+00:05:52,720 --> 00:05:55,030
+here with curly braces.
+
+62
+00:05:55,060 --> 00:06:02,110
+So now here, we have authContext.consumer but this is not yet the entirely correct syntax, authContext.consumer
+
+63
+00:06:02,110 --> 00:06:09,520
+does not take JSX code as a child, so as content between the opening and closing tag but
+
+64
+00:06:09,520 --> 00:06:14,150
+instead this takes a function as a child between the opening and closing tag.
+
+65
+00:06:14,170 --> 00:06:20,860
+So here, I actually will pass in a function which will eventually return my JSX code and this function
+
+66
+00:06:21,010 --> 00:06:29,360
+which will be executed for us by the authContext.consumer or by the React context API, this function will
+
+67
+00:06:29,380 --> 00:06:30,970
+get our context object,
+
+68
+00:06:31,000 --> 00:06:36,400
+so this is how we get access to that context object here in the place where we consume it. We provide
+
+69
+00:06:36,400 --> 00:06:43,600
+a function that accepts context as an argument, we'll get that argument by the authContext here, React
+
+70
+00:06:43,630 --> 00:06:49,450
+executes this function for us and then in this JSX code which we return here and which will be rendered
+
+71
+00:06:49,450 --> 00:06:56,980
+in the end, we have access to that context object and therefore now, we could forward this to isAuth. But
+
+72
+00:06:56,980 --> 00:06:58,920
+of course, that was not the idea here, right?
+
+73
+00:06:58,930 --> 00:07:04,630
+We wanted to use the authContext in person not in persons, we wanted to skip that extra cycle where
+
+74
+00:07:04,630 --> 00:07:07,630
+we have to forward something which we don't need in this component.
+
+75
+00:07:08,230 --> 00:07:11,020
+So let's actually not consume authContext in here,
+
+76
+00:07:11,020 --> 00:07:16,990
+let's remove that instead and let's also remove the isAuth prop we're forwarding and let's remove
+
+77
+00:07:17,020 --> 00:07:21,910
+the authContext import. We wanted to use authContext in the person component, 
+
+78
+00:07:21,970 --> 00:07:24,640
+so here is the place where we should import it.
+
+79
+00:07:24,640 --> 00:07:33,650
+So import authContext from and now go all the way up to the context folder and import authContext
+
+80
+00:07:33,910 --> 00:07:41,290
+and now here I want to set up my consumer in the place where I want to access that context data
+
+81
+00:07:41,350 --> 00:07:44,100
+and for me, that is this single line here
+
+82
+00:07:44,110 --> 00:07:49,080
+and if you needed it in other places, you would wrap everything with that consumer where you need it.
+
+83
+00:07:49,090 --> 00:07:51,330
+So here I'll use my consumer
+
+84
+00:07:51,330 --> 00:07:57,700
+and as you learned, in there you get a function which gets context as an argument and then you have to
+
+85
+00:07:57,700 --> 00:08:00,720
+return the JSX code you eventually want to return,
+
+86
+00:08:00,730 --> 00:08:06,270
+so here I will grab this check here where I render a paragraph
+
+87
+00:08:06,580 --> 00:08:09,300
+and now, I could use my context here,
+
+88
+00:08:09,460 --> 00:08:12,820
+so I now use context authenticated.
+
+89
+00:08:15,860 --> 00:08:23,660
+With that, we're consuming our context in the person component to output the right data but we're not using
+
+90
+00:08:23,660 --> 00:08:26,930
+it for making this login button work.
+
+91
+00:08:26,930 --> 00:08:32,990
+So let's go back to the cockpit component now where we have that login button and let's consume context
+
+92
+00:08:32,990 --> 00:08:34,500
+here as well.
+
+93
+00:08:34,550 --> 00:08:47,580
+So first of all, let's import authContext from context, authContext and then let's consume it
+
+94
+00:08:47,580 --> 00:08:50,430
+here to wrap our login button.
+
+95
+00:08:50,430 --> 00:08:57,150
+So here I will use authContext.consumer, wrap this entire button
+
+96
+00:08:57,160 --> 00:09:00,680
+but of course as you learned, we don't just wrap the JSX code,
+
+97
+00:09:00,760 --> 00:09:08,230
+instead we wrap a function where we get the context argument and then this function returns the JSX code
+
+98
+00:09:09,100 --> 00:09:14,510
+and then again here, we can not access or we could access props login but we don't want to,
+
+99
+00:09:14,560 --> 00:09:22,180
+instead now we access context.login because remember, that login property holds a reference to
+
+100
+00:09:22,180 --> 00:09:25,330
+the login function, that is what we're setting up here.
+
+101
+00:09:25,330 --> 00:09:30,220
+And now we don't need to pass this login handler on the login peop to cockpit anymore,
+
+102
+00:09:30,220 --> 00:09:37,450
+instead we're now using context. And now once everything saves, we can press login and it updates as
+
+103
+00:09:37,450 --> 00:09:38,270
+before
+
+104
+00:09:38,350 --> 00:09:45,550
+but now we're using the context API. And this is especially useful if you have very long chains of data
+
+105
+00:09:45,550 --> 00:09:51,430
+you're passing around and if you don't want to pass data from component to component to component, if you
+
+106
+00:09:51,430 --> 00:09:58,230
+don't need it in these in-between components, then context is a great way of bypassing components and
+
+107
+00:09:58,240 --> 00:10:00,760
+directly passing data from A to D.

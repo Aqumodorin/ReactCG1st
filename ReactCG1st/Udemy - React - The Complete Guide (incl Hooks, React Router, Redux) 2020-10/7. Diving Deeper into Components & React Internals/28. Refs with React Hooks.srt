@@ -1,0 +1,227 @@
+1
+00:00:02,170 --> 00:00:05,730
+Now this how you can use refs in class-based components.
+
+2
+00:00:05,730 --> 00:00:09,600
+What about functional components, how do you use references there,
+
+3
+00:00:09,600 --> 00:00:11,390
+is it possible there?
+
+4
+00:00:11,430 --> 00:00:18,810
+Well this function-based approach here is not usable in functional components but the other approach
+
+5
+00:00:18,840 --> 00:00:22,350
+kind of is, with the help of React hooks.
+
+6
+00:00:22,350 --> 00:00:29,820
+So let's go into our cockpit.js file where we have a functional component and let's say in here, I
+
+7
+00:00:29,850 --> 00:00:36,790
+automatically want to click this button here whenever this entire page loads.
+
+8
+00:00:36,840 --> 00:00:44,340
+This is of course just a dummy example, you can implement any logic that fits your use cases.
+
+9
+00:00:44,340 --> 00:00:49,590
+So first of all, we need to set up a reference and since this is a functional component, we have no
+
+10
+00:00:49,590 --> 00:00:52,200
+constructor, we just have our function body.
+
+11
+00:00:52,440 --> 00:00:58,470
+So maybe up here, doesn't really matter but should definitely be before you return your JSX code of course,
+
+12
+00:00:58,980 --> 00:01:07,420
+you set up your reference. So I'll create a constant here and I'll name this toggle button ref
+
+13
+00:01:07,410 --> 00:01:14,550
+and now here in a class-based component, we would have used React create ref. In a functional component, 
+
+14
+00:01:14,550 --> 00:01:15,510
+this will not work,
+
+15
+00:01:15,510 --> 00:01:21,420
+this is not supported but instead here we have a hook we can use, the use ref hook.
+
+16
+00:01:21,420 --> 00:01:27,720
+So you import use ref from React and then you use ref here, like this.
+
+17
+00:01:27,720 --> 00:01:33,210
+Now you could pass an initial value here because you can actually use references not just to get access
+
+18
+00:01:33,210 --> 00:01:38,910
+to DOM elements but you can even store other values in there but that is more advanced and not something
+
+19
+00:01:38,910 --> 00:01:40,320
+we'll dive into right now,
+
+20
+00:01:40,320 --> 00:01:46,430
+the more common use case here for references is that you do get access to your DOM elements.
+
+21
+00:01:46,560 --> 00:01:51,290
+So now we have our reference created with the help of the use ref hook,
+
+22
+00:01:51,300 --> 00:01:54,550
+now we can connect that in our DOM.
+
+23
+00:01:54,640 --> 00:02:00,960
+Now therefore let's pass null as an initial value here and then let's go down to our DOM or to our
+
+24
+00:02:00,960 --> 00:02:02,900
+JSX code to be precise,
+
+25
+00:02:02,910 --> 00:02:04,260
+not the real DOM
+
+26
+00:02:04,420 --> 00:02:09,120
+and here I want to pass a reference to this button or I want to set a reference to this button.
+
+27
+00:02:09,150 --> 00:02:12,960
+So here again, we use the ref key word, that can be used here as well
+
+28
+00:02:12,960 --> 00:02:15,720
+and I now refer to my button,
+
+29
+00:02:15,720 --> 00:02:23,640
+excuse me, my toggle button ref and toggle button ref is this constant which uses use ref.
+
+30
+00:02:25,590 --> 00:02:26,720
+Now with that set up,
+
+31
+00:02:27,800 --> 00:02:34,970
+we could try clicking that button. So let's use toggle button ref current click and let save this and
+
+32
+00:02:34,970 --> 00:02:38,420
+see if it works and it does and I get an error,
+
+33
+00:02:38,810 --> 00:02:41,340
+cannot read property click of null.
+
+34
+00:02:41,450 --> 00:02:42,470
+What's going wrong here,
+
+35
+00:02:42,470 --> 00:02:43,590
+do you have an idea?
+
+36
+00:02:43,610 --> 00:02:50,450
+It's kind of tricky but it's important, if you understand this, you understand how hooks work.
+
+37
+00:02:50,500 --> 00:02:55,930
+Well I'm getting this because I'm calling click right after I initialize my reference. React
+
+38
+00:02:55,930 --> 00:03:02,110
+didn't have a chance of executing the code down there where I actually do assign this reference to the
+
+39
+00:03:02,110 --> 00:03:07,140
+button and therefore at the point of time I'm calling click here, the button is of course undefined.
+
+40
+00:03:07,150 --> 00:03:12,660
+Now how could we change that? We can change this with useEffect because what did you learn about
+
+41
+00:03:12,660 --> 00:03:13,950
+useEffect?
+
+42
+00:03:13,950 --> 00:03:21,900
+It basically runs after every render cycle. So the function you pass to useEffect does not run immediately,
+
+43
+00:03:22,110 --> 00:03:28,040
+it runs after this JSX code here has been rendered for the first time and therefore useEffect
+
+44
+00:03:28,050 --> 00:03:36,950
+here is a great place to actually call click. So therefore here in this useEffect where I pass an empty
+
+45
+00:03:36,950 --> 00:03:42,740
+array as a second argument and which therefore only executes when the component renders the first time
+
+46
+00:03:43,190 --> 00:03:45,450
+and then cleans up when it's unmounted,
+
+47
+00:03:45,620 --> 00:03:54,080
+here I'll not use this set timeout thing anymore but instead here, I can now use toggle button ref current
+
+48
+00:03:54,740 --> 00:03:56,170
+click, like that.
+
+49
+00:03:59,370 --> 00:04:00,860
+And now if I reload this,
+
+50
+00:04:00,930 --> 00:04:06,330
+this works without error and you see indeed it does click the button otherwise we wouldn't instantly
+
+51
+00:04:06,330 --> 00:04:07,560
+see all the persons.
+
+52
+00:04:10,370 --> 00:04:16,040
+So that is how you can set references with the use ref hook, here when using React hooks in functional
+
+53
+00:04:16,040 --> 00:04:16,750
+components
+
+54
+00:04:16,880 --> 00:04:22,820
+and that also hopefully served as an example of how useEffect works and how it actually executes this
+
+55
+00:04:22,820 --> 00:04:23,700
+function
+
+56
+00:04:23,780 --> 00:04:30,590
+only after this JSX code was passed and rendered for the first time, so that React did have a chance
+
+57
+00:04:30,770 --> 00:04:32,510
+of connecting your reference here.

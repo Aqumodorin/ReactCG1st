@@ -1,0 +1,719 @@
+1
+00:00:00,420 --> 00:00:07,230
+Just as we have a lifecycle for the component creation, we also have one for updating components.
+
+2
+00:00:07,380 --> 00:00:15,150
+So when props or state change which are the two triggers you have for a component to be re-evaluated
+
+3
+00:00:15,150 --> 00:00:16,340
+by React,
+
+4
+00:00:16,380 --> 00:00:18,920
+then we go through a different lifecycle.
+
+5
+00:00:19,200 --> 00:00:25,860
+This lifecycle then starts with getDerivedStateFromProps being called, a lifecycle method which
+
+6
+00:00:25,880 --> 00:00:33,630
+you'll not use too often, you would use it to initialize the state of a component that updates based
+
+7
+00:00:33,690 --> 00:00:40,500
+on props you're getting, so updated props you're getting most likely and that could be for example some
+
+8
+00:00:40,500 --> 00:00:48,330
+form control which gets external properties and then you internally want to handle user input but initialize
+
+9
+00:00:48,330 --> 00:00:52,750
+your state or update your state based on outside changes
+
+10
+00:00:52,920 --> 00:00:59,490
+and as you will see throughout this course, we'll not use that lifecycle hook because actually, you very
+
+11
+00:00:59,550 --> 00:01:06,330
+very rarely need that and often there is a more elegant way of updating your state or of managing your
+
+12
+00:01:06,330 --> 00:01:08,990
+components based on external properties.
+
+13
+00:01:09,000 --> 00:01:15,090
+Nonetheless this hook exists, it's there for you to sync your local state inside of the component to
+
+14
+00:01:15,090 --> 00:01:21,300
+your props you're getting, you should not cause side effects in here so don't send any HTTP requests
+
+15
+00:01:21,300 --> 00:01:22,770
+or anything like that.
+
+16
+00:01:22,900 --> 00:01:28,320
+Thereafter we reach shouldComponentUpdate and that is a very interesting hook indeed which I'll dive
+
+17
+00:01:28,320 --> 00:01:30,930
+deeper into in the next lectures.
+
+18
+00:01:30,930 --> 00:01:36,050
+This method and by the way, I use the term lifecycle methods and lifecycle hooks interchangeably,
+
+19
+00:01:36,180 --> 00:01:42,840
+so this lifecycle method or hook here is interesting because it allows you to cancel the updating process.
+
+20
+00:01:42,840 --> 00:01:49,020
+So here you can decide whether or not React should continue evaluating and re-rendering the component.
+
+21
+00:01:49,020 --> 00:01:54,360
+Now why would you do that? For performance optimization as you will learn over the next lectures.
+
+22
+00:01:54,390 --> 00:02:00,600
+This should be used carefully because obviously, you can break your components if you block an update
+
+23
+00:02:00,600 --> 00:02:07,320
+from happening incorrectly but it is very powerful since it allows you to also prevent unnecessary update
+
+24
+00:02:07,320 --> 00:02:08,790
+cycles.
+
+25
+00:02:08,790 --> 00:02:14,940
+Now after that, the render method is called and React then goes through the JSX code, evaluates that and
+
+26
+00:02:14,940 --> 00:02:21,060
+basically constructs its virtual DOM into which I'll also dive later in this module for you and sees
+
+27
+00:02:21,060 --> 00:02:23,040
+if it needs to update the real DOM.
+
+28
+00:02:23,250 --> 00:02:26,550
+Now there as always you prepare and structure your JSX code
+
+29
+00:02:26,550 --> 00:02:33,090
+therefore. Now React then goes ahead and updates all child components of this component, so it evaluates
+
+30
+00:02:33,090 --> 00:02:38,250
+all the child components you have in your JSX code of this main component we're looking at here for
+
+31
+00:02:38,250 --> 00:02:40,910
+which this lifecycle here runs
+
+32
+00:02:40,920 --> 00:02:46,180
+and of course every child component then also goes through that lifecycle if it receives new props or
+
+33
+00:02:46,180 --> 00:02:46,930
+state.
+
+34
+00:02:47,100 --> 00:02:50,170
+Now after that, we reach getSnapshotBeforeUpdate.
+
+35
+00:02:50,190 --> 00:02:55,950
+This is a lifecycle hook that takes the previous props and the previous state as input and that actually
+
+36
+00:02:55,950 --> 00:03:02,550
+returns a snapshot object which you can freely configure and this also is a niche lifecycle hook which
+
+37
+00:03:02,550 --> 00:03:04,320
+we'll not use too much,
+
+38
+00:03:04,320 --> 00:03:10,290
+you use it for last minute DOM operations but with that, I don't really mean changes to the DOM but things
+
+39
+00:03:10,290 --> 00:03:13,920
+like getting the current scrolling position of the user.
+
+40
+00:03:13,920 --> 00:03:20,550
+So imagine that your upcoming update of your component will re-render the DOM and will add new elements
+
+41
+00:03:20,550 --> 00:03:26,030
+on the DOM and you therefore  want to restore the scrolling position of the user wants the update is done.
+
+42
+00:03:26,160 --> 00:03:31,650
+Well then getSnapshotBeforeUpdate can give you that snapshot of the user state, 
+
+43
+00:03:31,650 --> 00:03:37,200
+so of the scrolling position right before the update happens and then you can consume and use that
+
+44
+00:03:37,380 --> 00:03:43,260
+snapshot once the update is done to scroll the user back to where he was or anything like that.
+
+45
+00:03:43,530 --> 00:03:46,780
+And last but not least once we're done with the update, componentDidUpdate
+
+46
+00:03:46,780 --> 00:03:52,140
+is called. A lifecycle hook that signals that you are now done with the updating, that the
+
+47
+00:03:52,140 --> 00:03:54,040
+render method has been executed
+
+48
+00:03:54,090 --> 00:03:56,700
+and here you can now cause side effects,
+
+49
+00:03:56,790 --> 00:04:02,610
+so here you could now make an HTTP request, though you'll have to watch out to not enter an infinite loop
+
+50
+00:04:02,610 --> 00:04:03,010
+here
+
+51
+00:04:03,090 --> 00:04:08,200
+if you make an HTTP request and you get back a response and you then update your component and
+
+52
+00:04:08,230 --> 00:04:13,140
+then this cycle starts again and that is also something we'll have a look at later in this course
+
+53
+00:04:13,140 --> 00:04:19,080
+once we dive into HTTP requests because there, this is a typical problem you'll be facing. Now what you
+
+54
+00:04:19,080 --> 00:04:21,740
+shouldn't do here outside of the,
+
+55
+00:04:21,770 --> 00:04:28,380
+let's say then block of a promise of an HTTP request is updating the state with set state.
+
+56
+00:04:28,380 --> 00:04:34,890
+It's fine to do it as a result of some async task you're kicking off here but you should not call it
+
+57
+00:04:34,890 --> 00:04:40,710
+synchronously in componentDidUpdate because that will simply lead to an unnecessary re-render cycle.
+
+58
+00:04:40,800 --> 00:04:45,420
+So let's now have a look at all these lifecycle methods in practice and let's start with the scenario
+
+59
+00:04:45,420 --> 00:04:50,350
+that our props changed. To see these update lifecycle looks in practice, 
+
+60
+00:04:50,370 --> 00:04:56,130
+I will convert persons and person component to class-based components so that we can throw some lifecycle
+
+61
+00:04:56,130 --> 00:04:58,270
+hooks into these as well,
+
+62
+00:04:58,460 --> 00:05:03,110
+now let's start with the person.js file. Converting a component to a class-based component is very
+
+63
+00:05:03,110 --> 00:05:09,740
+simple, you simply import component from React because we'll need to extend that and then instead of
+
+64
+00:05:09,740 --> 00:05:15,920
+returning a function or having a function that you store in a variable or constant here, you create a
+
+65
+00:05:15,920 --> 00:05:23,330
+new class which you typically name with a capital starting character like Person, that extends component
+
+66
+00:05:23,970 --> 00:05:29,030
+and then you have opening and closing curly braces but in there, you now need a render method which actually
+
+67
+00:05:29,030 --> 00:05:30,950
+returns your JSX code.
+
+68
+00:05:30,950 --> 00:05:37,610
+So in there, you can then move in this console log and there, you should now add this return statement
+
+69
+00:05:37,850 --> 00:05:43,280
+where you return the JSX code. And that is almost it but props doesn't exist anymore,
+
+70
+00:05:43,280 --> 00:05:48,920
+instead all these places where you have props now should become this.props because as you learned in
+
+71
+00:05:48,920 --> 00:05:55,190
+class-based components, props are accessed with the this keyword since they are properties of this class.
+
+72
+00:05:55,310 --> 00:05:59,450
+So let's add this in front of all these props and here we go,
+
+73
+00:05:59,450 --> 00:06:01,640
+that is the converted person component.
+
+74
+00:06:01,670 --> 00:06:04,990
+Last thing we need to change is the export, there
+
+75
+00:06:05,030 --> 00:06:09,680
+I am exporting person with a lowercase P because my constant was named such,
+
+76
+00:06:09,680 --> 00:06:14,370
+now the class has an uppercase P, so here I should update person like that
+
+77
+00:06:14,540 --> 00:06:20,410
+and this is now the converted person component. Now definitely feel free to now convert the persons
+
+78
+00:06:20,410 --> 00:06:22,120
+component on your own
+
+79
+00:06:22,120 --> 00:06:30,390
+and after the short pause which you can use to pause the video, we'll do it together. So were you successful? 
+
+80
+00:06:30,490 --> 00:06:34,240
+Let's convert the persons component and just as before,
+
+81
+00:06:34,270 --> 00:06:39,760
+first of all I will import component from React
+
+82
+00:06:39,910 --> 00:06:47,080
+and then here, this is converted to a class named persons which extends component, opening and closing
+
+83
+00:06:47,080 --> 00:06:54,610
+curly braces, in there a render method and in that render method, we can throw in our return statement
+
+84
+00:06:54,760 --> 00:06:58,240
+where we return JSX code, like this.
+
+85
+00:06:58,390 --> 00:07:00,200
+Now again, props doesn't exist
+
+86
+00:07:00,220 --> 00:07:09,090
+so this becomes this.props here and then we export Persons with a capital P and that is it.
+
+87
+00:07:09,120 --> 00:07:16,250
+That's the adjusted persons component and of course the app works just as before, like this and you
+
+88
+00:07:16,250 --> 00:07:20,620
+see I also get a warning regarding componentWillMount by the way but we can ignore that
+
+89
+00:07:20,630 --> 00:07:26,340
+as I mentioned, this will be removed eventually but in older versions of React, you can still use it. Here,
+
+90
+00:07:27,430 --> 00:07:32,740
+the focus is on our conversion of the class-based component or of the functional components to class-based
+
+91
+00:07:32,740 --> 00:07:40,270
+components which work just fine. So let's now see these updating lifecycle hooks in action. I'll start
+
+92
+00:07:40,270 --> 00:07:49,530
+here in my persons.js component and I'll start with the static getDerivedStateFromProps lifecycle
+
+93
+00:07:49,530 --> 00:07:55,000
+hook again which gets props and state, should return a state and here I'll return the unchanged
+
+94
+00:07:55,000 --> 00:07:59,710
+state and I don't even have a state here, so this will just be an empty object and I want to console
+
+95
+00:07:59,710 --> 00:08:08,810
+log persons.js getDerivedStateFromProps, like this.
+
+96
+00:08:12,510 --> 00:08:19,140
+Thereafter, shouldComponentUpdate will run and shouldComponentUpdate gets the next props, so the upcoming
+
+97
+00:08:19,140 --> 00:08:25,560
+props which will have an effect right after this update which is about to take place and the upcoming
+
+98
+00:08:25,560 --> 00:08:28,830
+state as arguments and in here,
+
+99
+00:08:28,860 --> 00:08:32,180
+now you actually have to return true or false,
+
+100
+00:08:32,190 --> 00:08:38,430
+doing nothing is not an option. You have to return true if React should continue updating or false if
+
+101
+00:08:38,430 --> 00:08:39,100
+it shouldn't
+
+102
+00:08:39,180 --> 00:08:44,010
+and of course you don't typically hardcode then in here but instead you add some condition where you
+
+103
+00:08:44,010 --> 00:08:49,800
+compare the current props to your next props, to the upcoming props to find out if they changed and if
+
+104
+00:08:49,800 --> 00:08:51,680
+they changed, you want to permit this.
+
+105
+00:08:51,780 --> 00:08:56,550
+For now I will just return true here though and I'll dive a bit deeper into this in a dedicated lecture
+
+106
+00:08:56,550 --> 00:08:57,950
+in this module.
+
+107
+00:08:57,950 --> 00:09:06,570
+So let me console log persons.js shouldComponentUpdate.
+
+108
+00:09:08,520 --> 00:09:16,080
+After shouldComponentUpdate, we have getSnapshotBeforeUpdate and there we get our previous props
+
+109
+00:09:16,320 --> 00:09:21,420
+and we get our previous state and I will console log
+
+110
+00:09:22,500 --> 00:09:26,960
+persons.js getSnapshotBeforeUpdate
+
+111
+00:09:27,060 --> 00:09:34,040
+here. Now after getSnapshotBeforeUpdate, render will execute and I already have a login here,
+
+112
+00:09:34,370 --> 00:09:40,060
+then the render cycle or the update cycle of all child components of this component will execute,
+
+113
+00:09:40,070 --> 00:09:50,230
+so of all the person components in this case and thereafter, we'll have componentDidUpdate and
+
+114
+00:09:50,260 --> 00:09:54,030
+componentDidUpdate will run once we're done with all the updating.
+
+115
+00:09:54,040 --> 00:10:05,390
+So here, I will console log persons.js componentDidUpdate, like this. Let's have a look at that and
+
+116
+00:10:05,390 --> 00:10:10,640
+to get rid of that error regarding componentWillMount, I'll comment this out, only older versions of React
+
+117
+00:10:10,640 --> 00:10:18,020
+will support this and what we see is now our default rendering cycle for creating the component. If I click
+
+118
+00:10:18,020 --> 00:10:24,700
+toggle persons, you see what happens is getDerivedStateFromProps runs again,
+
+119
+00:10:24,710 --> 00:10:29,390
+then render and then you see here I get a warning that in my persons, I have getDerivedStateFromProps
+
+120
+00:10:29,390 --> 00:10:35,130
+and in there, I am indeed returning a new state here
+
+121
+00:10:35,240 --> 00:10:41,600
+but since I have an uninitialized state, it's not recommended using that lifecycle hook basically
+
+122
+00:10:41,930 --> 00:10:45,710
+and therefore, you typically would want to get rid of that,
+
+123
+00:10:45,800 --> 00:10:48,150
+I will do that to get rid of that warning,
+
+124
+00:10:48,170 --> 00:10:52,700
+it's not an error but it again doesn't make sense to have it here if we don't do anything with that
+
+125
+00:10:52,700 --> 00:10:54,830
+state and we don't even have an initial state
+
+126
+00:10:54,950 --> 00:11:01,130
+but it did execute, that is something you could see. And then we had our rendering cycles here for the
+
+127
+00:11:01,130 --> 00:11:02,690
+different components.
+
+128
+00:11:02,720 --> 00:11:04,680
+Now what about componentDidUpdate though,
+
+129
+00:11:04,780 --> 00:11:06,310
+where's that?
+
+130
+00:11:06,320 --> 00:11:13,760
+Well it's nowhere to be seen because right now, we weren't in the update cycle of our persons component.
+
+131
+00:11:13,970 --> 00:11:15,400
+getDerivedStateFromProps
+
+132
+00:11:15,410 --> 00:11:21,520
+only ran because it's also part of the creation lifecycle. The update lifecycle of persons.js will
+
+133
+00:11:21,530 --> 00:11:29,700
+run as soon as I, for example, type something here because then, we'll actually trigger, if you have a look
+
+134
+00:11:29,700 --> 00:11:35,410
+at your input in person component, we'll trigger this onChange handler which triggers this props changed.
+
+135
+00:11:35,490 --> 00:11:42,900
+This props changed in person.js here is forwarded to the changed prop of the persons component which
+
+136
+00:11:42,900 --> 00:11:49,740
+is forwarded to our app.js file and in there if we have a look, changed calls the name changed handler
+
+137
+00:11:49,890 --> 00:11:56,070
+and this updates our persons which we pass back in as a property to the persons component and
+
+138
+00:11:56,070 --> 00:11:57,600
+therefore in this component,
+
+139
+00:11:57,600 --> 00:12:03,540
+now the updating lifecycle will begin because we forwarded that event from a child to the parent component
+
+140
+00:12:03,660 --> 00:12:05,050
+to the app component,
+
+141
+00:12:05,050 --> 00:12:11,000
+there we updated its state and then we got new data as a prop into this persons component and therefore
+
+142
+00:12:11,000 --> 00:12:15,390
+this persons component lifecycle triggers as soon as we type.
+
+143
+00:12:15,540 --> 00:12:16,680
+So let's type something and
+
+144
+00:12:16,680 --> 00:12:22,050
+let me clear the console before I do that and you see now getDerivedStateFromProps runs,
+
+145
+00:12:22,080 --> 00:12:27,410
+then render, then shouldComponentUpdate, then rendering also for the three persons,
+
+146
+00:12:27,510 --> 00:12:34,170
+then getSnapshotBeforeUpdate where I get a warning that I need to return a snapshot value or null
+
+147
+00:12:34,770 --> 00:12:43,890
+and we should actually do that, so let's simply return null here, let it reload, clear that and type
+
+148
+00:12:43,890 --> 00:12:45,330
+one character again,
+
+149
+00:12:45,330 --> 00:12:50,820
+now we have no warning and then we have componentDidUpdate. Now in case you're wondering about that snapshot,
+
+150
+00:12:51,060 --> 00:12:52,910
+that snapshot is a data package
+
+151
+00:12:52,920 --> 00:12:58,350
+so to say which you then receive in componentDidUpdate, so that you can save some state right before
+
+152
+00:12:58,350 --> 00:13:04,620
+the update, like the scroll position I mentioned and then you can use it to update the DOM again or update
+
+153
+00:13:04,620 --> 00:13:10,330
+the scrolling of the user let's say in componentDidUpdate once the DOM has been re-rendered and to demonstrate
+
+154
+00:13:10,350 --> 00:13:15,650
+this here, I'll just return an object with a message of snapshot.
+
+155
+00:13:15,690 --> 00:13:21,480
+Of course in reality you would probably again return something like some coordinates for the scrolling
+
+156
+00:13:21,840 --> 00:13:27,540
+and then in componentDidUpdate, you actually get the previous props, the previous state,
+
+157
+00:13:27,540 --> 00:13:33,430
+so before the update in case you need that for anything and the last argument is that snapshot
+
+158
+00:13:33,420 --> 00:13:40,260
+and if I now console log that snapshot here, you should see that we log a message or an object with
+
+159
+00:13:40,260 --> 00:13:42,330
+that message of snapshot.
+
+160
+00:13:42,330 --> 00:13:48,380
+So let's toggle the persons, type one character and indeed here, we have that output from componentDidMount
+
+161
+00:13:48,390 --> 00:13:49,050
+.
+
+162
+00:13:49,260 --> 00:13:53,760
+So that is how you can use that snapshot to save some data before the update and then use it after the
+
+163
+00:13:53,760 --> 00:13:54,290
+update
+
+164
+00:13:54,330 --> 00:13:56,970
+and that is the general component updating flow.
+
+165
+00:13:57,060 --> 00:14:01,810
+Now I mentioned earlier that there are some lifecycle hooks which we had in the past which aren't really 
+
+166
+00:14:01,820 --> 00:14:05,100
+supported anymore and which you should not use if possible,
+
+167
+00:14:05,100 --> 00:14:12,150
+that was componentWillMount, now for updating, we have two other hooks. There first of all, we have component
+
+168
+00:14:12,180 --> 00:14:20,410
+will receive props and there, you will actually get the props you are getting for this update.
+
+169
+00:14:20,430 --> 00:14:32,000
+So here we can console log persons.js componentWillReceiveProps and also the props
+
+170
+00:14:32,010 --> 00:14:37,890
+and if we do that, then we try updating, then you actually see I get that same warning we had before with
+
+171
+00:14:37,890 --> 00:14:39,500
+componentWillReceiveProps,
+
+172
+00:14:39,510 --> 00:14:45,150
+so this setup will not even let me use that. In older apps, that would have worked and yes it is removed
+
+173
+00:14:45,180 --> 00:14:51,300
+because it was kind of a niche thing. You could have used that for updating some internal state but it
+
+174
+00:14:51,300 --> 00:14:56,310
+was easy to use this incorrectly and therefore you shouldn't use it anymore and the other hook which
+
+175
+00:14:56,310 --> 00:15:03,200
+will also be removed or which is already not supported by some workflows is componentWillUpdate.
+
+176
+00:15:03,200 --> 00:15:10,590
+In the past, you had componentWillUpdate here and that ran right before componentDidUpdate
+
+177
+00:15:10,590 --> 00:15:15,990
+and again, it was kind of hard to justify using this hook, it was often used incorrectly and therefore
+
+178
+00:15:15,990 --> 00:15:21,240
+this is now also removed but if you are seeing this in older projects, it was a hook that existed historically,
+
+179
+00:15:21,510 --> 00:15:28,050
+that technically still could be used but that shouldn't be used anymore because you never really needed
+
+180
+00:15:28,050 --> 00:15:34,590
+it. If you needed it, you were probably using React incorrectly and that's why it's not available anymore.

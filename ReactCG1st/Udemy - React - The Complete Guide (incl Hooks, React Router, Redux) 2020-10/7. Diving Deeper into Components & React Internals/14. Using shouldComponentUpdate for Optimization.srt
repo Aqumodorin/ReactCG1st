@@ -1,0 +1,311 @@
+1
+00:00:02,310 --> 00:00:06,800
+Let me show you an example for what's going wrong in our application. In persons.js
+
+2
+00:00:06,840 --> 00:00:12,990
+I have shouldComponentUpdate and I return true which means by default whenever something changes here
+
+3
+00:00:13,440 --> 00:00:20,580
+on this component, whenever it gets re-rendered, then we update. Now persons.js already gets re-rendered
+
+4
+00:00:20,700 --> 00:00:26,250
+when in app.js, something changes because persons is in the end a child component of app.js,
+
+5
+00:00:26,280 --> 00:00:27,730
+we do include it there.
+
+6
+00:00:27,840 --> 00:00:32,670
+So whenever we change something in app.js, even if that only affects the cockpit or anything else
+
+7
+00:00:32,680 --> 00:00:38,730
+in app.js but not persons, the persons child still gets re-rendered because that render function
+
+8
+00:00:38,730 --> 00:00:43,800
+here gets called and therefore this whole function executes and React will go through that entire
+
+9
+00:00:43,800 --> 00:00:49,050
+component tree, that is how it works and that is how it makes sense logically because this is a function,
+
+10
+00:00:49,260 --> 00:00:55,830
+it gets executed from top to bottom. So persons gets re-rendered when something changes and a good example
+
+11
+00:00:55,830 --> 00:00:59,650
+is here in our application when this reloads,
+
+12
+00:01:00,090 --> 00:01:06,390
+when I toggle my persons and I then remove the cockpit which only affects the cockpit but not the persons.
+
+13
+00:01:07,390 --> 00:01:13,240
+Still here, we see persons shouldComponentUpdate, persons rendering, every single person renders,
+
+14
+00:01:13,240 --> 00:01:16,690
+getSnapshotBeforeUpdate, persons componentDidUpdate,
+
+15
+00:01:16,690 --> 00:01:23,200
+so all our persons updating hooks ran even though in persons, nothing changed. It would be good if we can
+
+16
+00:01:23,200 --> 00:01:25,020
+prevent this, wouldn't it?
+
+17
+00:01:25,030 --> 00:01:30,890
+Now we can prevent this by simply checking what changed in shouldComponentUpdate here in persons.js
+
+18
+00:01:30,910 --> 00:01:32,200
+for example.
+
+19
+00:01:32,230 --> 00:01:37,930
+So here I can check if next props, and now what?
+
+20
+00:01:38,020 --> 00:01:47,200
+Let's have a look at which props we use, we're using persons. So we can check if next props persons is
+
+21
+00:01:47,200 --> 00:01:48,420
+actually different
+
+22
+00:01:50,430 --> 00:01:54,180
+to this props persons which is our current set.
+
+23
+00:01:54,180 --> 00:01:56,760
+If that is the case, then I want to return true
+
+24
+00:01:56,760 --> 00:02:00,140
+and yes I could have just returned the result of that operation,
+
+25
+00:02:00,300 --> 00:02:05,470
+else I will return false.
+
+26
+00:02:05,590 --> 00:02:10,350
+Now let's save that and let's try that again. The app restarts,
+
+27
+00:02:10,700 --> 00:02:16,540
+I toggle my persons and now I remove the cockpit and now we see persons.js shouldComponentUpdate
+
+28
+00:02:16,540 --> 00:02:19,390
+still gets executed but nothing else.
+
+29
+00:02:19,600 --> 00:02:26,120
+If I do type in here now, then we go through all the other updating hooks because now persons really changed.
+
+30
+00:02:26,230 --> 00:02:32,810
+That is super powerful because that can already save us a performance, for that removal of the cockpit,
+
+31
+00:02:32,860 --> 00:02:38,390
+we did not go through the entire persons component tree to re-render that virtually.
+
+32
+00:02:38,410 --> 00:02:44,410
+Instead we just skip because we know if the persons prop doesn't change, then there is no need to re-render
+
+33
+00:02:44,410 --> 00:02:47,530
+because the persons prop is the only thing we're using in here,
+
+34
+00:02:47,530 --> 00:02:52,600
+so if that is unchanged, this certainly doesn't need to be re-rendered and that is how you should use
+
+35
+00:02:52,690 --> 00:02:54,360
+shouldComponentUpdate.
+
+36
+00:02:54,400 --> 00:03:01,270
+Now one important note about this check though, persons of course is an array and arrays just like objects
+
+37
+00:03:01,270 --> 00:03:07,270
+in Javascript are reference types. Attached, you find a helpful article I created in case you are not
+
+38
+00:03:07,270 --> 00:03:09,310
+sure what I mean by that.
+
+39
+00:03:09,340 --> 00:03:16,570
+In short, the idea here is that reference types, so arrays and objects, are stored in memory and what you
+
+40
+00:03:16,570 --> 00:03:22,440
+actually store in variables and properties here are only pointers at that place in memory,
+
+41
+00:03:22,600 --> 00:03:32,240
+so what we do compare here is actually the pointer. If something in that person component changed and
+
+42
+00:03:32,240 --> 00:03:34,210
+the pointer is still the same,
+
+43
+00:03:34,250 --> 00:03:40,220
+then this update wouldn't run and the only reason why it does run here is because in app.js when I
+
+44
+00:03:40,220 --> 00:03:44,520
+do update my persons, like here with name changed handler,
+
+45
+00:03:44,720 --> 00:03:50,780
+I do actually create a copy of the person I want to change and then I create a copy of that persons
+
+46
+00:03:50,780 --> 00:03:57,320
+array and hence I create a new person object and a new array object and that occupies a new place in
+
+47
+00:03:57,320 --> 00:04:02,300
+memory and gets a new pointer and therefore, the pointers now also differ.
+
+48
+00:04:02,690 --> 00:04:08,750
+If I wouldn't have updated it like this and instead I would have just manipulated the old array and
+
+49
+00:04:08,750 --> 00:04:11,020
+therefore the object in memory would be the same
+
+50
+00:04:11,030 --> 00:04:17,240
+even if some property of it changed but the place in memory would be the same, then our shouldComponentUpdate
+
+51
+00:04:17,240 --> 00:04:22,360
+check would not work because it doesn't deeply compare this,
+
+52
+00:04:22,370 --> 00:04:28,130
+it doesn't look at all the properties in persons or in all the objects in persons, it just does a shallow
+
+53
+00:04:28,130 --> 00:04:34,670
+comparison, which means it compares whether these two values here really are the same and the values
+
+54
+00:04:34,700 --> 00:04:40,500
+are our pointers here and it works because I updated it correctly by replacing the objects.
+
+55
+00:04:40,580 --> 00:04:45,440
+If you didn't do that, well then you would have a problem here. And again, watch that attached video
+
+56
+00:04:45,620 --> 00:04:47,750
+or have a look at this attached article
+
+57
+00:04:47,930 --> 00:04:54,280
+if you want to learn more about reference types and how they work. shouldComponentUpdate, super important
+
+58
+00:04:54,280 --> 00:04:54,630
+here
+
+59
+00:04:54,670 --> 00:04:57,160
+can now also help save performance.
+
+60
+00:04:57,160 --> 00:05:06,720
+Please also note if I reload here, that in Chrome, you can actually go to more tools and then rendering
+
+61
+00:05:07,750 --> 00:05:13,120
+and there you can enable paint flashing. That can be useful because it allows you to see what really
+
+62
+00:05:13,120 --> 00:05:18,450
+gets re-rendered because it's highlighted with a green look then.
+
+63
+00:05:18,490 --> 00:05:20,830
+So if I now click on here, you see a green flash,
+
+64
+00:05:20,830 --> 00:05:26,140
+this was really rendered in a real DOM. So this is what gets rendered in the real DOM and not what gets
+
+65
+00:05:26,140 --> 00:05:30,280
+rendered virtually by React.
+
+66
+00:05:30,280 --> 00:05:36,760
+And if I now temporarily actually comment this out and I return true all the time, so that we do have
+
+67
+00:05:36,760 --> 00:05:46,890
+that redundant re-rendering, then you will see that if I now remove the cockpit, this still, well it did
+
+68
+00:05:46,900 --> 00:05:52,520
+touch these elements because they were shifted up basically but it didn't re-render them in the DOM
+
+69
+00:05:52,520 --> 00:06:00,500
+and a better example maybe is with the cockpit. There if I toggle this and I type into a person, you see the
+
+70
+00:06:00,500 --> 00:06:04,320
+cockpit up there with person manager and so on, this does not change at all,
+
+71
+00:06:04,320 --> 00:06:10,970
+so this is not really changed in the DOM, though you can clearly see here that the cockpit rendered again
+
+72
+00:06:11,120 --> 00:06:15,350
+in React, so the cockpit functional component, that code did run again
+
+73
+00:06:15,350 --> 00:06:19,970
+otherwise you wouldn't see that output here on the right but it never made it into the real DOM because
+
+74
+00:06:19,970 --> 00:06:25,340
+there is a difference between how React updates the internal virtual DOM and how it then actually
+
+75
+00:06:25,340 --> 00:06:27,150
+reaches out to the real DOM.
+
+76
+00:06:27,170 --> 00:06:33,020
+So even if we're not doing that performance optimization, we still don't hit the real DOM with every
+
+77
+00:06:33,020 --> 00:06:38,600
+keystroke which is good but it's even better if we can make this performance optimization and you'll
+
+78
+00:06:38,600 --> 00:06:42,950
+learn more about that re-rendering process React does internally in the next lectures.
