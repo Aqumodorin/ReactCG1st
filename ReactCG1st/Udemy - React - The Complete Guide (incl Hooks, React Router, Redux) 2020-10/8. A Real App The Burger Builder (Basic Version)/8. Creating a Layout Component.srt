@@ -1,0 +1,451 @@
+1
+00:00:02,170 --> 00:00:05,360
+In the last lecture, we finished a set up of our project,
+
+2
+00:00:05,410 --> 00:00:08,870
+now I want to start developing the app. For that
+
+3
+00:00:08,870 --> 00:00:16,090
+I'll first of all run npm start to start this development server so that we can see the app run on 
+
+4
+00:00:16,090 --> 00:00:22,430
+http://localhost:3000. Make sure you're saving all files so that you don't get the compilation errors.
+
+5
+00:00:22,440 --> 00:00:23,180
+I got
+
+6
+00:00:23,460 --> 00:00:29,210
+and with that, you will basically not see anything because we emptied the app.js file,
+
+7
+00:00:29,220 --> 00:00:30,970
+it's just having an empty div,
+
+8
+00:00:31,020 --> 00:00:33,240
+obviously we don't see content.
+
+9
+00:00:33,240 --> 00:00:39,300
+Now let's start implementing the components we sketched out in the previous lectures and there are actually
+
+10
+00:00:39,300 --> 00:00:41,190
+a couple of components we need
+
+11
+00:00:41,190 --> 00:00:46,260
+but we can kind of separate our project into two branches.
+
+12
+00:00:46,590 --> 00:00:54,270
+Well overall these branches we got a layout component but below that, we basically have navigation related
+
+13
+00:00:54,270 --> 00:01:03,270
+components, like the toolbar and the side drawer and we have the meat of our application, the burger builder.
+
+14
+00:01:03,280 --> 00:01:08,150
+Now I'd say let's start with the burger builder then, that's probably the more fun part
+
+15
+00:01:08,150 --> 00:01:09,570
+to start with.
+
+16
+00:01:09,570 --> 00:01:15,850
+Now for that, I first of all will create that layout component though which will kind of be a wrapper
+
+17
+00:01:16,140 --> 00:01:23,080
+implementing the toolbar and the burger builder then and later in this course once we add routing and
+
+18
+00:01:23,100 --> 00:01:29,100
+more pages to our application, we will take advantage of this layout where the toolbar will always be
+
+19
+00:01:29,100 --> 00:01:35,970
+there but where we will then switch the page which is rendered in the content area of the layout so
+
+20
+00:01:35,970 --> 00:01:43,170
+to say. Now we could simply turn the app.js file into a layout because it basically is the root component
+
+21
+00:01:43,260 --> 00:01:47,380
+of our application and that would be a perfectly fine approach,
+
+22
+00:01:47,490 --> 00:01:54,150
+I will still create a separate component for that though to have a component entirely focusing on the
+
+23
+00:01:54,150 --> 00:02:01,220
+layout. Now for that, I'll create a new sub-folder in the source folder and I will name it components,
+
+24
+00:02:02,220 --> 00:02:06,570
+I will create a second sub-folder which I'll name containers.
+
+25
+00:02:06,570 --> 00:02:14,070
+Now remember, containers are stateful components, so components created with the class keyword or functional
+
+26
+00:02:14,070 --> 00:02:21,090
+components using useState and components going into the components folder are dumb or presentational
+
+27
+00:02:21,090 --> 00:02:23,250
+components that don't manage state,
+
+28
+00:02:23,250 --> 00:02:28,830
+no matter if they were created as a class but don't use the state or if they are functional components
+
+29
+00:02:28,830 --> 00:02:30,750
+that aren't using hooks.
+
+30
+00:02:30,810 --> 00:02:35,790
+Now I will create the layout in the components folder because right now, I don't need to manage any
+
+31
+00:02:35,790 --> 00:02:37,040
+state there.
+
+32
+00:02:37,050 --> 00:02:44,070
+So in components, I'll create a sub-folder which I'll name Layout with a capital L and in layout, I will
+
+33
+00:02:44,070 --> 00:02:52,350
+create the layout.js file so that we have this layout component placed in that folder. That is
+
+34
+00:02:52,350 --> 00:02:58,800
+a typical project setup you use in React, having a components and a containers folder. Other folders you
+
+35
+00:02:58,800 --> 00:03:06,120
+often see are an assets folder, we will use this later once we add a logo and you might also have a folder
+
+36
+00:03:06,120 --> 00:03:08,570
+for the Redux store and so on,
+
+37
+00:03:08,670 --> 00:03:10,380
+we haven't even learned about that,
+
+38
+00:03:10,380 --> 00:03:12,280
+we will add it once we got that,
+
+39
+00:03:12,830 --> 00:03:19,710
+so back to the layout then. There I will create a normal functional component and store it in a constant
+
+40
+00:03:19,890 --> 00:03:26,550
+named layout and there this is my function and now let's have a look at how this function should look
+
+41
+00:03:26,550 --> 00:03:32,970
+like or how the JSX exported by the function should look like. There
+
+42
+00:03:33,000 --> 00:03:41,100
+I basically want to have two areas you could say, I'll have a div, for now just a placeholder which will
+
+43
+00:03:41,100 --> 00:03:48,600
+hold my toolbar, my side drawer and probably for the side drawer, also a backdrop.
+
+44
+00:03:48,840 --> 00:03:53,200
+So we will need to replace this div with three components later on,
+
+45
+00:03:53,280 --> 00:03:57,890
+we also did plan this in the previous lectures. Below
+
+46
+00:03:57,900 --> 00:04:00,840
+this part, we'll have a main area
+
+47
+00:04:00,990 --> 00:04:06,680
+and this is the normal main element provided by HTML and there,
+
+48
+00:04:06,810 --> 00:04:15,720
+I want to output the component we wrap with this layout, so I will use props children and for that of
+
+49
+00:04:15,720 --> 00:04:23,010
+course, I need to import props or not import it, excuse me, get it as an argument.
+
+50
+00:04:23,010 --> 00:04:30,270
+Now this allows us to simply use this layout component as a wrapper around the core content component
+
+51
+00:04:30,280 --> 00:04:32,390
+we want to render to the screen.
+
+52
+00:04:32,940 --> 00:04:40,200
+Now here, we get an error in the IDE because one important thing is missing, the import of the React
+
+53
+00:04:40,200 --> 00:04:45,400
+package or the React object I should say from the React package,
+
+54
+00:04:45,540 --> 00:04:52,600
+once we added this, we still see a error because we have adjacent JSX elements.
+
+55
+00:04:52,890 --> 00:04:58,270
+Now I taught you that there are basically two solutions to that,
+
+56
+00:04:58,320 --> 00:05:08,480
+do you remember them? Well for one, we could return an array here instead of JSX which is sitting next
+
+57
+00:05:08,480 --> 00:05:09,610
+to each other,
+
+58
+00:05:09,740 --> 00:05:18,440
+if we return an array and give each item a key, we are allowed to kind of return adjacent elements.
+
+59
+00:05:18,440 --> 00:05:24,830
+The alternative is to create such an auxiliary higher order component which I showed you in the last
+
+60
+00:05:24,830 --> 00:05:26,330
+course module.
+
+61
+00:05:26,450 --> 00:05:28,440
+It serves only one purpose,
+
+62
+00:05:28,580 --> 00:05:34,400
+wrapping something and immediately outputting it but hence fulfilling the requirement of having a wrapping
+
+63
+00:05:34,400 --> 00:05:35,620
+component.
+
+64
+00:05:35,690 --> 00:05:37,220
+I will use this,
+
+65
+00:05:37,280 --> 00:05:43,580
+we also have of course the third option of wrapping everything in a div here or another element but
+
+66
+00:05:43,580 --> 00:05:46,700
+I don't need that div or any other element,
+
+67
+00:05:46,700 --> 00:05:49,200
+actually I want to have adjacent elements,
+
+68
+00:05:49,220 --> 00:05:55,670
+that is why I will go with the higher order component approach and create such a utility auxiliary component.
+
+69
+00:05:56,420 --> 00:05:57,020
+For that,
+
+70
+00:05:57,020 --> 00:06:03,990
+I'll create a new folder in the source folder, hoc for higher order component and there I will create an
+
+71
+00:06:04,070 --> 00:06:05,480
+aux.js file.
+
+72
+00:06:05,480 --> 00:06:08,320
+Now the auxiliary component is really really simple,
+
+73
+00:06:08,360 --> 00:06:14,820
+it's a functional component where I also won't manage any state with hooks and I will name it aux
+
+74
+00:06:14,900 --> 00:06:20,020
+and here I just get props as an input and I return props children, nothing else,
+
+75
+00:06:20,090 --> 00:06:21,420
+no wrapping element.
+
+76
+00:06:21,590 --> 00:06:29,450
+We don't even have any JSX in this file which is also why we don't have to import React from React.
+
+77
+00:06:29,450 --> 00:06:35,110
+I will then export aux as the default in this file and save the file
+
+78
+00:06:35,320 --> 00:06:42,290
+and now back in the layout file, I can import Aux with a capital A like for all custom components we
+
+79
+00:06:42,290 --> 00:06:49,370
+want to use from and now we have to move up until we are at the source folder level and there from
+
+80
+00:06:49,370 --> 00:06:57,620
+the hoc folder from the aux file, without .js at the end because keep in mind, our build workflow
+
+81
+00:06:57,740 --> 00:07:05,450
+will add this file extension for Javascript files automatically. And now I can wrap everything here
+
+82
+00:07:05,630 --> 00:07:14,640
+with this auxiliary component, so that we now fulfill the requirement of having a wrapping root element.
+
+83
+00:07:14,660 --> 00:07:22,340
+Finally let me export this layout function as the default for this file and now with that, we can use
+
+84
+00:07:22,340 --> 00:07:26,790
+it in the app.js file in our root component.
+
+85
+00:07:26,810 --> 00:07:34,190
+Now granted, you could also go to the index file, import layout here and simply render the layout function
+
+86
+00:07:34,220 --> 00:07:35,750
+as the root component and
+
+87
+00:07:35,750 --> 00:07:40,220
+that's basically the same solution as making the app.js file the root component.
+
+88
+00:07:40,310 --> 00:07:43,270
+You could absolutely do that and that wouldn't be wrong,
+
+89
+00:07:43,310 --> 00:07:49,460
+it's just my personal decision to have this root component in case I should ever decide to restructure
+
+90
+00:07:49,460 --> 00:07:56,480
+the app, add some state to my root component, maybe conditionally render different layouts or do anything
+
+91
+00:07:56,480 --> 00:07:58,880
+like that. For the app as it is,
+
+92
+00:07:58,970 --> 00:08:03,810
+we could definitely turn the app component itself into the layout. Now
+
+93
+00:08:03,890 --> 00:08:10,850
+enough talk about that, let's import our layout component then with a capital L, from and now we have
+
+94
+00:08:10,850 --> 00:08:17,300
+to go into the components folder, into the layout folder and there to the layout.js file and now we
+
+95
+00:08:17,300 --> 00:08:18,890
+can simply render layout
+
+96
+00:08:19,130 --> 00:08:25,190
+and this should now not be a self-closing component because the idea behind the whole layout is that
+
+97
+00:08:25,190 --> 00:08:28,310
+I can wrap another component with it.
+
+98
+00:08:28,310 --> 00:08:34,800
+For now let's simply wrap a paragraph just to see if this is working, if we are correctly passing this
+
+99
+00:08:34,820 --> 00:08:42,170
+to layout but later, we will of course wrap a real component, the page we actually want to display with it.
+
+100
+00:08:42,440 --> 00:08:48,630
+So make sure all files are saved and then head over to your http://localhost:3000 page.
+
+101
+00:08:48,650 --> 00:08:54,610
+Make sure your development server is running and there you should see our placeholder for the toolbar,
+
+102
+00:08:54,620 --> 00:09:01,810
+for the side drawer, the backdrop and so on and you also see the test paragraph I just added.
+
+103
+00:09:02,180 --> 00:09:09,410
+If you inspect everything, you will notice that we don't use our open sans font though because we haven't
+
+104
+00:09:09,410 --> 00:09:11,400
+added it, so let's fix this too.
+
+105
+00:09:11,570 --> 00:09:16,790
+Let's go to index.css, we did add the import to the public folder,
+
+106
+00:09:16,910 --> 00:09:24,830
+so here we simply happen to add open sans like this as our main font and use sans-serif as a backup
+
+107
+00:09:24,830 --> 00:09:29,420
+font and now you see, the font changed and in the elements tab,
+
+108
+00:09:29,420 --> 00:09:32,180
+you also see that now it is applied.
+
+109
+00:09:32,330 --> 00:09:37,870
+With that, we get the roof of our application finished for now,
+
+110
+00:09:37,940 --> 00:09:44,180
+there is of course a lot of work left regarding the navigation here, the toolbar and everything but since
+
+111
+00:09:44,180 --> 00:09:50,060
+we don't have multiple pages right now, we don't need to take care about the navigation right now. So
+
+112
+00:09:50,060 --> 00:09:57,770
+let's instead focus on the core functionality of our application, the burger builder. We'll start implementing
+
+113
+00:09:57,770 --> 00:09:59,660
+that in the next lectures.

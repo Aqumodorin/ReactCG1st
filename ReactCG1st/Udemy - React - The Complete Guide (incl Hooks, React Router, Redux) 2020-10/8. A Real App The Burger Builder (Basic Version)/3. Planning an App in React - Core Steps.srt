@@ -1,0 +1,119 @@
+1
+00:00:02,100 --> 00:00:07,600
+Now you learned all the theory about how components work, how you pass data around, how props work and
+
+2
+00:00:07,600 --> 00:00:12,700
+so on and that's all nice but how do you actually plan a React application,
+
+3
+00:00:12,700 --> 00:00:14,190
+how does that work?
+
+4
+00:00:14,200 --> 00:00:19,630
+Now you can of course split this up into more granular steps than these three but here are three very
+
+5
+00:00:19,630 --> 00:00:25,840
+important steps I see and I regularly go through when planning a React application.
+
+6
+00:00:25,870 --> 00:00:33,550
+The first step is planning the component tree, the component structure. You probably got a design by your designer
+
+7
+00:00:33,670 --> 00:00:41,530
+or you basically created an app design on your own and now it's up to you to split this up into React
+
+8
+00:00:41,530 --> 00:00:42,560
+components
+
+9
+00:00:42,730 --> 00:00:48,820
+and it's absolutely normal that the result you may have at the end might look different than your initially
+
+10
+00:00:48,820 --> 00:00:54,580
+planned component tree but it's super important to have an idea about what should go into its own component
+
+11
+00:00:54,640 --> 00:00:55,880
+and what not.
+
+12
+00:00:56,050 --> 00:01:00,580
+The other important part of your application of course is the application state,
+
+13
+00:01:00,580 --> 00:01:06,760
+you can also translate this with the data you plan on using and manipulating in your application. For example
+
+14
+00:01:06,760 --> 00:01:11,250
+and of course we will do this over the next lectures, in our burger application,
+
+15
+00:01:11,290 --> 00:01:16,540
+we need to keep track about the ingredients a user added because that will determine what we need to
+
+16
+00:01:16,540 --> 00:01:20,560
+render and also what the user needs to pay in the end.
+
+17
+00:01:20,560 --> 00:01:26,680
+Now once you know the component structure of your application and the state you're going to use in it,
+
+18
+00:01:27,070 --> 00:01:33,940
+you can plan components versus containers. So which components in your application should be stateless,
+
+19
+00:01:33,940 --> 00:01:36,640
+also sometimes called dumb components,
+
+20
+00:01:36,640 --> 00:01:42,070
+so basically components that are functional and don't use hooks or even class-based components that
+
+21
+00:01:42,100 --> 00:01:46,150
+don't use state and which components have to be stateful components,
+
+22
+00:01:46,150 --> 00:01:53,410
+so either functional components using their useState hook or class-based components using the state property.
+
+23
+00:01:53,410 --> 00:01:58,930
+These are the three steps I regularly go through and these are the steps I want to go through with you
+
+24
+00:01:58,930 --> 00:02:05,650
+together. We're going to plan our component tree, component structure and then we're going to have a
+
+25
+00:02:05,650 --> 00:02:11,440
+look at which state we need and what can be a component and what should be a container and then we're
+
+26
+00:02:11,440 --> 00:02:14,070
+just going to start building the application
+
+27
+00:02:14,070 --> 00:02:19,690
+and as you will see, we might then even add more components than we initially planned because we see
+
+28
+00:02:19,900 --> 00:02:23,100
+that we can't split up even more or maybe that's some split
+
+29
+00:02:23,110 --> 00:02:28,180
+we did plan doesn't make sense once we start implementing it and that's perfectly normal
+
+30
+00:02:28,180 --> 00:02:30,430
+but having a plan is of course very important.

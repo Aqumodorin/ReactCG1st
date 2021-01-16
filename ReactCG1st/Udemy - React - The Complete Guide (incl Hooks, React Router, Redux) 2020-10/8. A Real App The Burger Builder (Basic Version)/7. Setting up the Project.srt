@@ -1,0 +1,207 @@
+1
+00:00:02,370 --> 00:00:07,590
+Now that the planning is done let's dive into the project and let's actually build this application
+
+2
+00:00:08,130 --> 00:00:13,790
+forward as I opened a brand new project created with create a react app.
+
+3
+00:00:13,800 --> 00:00:16,050
+Nothing has been changed here yet.
+
+4
+00:00:16,080 --> 00:00:21,210
+Now you can either create a new project on your own or you simply used to attach starting Project which
+
+5
+00:00:21,210 --> 00:00:29,310
+reflects this exact state you see here on my screen to start on the same page as I do now in this project.
+
+6
+00:00:29,310 --> 00:00:36,180
+I first of all want to enable see as modules so that I can make sure that they see us as class as we
+
+7
+00:00:36,180 --> 00:00:44,250
+create in a C as as file can be scoped to a specific component in our application so that they are not
+
+8
+00:00:44,250 --> 00:00:50,430
+applied globally when we would accidentally reuse the same CSF class.
+
+9
+00:00:50,430 --> 00:00:53,370
+For that I need to eject the project.
+
+10
+00:00:53,370 --> 00:01:01,050
+As you learned so let's do that first let's run NPM run eject in the newly created Project and this
+
+11
+00:01:01,050 --> 00:01:03,630
+will now ask us if we really want to eject.
+
+12
+00:01:03,630 --> 00:01:11,190
+So I will confirm this with Y for yes and now as we saw it before in the module where I showed you how
+
+13
+00:01:11,190 --> 00:01:17,780
+to implement C as as module you get access to the config in a conflict folder and there to do to web
+
+14
+00:01:17,790 --> 00:01:20,040
+pack configuration files.
+
+15
+00:01:20,040 --> 00:01:26,520
+Now let's dive into the first of the two and search for the part where you have to use CSR as test and
+
+16
+00:01:26,510 --> 00:01:29,240
+to see us as loader there.
+
+17
+00:01:29,250 --> 00:01:35,940
+As I showed you in the mentioned module you have to add modules true to the options off that loader
+
+18
+00:01:36,360 --> 00:01:42,990
+and add you local ident name option to basically define DC as as class name.
+
+19
+00:01:42,990 --> 00:01:50,520
+It will automatically generate and assign this should take your original name then two underscores then
+
+20
+00:01:50,520 --> 00:02:00,080
+the local name of the component and then a randomly generated hash with hash coal base 64 colon 5.
+
+21
+00:02:00,120 --> 00:02:06,690
+This will generate these unique see us as class names which are then assigned automatically once we
+
+22
+00:02:06,690 --> 00:02:10,960
+import them through that object from the CSA s file.
+
+23
+00:02:11,070 --> 00:02:18,150
+As I showed you in that module now copy these two lines with modules and local ident name and go to
+
+24
+00:02:18,150 --> 00:02:24,570
+the ABA webpage conflict fall to it this convict file for the production build and of course there we
+
+25
+00:02:24,570 --> 00:02:31,650
+also want to ensure that we can use C as US modules so enter it here in the options.
+
+26
+00:02:31,650 --> 00:02:34,150
+Make sure to close that string here.
+
+27
+00:02:34,340 --> 00:02:40,050
+Entered here in the options for DC as its loader so that both webpage conflict files have been adjusted
+
+28
+00:02:40,380 --> 00:02:41,560
+and saved.
+
+29
+00:02:41,760 --> 00:02:46,120
+And with that we got our project set up and we can get started.
+
+30
+00:02:46,170 --> 00:02:52,440
+Now let's do some cleanup work let's remove that logo dot SPG file which was created automatically I
+
+31
+00:02:52,440 --> 00:02:58,880
+don't be dead and in the aptly as fall we can get rid of the import of that fall therefore we can also
+
+32
+00:02:58,920 --> 00:03:09,260
+clean up the app J.S. content here removed a class name from the div and remove the app CSX import here
+
+33
+00:03:09,270 --> 00:03:11,730
+even and remove DMC as as as.
+
+34
+00:03:11,880 --> 00:03:18,500
+I don't need to styling here right now I will leave the global styling here though but in the next year
+
+35
+00:03:18,510 --> 00:03:25,290
+as file where I set up my global body style and which I still import normally in quotation marks by
+
+36
+00:03:25,290 --> 00:03:33,720
+referencing the file and not importing a class object so therefore it will get applied globally in that
+
+37
+00:03:33,830 --> 00:03:40,650
+CSR as file I want to set the font family to a number of font we could of course use that but I picked
+
+38
+00:03:40,650 --> 00:03:43,140
+a different one which I find a bit more beautiful.
+
+39
+00:03:43,140 --> 00:03:51,420
+Basically I want to use open sense and for that you can simply search for a Google funds and on the
+
+40
+00:03:51,420 --> 00:03:57,090
+Google funds page as it just mentioned it's does open the sense fall here.
+
+41
+00:03:57,090 --> 00:04:02,420
+Now once you selected this you can click on that the bottom to customize it and there.
+
+42
+00:04:02,430 --> 00:04:07,440
+I don't just want to pick the regular one let's all to pick up the bold one in case we need this.
+
+43
+00:04:07,440 --> 00:04:11,340
+In case you want to have some bold text for example for headings.
+
+44
+00:04:11,340 --> 00:04:18,840
+Now with that let's go to embed and there you find a link to the Google sedan from which you can import
+
+45
+00:04:18,840 --> 00:04:22,650
+this fund and those perfectly find is exactly the approach L and I use.
+
+46
+00:04:23,610 --> 00:04:29,620
+So now with that link let's go back to our project folder to the public folder into the index h t email
+
+47
+00:04:29,640 --> 00:04:33,150
+file and there I will added right above the title.
+
+48
+00:04:33,150 --> 00:04:40,950
+Now speaking of the title I'll also justice to my burger because well this should be the name of my
+
+49
+00:04:40,950 --> 00:04:42,220
+application here.
+
+50
+00:04:42,570 --> 00:04:46,770
+With that D set off the project is pretty much finished.
+
+51
+00:04:46,920 --> 00:04:54,420
+We can now start writing our ReACT application and implement that component tree we designed in the
+
+52
+00:04:54,420 --> 00:04:59,370
+last lectures so let's move on and start developing these components in the next lecture.

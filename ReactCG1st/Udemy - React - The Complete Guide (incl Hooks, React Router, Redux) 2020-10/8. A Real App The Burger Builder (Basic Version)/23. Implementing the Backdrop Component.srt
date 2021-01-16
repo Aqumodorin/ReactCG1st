@@ -1,0 +1,387 @@
+1
+00:00:02,150 --> 00:00:09,860
+Let's add this backdrop and let's first of all create the backdrop component and add the styling for
+
+2
+00:00:09,860 --> 00:00:11,240
+the backdrop.
+
+3
+00:00:11,300 --> 00:00:18,940
+So let's head over to our UI folder in the backdrop and let's start working on that backdrop component,
+
+4
+00:00:19,370 --> 00:00:26,060
+it'll be a super simple component. As always, it's a functional component here which receives some props
+
+5
+00:00:26,390 --> 00:00:34,640
+and return some JSX, it therefore also needs to import React from React and it needs to export itself
+
+6
+00:00:35,060 --> 00:00:40,290
+as the default. Now in the JSX code I return,
+
+7
+00:00:40,600 --> 00:00:44,200
+I don't actually even need to write complex code,
+
+8
+00:00:44,230 --> 00:00:47,770
+I just want to check if props show is true.
+
+9
+00:00:47,770 --> 00:00:51,420
+If that is the case, again using a ternary expression here,
+
+10
+00:00:51,670 --> 00:01:00,900
+if that is the case, then I want to return a div, this div will simply hold the styling for the backdrop,
+
+11
+00:01:00,940 --> 00:01:02,640
+otherwise I will return null.
+
+12
+00:01:02,680 --> 00:01:05,630
+You may return null in components,
+
+13
+00:01:05,630 --> 00:01:06,430
+that is OK,
+
+14
+00:01:06,430 --> 00:01:10,020
+it just means nothing gets rendered but it is OK. Now
+
+15
+00:01:10,090 --> 00:01:14,830
+I don't need to pass any content to the div, I need to set up some styling though,
+
+16
+00:01:14,830 --> 00:01:21,080
+so let's add a backdrop.css file where we add some styling for the backdrop.
+
+17
+00:01:21,090 --> 00:01:26,950
+Now we can quickly write this together, let's add the backdrop.css class so that we can use this through
+
+18
+00:01:26,950 --> 00:01:36,550
+CSS modules and then backdrop should span the full height and width of the page to cover everything,
+
+19
+00:01:36,550 --> 00:01:41,740
+it should have a fixed position so that it stays in position even as we scroll.
+
+20
+00:01:41,740 --> 00:01:49,840
+It should have a set index of let's say 100, so that it is above the elements we want to have it sit
+
+21
+00:01:49,840 --> 00:01:50,500
+above
+
+22
+00:01:50,680 --> 00:01:55,510
+and this will become important later once we add a toolbar for example
+
+23
+00:01:55,600 --> 00:02:00,810
+but if we check out the modal styling, you will see it also has a set index of 500.
+
+24
+00:02:00,850 --> 00:02:01,990
+That's of course important,
+
+25
+00:02:02,020 --> 00:02:07,570
+the modal needs to sit above the backdrop and the backdrop will later need to sit above some other elements
+
+26
+00:02:07,570 --> 00:02:08,970
+like the toolbar.
+
+27
+00:02:09,070 --> 00:02:15,150
+Let's also add left 0 and top 0 to position it in the top left corner
+
+28
+00:02:15,310 --> 00:02:24,160
+and let's add a background color where I will use a RGBA value to set this to a black color with 50%
+
+29
+00:02:24,190 --> 00:02:26,030
+transparency.
+
+30
+00:02:26,050 --> 00:02:36,080
+Now it's time to import these classes, these classes or this single class actually into the backdrop component.
+
+31
+00:02:36,220 --> 00:02:47,220
+So here I will therefore simply import classes from ./backdrop.css and assign this as a class
+
+32
+00:02:47,220 --> 00:02:54,390
+name to the div, so class name is now equal to classes backdrop with a capital B, 
+
+33
+00:02:54,390 --> 00:02:56,240
+that's important.
+
+34
+00:02:56,240 --> 00:02:58,600
+With that we get a backdrop component,
+
+35
+00:02:58,680 --> 00:03:00,810
+now we need to use it.
+
+36
+00:03:00,870 --> 00:03:03,430
+It expects to get a show property,
+
+37
+00:03:03,450 --> 00:03:07,830
+the question now is, where do we add this backdrop?
+
+38
+00:03:07,830 --> 00:03:15,130
+And now you can have multiple places where you could add it, where you could argue that it makes sense.
+
+39
+00:03:15,240 --> 00:03:22,260
+One such place would be in the app component, have it sit next to the layout, outside of the layout even
+
+40
+00:03:22,410 --> 00:03:29,520
+because it's not part of the core page content. Have it sit in the layout component
+
+41
+00:03:29,520 --> 00:03:35,940
+could you argue because it is part of the page but it should not be part of the main content and not
+
+42
+00:03:35,940 --> 00:03:39,260
+be part of the toolbar or anything like that.
+
+43
+00:03:39,300 --> 00:03:44,250
+You can definitely do that, you can put it into the layout component, you just need to make sure that
+
+44
+00:03:44,250 --> 00:03:52,080
+you then can reach that by passing the show the backdrop state up to that component and so on.
+
+45
+00:03:52,080 --> 00:03:53,980
+This is a nice challenge for you,
+
+46
+00:03:54,180 --> 00:03:59,040
+try placing and handling the backdrop in different places of your app.
+
+47
+00:03:59,040 --> 00:04:05,250
+For this, you might also need to switch some of your components from stateless, so functional without
+
+48
+00:04:05,250 --> 00:04:10,050
+hooks to stateful, so functional with hooks or as we do it in this course,
+
+49
+00:04:10,050 --> 00:04:15,320
+to class-based components because maybe all of a sudden, you also need to define some method in a component.
+
+50
+00:04:16,420 --> 00:04:25,120
+I will go for another approach though, I will add the backdrop to my modal because in my opinion, this
+
+51
+00:04:25,120 --> 00:04:28,150
+backdrop is closely connected to the modal.
+
+52
+00:04:28,210 --> 00:04:31,820
+If the modal is shown, the backdrop should be shown.
+
+53
+00:04:31,990 --> 00:04:38,830
+So therefore, I will import my auxiliary component here because I need to place that modal next to the
+
+54
+00:04:38,830 --> 00:04:39,370
+backdrop,
+
+55
+00:04:40,030 --> 00:04:49,780
+so let me simply go up all the way to the place where I can access hoc and then my auxiliary and now
+
+56
+00:04:49,780 --> 00:04:54,790
+let's wrap the div of the modal into 
+
+57
+00:04:54,800 --> 00:05:05,650
+this aux component and let's now import the backdrop into this file too, import backdrop from the backdrop
+
+58
+00:05:05,650 --> 00:05:08,340
+folder, the backdrop.js file,
+
+59
+00:05:08,410 --> 00:05:10,970
+let's place it next to the modal,
+
+60
+00:05:10,990 --> 00:05:12,890
+this is my backdrop.
+
+61
+00:05:13,060 --> 00:05:18,300
+Now we should configure the show property on the backdrop because we expect it in there
+
+62
+00:05:18,610 --> 00:05:24,880
+and thankfully, we get the show information on props in the modal component itself. So we can simply
+
+63
+00:05:24,880 --> 00:05:28,300
+pass on props show to the backdrop,
+
+64
+00:05:28,300 --> 00:05:31,870
+if the modal is shown, the backdrop should be shown.
+
+65
+00:05:32,080 --> 00:05:37,690
+If we do this, let's save all the files and let's see if that works, looks good,
+
+66
+00:05:37,690 --> 00:05:39,070
+we get a backdrop,
+
+67
+00:05:39,520 --> 00:05:43,860
+let's now make sure that we can click this backdrop too. For that
+
+68
+00:05:43,870 --> 00:05:49,000
+we of course need to add a click listener inside the backdrop on the div,
+
+69
+00:05:49,000 --> 00:05:52,950
+so onClick should execute some method
+
+70
+00:05:52,960 --> 00:05:57,940
+and of course, we will receive a reference to that method on a property.
+
+71
+00:05:58,300 --> 00:06:01,190
+So I'll execute props and then let's say clicked
+
+72
+00:06:01,210 --> 00:06:08,120
+could be the property name, you can choose any name you want here. Let's now go back to the modal,
+
+73
+00:06:08,220 --> 00:06:10,890
+here we have to provide a clicked property
+
+74
+00:06:11,220 --> 00:06:19,320
+and now we have to do something there and I will simply trigger a prop on that modal which should be
+
+75
+00:06:19,320 --> 00:06:27,510
+modal closed. So modal closed is now a property we have to add to the modal component
+
+76
+00:06:27,510 --> 00:06:36,030
+when we add it to JSX, to our output so to say and we do of course use that modal in the burger builder
+
+77
+00:06:36,680 --> 00:06:37,350
+here.
+
+78
+00:06:38,690 --> 00:06:45,950
+So what we now need to do is we have to add this modal closed property to modal because we just added
+
+79
+00:06:45,950 --> 00:06:50,250
+it in there as a reference of the method we want to execute
+
+80
+00:06:50,330 --> 00:06:57,260
+once the backdrop fires clicked, just to reassure that it is clear when this happens, which happens when
+
+81
+00:06:57,560 --> 00:07:01,770
+onClick is fired on the div which makes up the backdrop.
+
+82
+00:07:01,880 --> 00:07:08,560
+So in burger builder where we in the end will get this information, I want to execute some code once
+
+83
+00:07:08,560 --> 00:07:14,260
+this backdrop was clicked in the end and I will add a new handler,
+
+84
+00:07:14,260 --> 00:07:20,090
+the purchaseCancelHandler because clicking the backdrop essentially means that we want to close
+
+85
+00:07:20,090 --> 00:07:23,080
+the modal and that we want to cancel the purchase,
+
+86
+00:07:23,090 --> 00:07:24,290
+we don't want to continue.
+
+87
+00:07:24,920 --> 00:07:35,120
+So I will call this set state and set purchasing to false. Notice the special syntax I'm using here again
+
+88
+00:07:35,120 --> 00:07:42,800
+to make sure this inside of this method refers to the class and not to something else.
+
+89
+00:07:42,800 --> 00:07:45,500
+So it's purchaseCancelHandler
+
+90
+00:07:45,500 --> 00:07:51,830
+I want to execute once the modal was closed, so this purchaseCancelHandler.
+
+91
+00:07:52,010 --> 00:07:57,800
+If we now save everything and we go back to the application and we open the modal, we see it,
+
+92
+00:07:58,010 --> 00:08:03,620
+if I click the backdrop, you see the modal disappears and the backdrop disappears and we can do this
+
+93
+00:08:03,860 --> 00:08:05,310
+as often as we want.
+
+94
+00:08:05,500 --> 00:08:09,500
+This by the way is a super tasty burger, no meat but a lot of cheese,
+
+95
+00:08:09,500 --> 00:08:11,120
+delicious.
+
+96
+00:08:11,120 --> 00:08:18,020
+Now let's continue and let's make sure we add some buttons as part of the order summary so that we may
+
+97
+00:08:18,020 --> 00:08:20,450
+continue or that we may cancel.

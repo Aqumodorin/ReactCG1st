@@ -1,0 +1,215 @@
+1
+00:00:02,140 --> 00:00:10,370
+So let's start implementing the burger builder component and as we identified in our design phase, this
+
+2
+00:00:10,370 --> 00:00:15,910
+should actually be a container because there we plan on managing the state for the burger we're about
+
+3
+00:00:15,910 --> 00:00:17,260
+to build.
+
+4
+00:00:17,260 --> 00:00:22,960
+So I will go into the containers folder, in the source folder and there I will create a new sub-folder
+
+5
+00:00:22,960 --> 00:00:28,100
+which I'll name burger builder because that should be the component name.
+
+6
+00:00:28,210 --> 00:00:34,930
+So there I'll add a BurgerBuilder.js file and in there, I'll add the burger builder component
+
+7
+00:00:34,960 --> 00:00:36,190
+with the class keyword,
+
+8
+00:00:36,190 --> 00:00:41,710
+so as a class-based component because I want to manage my state in here and I want to do that in a class
+
+9
+00:00:41,710 --> 00:00:47,410
+based component as I do it in the rest of this course here except for the hooks modules later of course where
+
+10
+00:00:47,410 --> 00:00:51,570
+I will show you how you will transform this project to use React hooks.
+
+11
+00:00:52,060 --> 00:00:58,940
+I'll name it burger builder and I need to extend this component object
+
+12
+00:00:59,110 --> 00:01:04,050
+we can import from React. So let's add this import right away,
+
+13
+00:01:04,100 --> 00:01:13,240
+let's also import React to be able to write JSX and then as a named import component from the
+
+14
+00:01:13,240 --> 00:01:15,350
+React package.
+
+15
+00:01:15,390 --> 00:01:17,940
+This is our class definition finished.
+
+16
+00:01:18,000 --> 00:01:23,960
+Now as you learned, there is one important lifecycle method we need to implement, the render method,
+
+17
+00:01:23,970 --> 00:01:28,790
+this is a must because we must tell React what we want to render.
+
+18
+00:01:28,920 --> 00:01:35,580
+There you need to return some JSX code and now the question of course is, what do we want to return
+
+19
+00:01:35,580 --> 00:01:36,700
+here?
+
+20
+00:01:36,780 --> 00:01:40,740
+Now this will probably grow as we build this application,
+
+21
+00:01:40,740 --> 00:01:48,150
+for example we might also return a modal here conditionally if it's about time to show it but for now
+
+22
+00:01:48,150 --> 00:01:56,130
+what I want to do is, I want to render two different things and I will wrap it with a div here for now
+
+23
+00:01:56,710 --> 00:02:00,830
+or actually let's use our auxiliary component for that.
+
+24
+00:02:00,900 --> 00:02:06,700
+So let's quickly import aux from and then go up all the way to the source level
+
+25
+00:02:06,750 --> 00:02:12,060
+hoc aux because I don't really need a div now that I'm thinking about it,
+
+26
+00:02:12,360 --> 00:02:18,810
+this does it, to simply fulfill the requirement of having a wrapping element because here I want to return
+
+27
+00:02:18,810 --> 00:02:25,380
+two adjacent components in the end, for now let's use divs as placeholders.
+
+28
+00:02:25,770 --> 00:02:32,850
+I want to return the burger I built, so a graphical representation of the burger with all the ingredients
+
+29
+00:02:33,720 --> 00:02:39,530
+and below that, I want to have my build controls or something like that,
+
+30
+00:02:39,540 --> 00:02:43,590
+so basically an area where I can add and remove ingredients.
+
+31
+00:02:43,860 --> 00:02:46,310
+This is the setup I want to use,
+
+32
+00:02:46,410 --> 00:02:51,990
+we might add more to this component as I mentioned but this is the base setup of it.
+
+33
+00:02:51,990 --> 00:02:59,700
+So for now, let me quickly export this class as the default of this file and let's now import the burger
+
+34
+00:02:59,700 --> 00:03:06,690
+builder after saving it in your app.js file and replace test with it.
+
+35
+00:03:06,690 --> 00:03:13,650
+So there I will import the burger builder from and now I need to go to the containers folder, to the
+
+36
+00:03:13,650 --> 00:03:19,620
+burger builder folder and use the BurgerBuilder.js file of course, without the file extension as you
+
+37
+00:03:19,620 --> 00:03:20,730
+learned.
+
+38
+00:03:20,730 --> 00:03:23,480
+Burger builder can be a self-closing component,
+
+39
+00:03:23,560 --> 00:03:31,080
+I don't need to wrap any content with the selectors and after saving this, we should see burger and
+
+40
+00:03:31,080 --> 00:03:32,880
+build controls.
+
+41
+00:03:32,880 --> 00:03:36,270
+Now I could understand if you're not totally flashed,
+
+42
+00:03:36,270 --> 00:03:40,250
+this certainly can be improved from a styling perspective.
+
+43
+00:03:41,100 --> 00:03:50,280
+So first of all, let's make sure that we have some margin between our toolbar, even though it's just a
+
+44
+00:03:50,280 --> 00:03:58,470
+placeholder right now and our other part and I will do this in the layout component because it's there
+
+45
+00:03:58,470 --> 00:04:04,500
+where we have the area for the toolbar and the area for the main part and I simply want to add a CSS
+
+46
+00:04:04,500 --> 00:04:13,110
+class to the main element here to make sure that it has some margin. For that, I will add a new file,
+
+47
+00:04:13,290 --> 00:04:21,000
+layout.css and in that file, I will create a new class and I'll name it content, the name of course is
+
+48
+00:04:21,000 --> 00:04:29,880
+totally up to you and there, I'll add margin top 16 pixels. I will now go back to the layout.js file and
+
+49
+00:04:29,880 --> 00:04:35,560
+quickly import classes from this layout.css file.
+
+50
+00:04:35,820 --> 00:04:38,700
+And with that, we can go to the main element here,
+
+51
+00:04:38,790 --> 00:04:45,870
+add class name and there assign classes content, like that.
+
+52
+00:04:45,960 --> 00:04:51,380
+Now if we save this, we got some margin but still this doesn't exactly look like a burger and
+
+53
+00:04:51,390 --> 00:05:00,030
+we can probably still increase that. So as a next step, let's add a burger component and the burger ingredients
+
+54
+00:05:00,270 --> 00:05:02,730
+which actually should be rendered there.

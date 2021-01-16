@@ -1,0 +1,75 @@
+1
+00:00:02,110 --> 00:00:04,000
+Let's start with prop types.
+
+2
+00:00:04,000 --> 00:00:08,250
+Right now we're doing prop type validation in the burger ingredient component.
+
+3
+00:00:08,320 --> 00:00:12,400
+There we make sure that the type is set,
+
+4
+00:00:12,400 --> 00:00:15,010
+so it's required and that it is a string.
+
+5
+00:00:15,190 --> 00:00:19,260
+I'm not doing any validation in any other component
+
+6
+00:00:19,420 --> 00:00:26,620
+and the reason for this is that here I'm not working on a project which is going to get used by other
+
+7
+00:00:26,620 --> 00:00:27,190
+people,
+
+8
+00:00:27,220 --> 00:00:29,550
+I'm not working on the third-party library,
+
+9
+00:00:29,580 --> 00:00:32,190
+I am not even working in a developer team,
+
+10
+00:00:32,200 --> 00:00:37,780
+so a lot of the reasons why properties might be used incorrectly aren't relevant here.
+
+11
+00:00:37,780 --> 00:00:42,520
+Additionally, we'll get logical errors in our application
+
+12
+00:00:42,520 --> 00:00:50,230
+if we forget or assign a wrong key property anyways and that is why I don't use prop type validation
+
+13
+00:00:50,260 --> 00:00:52,780
+that much in this application.
+
+14
+00:00:52,810 --> 00:00:59,170
+Feel free as a practice to add prop types validation to more components. You can convert them to class
+
+15
+00:00:59,170 --> 00:01:03,070
+based components for that or keep them as functional components, doesn't really matter,
+
+16
+00:01:03,070 --> 00:01:07,480
+I typically convert it in class-based components also to highlight the difference and to make it really
+
+17
+00:01:07,480 --> 00:01:09,270
+clear that I'm adding prop type validation
+
+18
+00:01:09,430 --> 00:01:14,260
+but you don't need to do that and I will not add them to all my components but you can definitely do
+
+19
+00:01:14,260 --> 00:01:15,340
+this as a practice.

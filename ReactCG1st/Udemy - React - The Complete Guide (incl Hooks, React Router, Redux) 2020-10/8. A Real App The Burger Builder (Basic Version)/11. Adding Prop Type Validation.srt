@@ -1,0 +1,115 @@
+1
+00:00:02,200 --> 00:00:08,020
+So let's add prop type validation and for this, I'll cancel the development server and then run npm
+
+2
+00:00:08,020 --> 00:00:16,350
+install --save, --save to also save an entry in package.json and then prop types.
+
+3
+00:00:16,400 --> 00:00:24,220
+This is the package I showed you in the last course section which is provided by the React team to validate
+
+4
+00:00:24,430 --> 00:00:33,580
+the prop types of your React properties. Simply import prop types from prop types and you can start using
+
+5
+00:00:33,580 --> 00:00:38,410
+that package, I'll restart the development server with npm start
+
+6
+00:00:38,500 --> 00:00:41,140
+and here I want to use prop types on this component.
+
+7
+00:00:41,140 --> 00:00:44,190
+Now you don't need to transform into a class-based component actually,
+
+8
+00:00:44,320 --> 00:00:47,290
+you can use prop types on functional components as well,
+
+9
+00:00:47,290 --> 00:00:49,960
+I want to practice this conversion to a class-based component
+
+10
+00:00:49,960 --> 00:00:55,360
+once again though and I personally like using prop types on class-based components but you could keep
+
+11
+00:00:55,360 --> 00:01:00,960
+this a functional component and add prop types in the same way as I do it on the class-based one.
+
+12
+00:01:01,150 --> 00:01:06,880
+Well with that, let's rename BurgerIngredient to have a capital B to follow the naming convention of
+
+13
+00:01:06,880 --> 00:01:14,490
+classes and let's import component as a named import from React. Now
+
+14
+00:01:14,490 --> 00:01:22,740
+BurgerIngredient should extend component and we can then add a class body where we need to implement
+
+15
+00:01:22,740 --> 00:01:24,090
+the render method.
+
+16
+00:01:24,390 --> 00:01:31,380
+Now inside render, we can now execute our logic, our switch statement and in the end, return the ingredient.
+
+17
+00:01:31,380 --> 00:01:34,050
+So simply put that in there,
+
+18
+00:01:34,050 --> 00:01:43,690
+remove that relict down there and export your newly named class. Now props type won't work because inside
+
+19
+00:01:43,690 --> 00:01:47,300
+a class, you access props with this props,
+
+20
+00:01:47,480 --> 00:01:53,540
+so make sure to add a this in front of props, with that it should be working again though.
+
+21
+00:01:53,750 --> 00:02:02,750
+Now we can add prop type validation by taking our class name, adding the prop types property with a lowercase
+
+22
+00:02:02,750 --> 00:02:07,310
+p and setting it equal to a Javascript object and there
+
+23
+00:02:07,310 --> 00:02:16,280
+I now want to configure the type property using the prop types we imported from that prop types package,
+
+24
+00:02:17,530 --> 00:02:24,640
+using that and there, I want to make sure the type should be a string and we can chain another condition
+
+25
+00:02:24,940 --> 00:02:26,700
+that it is required.
+
+26
+00:02:26,770 --> 00:02:34,450
+So if we ever try to use the ingredient component without passing a type, we will get an error.
+
+27
+00:02:34,450 --> 00:02:36,920
+So with that, the burger ingredient is finished,
+
+28
+00:02:36,940 --> 00:02:40,280
+now of course it would be interested to also see it in action
+
+29
+00:02:40,510 --> 00:02:46,900
+and for that in the next lecture, we'll actually start building our burger in the burger component.
